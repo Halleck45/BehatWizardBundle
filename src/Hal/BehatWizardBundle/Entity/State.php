@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class State
 {
+
     /**
      * @var integer $id
      */
@@ -24,6 +25,10 @@ class State
      */
     private $createdAt;
 
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     /**
      * Get id
@@ -74,4 +79,30 @@ class State
     {
         return $this->createdAt;
     }
+
+    /**
+     * @var Hal\BehatWizardBundle\Entity\Scenario
+     */
+    private $scenario;
+
+    /**
+     * Set scenario
+     *
+     * @param Hal\BehatWizardBundle\Entity\Scenario $scenario
+     */
+    public function setScenario(\Hal\BehatWizardBundle\Entity\Scenario $scenario)
+    {
+        $this->scenario = $scenario;
+    }
+
+    /**
+     * Get scenario
+     *
+     * @return Hal\BehatWizardBundle\Entity\Scenario 
+     */
+    public function getScenario()
+    {
+        return $this->scenario;
+    }
+
 }

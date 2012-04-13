@@ -13,4 +13,11 @@ Hal\BehatWizardBundle\Entity\Scenario:
     title:
       type: string
       length: 255
+  manyToOne:
+      feature:
+          targetEntity: Feature
+  oneToMany:
+      state:
+          targetEntity: State
+          mappedBy: Scenario
   lifecycleCallbacks: {  }

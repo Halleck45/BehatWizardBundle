@@ -15,4 +15,8 @@ Hal\BehatWizardBundle\Entity\Feature:
       length: 255
     description:
       type: text
+  oneToMany:
+      scenario:
+          targetEntity: Scenario
+          mappedBy: Feature
   lifecycleCallbacks: {  }

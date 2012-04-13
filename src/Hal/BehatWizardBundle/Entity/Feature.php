@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Feature
 {
+
     /**
      * @var integer $id
      */
@@ -29,6 +30,15 @@ class Feature
      */
     private $description;
 
+    /**
+     * @var Hal\BehatWizardBundle\Entity\Scenario
+     */
+    private $scenario;
+
+    public function __construct()
+    {
+        $this->scenario = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -99,4 +109,25 @@ class Feature
     {
         return $this->description;
     }
+
+    /**
+     * Add scenario
+     *
+     * @param Hal\BehatWizardBundle\Entity\Scenario $scenario
+     */
+    public function addScenario(\Hal\BehatWizardBundle\Entity\Scenario $scenario)
+    {
+        $this->scenario[] = $scenario;
+    }
+
+    /**
+     * Get scenario
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getScenario()
+    {
+        return $this->scenario;
+    }
+
 }

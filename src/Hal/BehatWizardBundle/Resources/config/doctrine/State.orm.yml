@@ -11,4 +11,7 @@ Hal\BehatWizardBundle\Entity\State:
       type: integer
     createdAt:
       type: datetime
+  manyToOne:
+      scenario:
+          targetEntity: Scenario
   lifecycleCallbacks: {  }
