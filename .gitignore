@@ -1,0 +1,17 @@
+## generic files to ignore
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
+
+## IDE files to ignore
+nbproject/
+.idea/
+*.tmproj
+
+# Symfony files to ignore
+app/cache/*
+app/logs/*
+vendor/
+web/bundles/
