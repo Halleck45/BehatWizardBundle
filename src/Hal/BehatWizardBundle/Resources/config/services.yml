@@ -1,7 +1,7 @@
 parameters:
-#    hal_behat_wizard.example.class: Hal\BehatWizardBundle\Example
+  hal_behat_wizard.feature_manager.class: Hal\BehatWizardBundle\Manager\FeatureManager
 
 services:
-#    hal_behat_wizard.example:
-#        class: %hal_behat_wizard.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+  hal_behat_wizard.feature_manager:
+        class: %hal_behat_wizard.feature_manager.class%
+        arguments: [@doctrine.orm.entity_manager]
