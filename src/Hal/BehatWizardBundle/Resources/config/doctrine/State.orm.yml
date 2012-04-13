@@ -1,0 +1,14 @@
+Hal\BehatWizardBundle\Entity\State:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    state:
+      type: integer
+    createdAt:
+      type: datetime
+  lifecycleCallbacks: {  }

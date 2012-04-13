@@ -1,0 +1,16 @@
+Hal\BehatWizardBundle\Entity\Scenario:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    path:
+      type: string
+      length: 255
+    title:
+      type: string
+      length: 255
+  lifecycleCallbacks: {  }
