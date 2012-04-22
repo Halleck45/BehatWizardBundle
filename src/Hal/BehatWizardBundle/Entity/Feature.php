@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Hal\BehatWizardBundle\Entity\Feature
  */
-class Feature
+class Feature implements FeatureInterface
 {
 
     /**

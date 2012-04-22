@@ -1,7 +1,11 @@
 parameters:
-  hal_behat_wizard.feature_manager.class: Hal\BehatWizardBundle\Manager\FeatureManager
+  hbw.wizard_feature_manager.class: Hal\BehatWizardBundle\Manager\Wizard\FeatureManager
+  hbw.behat_feature_manager.class: Hal\BehatWizardBundle\Manager\Behat\FeatureManager
 
 services:
-  hal_behat_wizard.feature_manager:
-        class: %hal_behat_wizard.feature_manager.class%
+  hbw.wizard_feature_manager:
+        class: %hbw.wizard_feature_manager.class%
         arguments: [@doctrine.orm.entity_manager]
+  hbw.behat_feature_manager:
+        class: %hbw.behat_feature_manager.class%
+        arguments: [@hbw.wizard_feature_manager, %behat_wizard_tests_folder%]
