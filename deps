@@ -65,3 +65,6 @@
 [FOSJsRoutingBundle]
     git=git://github.com/FriendsOfSymfony/FOSJsRoutingBundle.git
     target=/bundles/FOS/JsRoutingBundle
+[gherkin]
+    git=git@github.com:Halleck45/Gherkin.git
+    target=/behat/gherkin
