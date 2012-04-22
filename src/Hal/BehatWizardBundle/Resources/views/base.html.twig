@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        {% block stylesheets %}
+        <link href="{{ asset('bundles/halbehatwizard/bootstrap/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('bundles/halbehatwizard/css/style.css') }}" type="text/css" rel="stylesheet" />
+
+        {% endblock %}
+        <title>{{ "app.title" | trans }}</title>
+    </head>
+    <body>
+
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="{{ path('hal_behat_wizard_homepage') }}">{{ "app.title"|trans }}</a>
+
+                    <div class="nav-collapse">
+                        <ul class="nav">
+                            <li><a href="{{ path('hal_behat_wizard_homepage') }}"><i class="icon-white icon-home"></i></a></li>
+                            <li><a href="">{{ "hal_behat_wizard.btn.feature.add"|trans }}</a></li>
+                            <li><a href="">{{ "hal_behat_wizard.btn.help"|trans }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container page">
+
+            {% for key, message in app.session.getFlashes() %}
+            <div class="alert alert-{{ key }}">
+                {{ message|trans({}) }}
+            </div>
+            {% endfor %}
+
+
+            <section>
+                <h2>{% block title %}{% endblock %}</h2>
+                <div id="content">
+                    {% block body %}{% endblock %}
+                </div>
+            </section>
+
+        </div>
+        {% javascripts
+        '@HalBehatWizardBundle/Resources/public/js/jquery.min.js'
+        '@HalBehatWizardBundle/Resources/public/bootstrap/js/bootstrap.min.js'
+        '@HalBehatWizardBundle/Resources/public/js/hal.js'
+        output='js/compiled/behat-wizard.js'
+        %}
+        <script src="{{ asset_url }}" type="text/javascript"></script>
+        {% endjavascripts %}
+
+        <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+        {% block javascript %}{% endblock %}
+    </body>
+</html>
+

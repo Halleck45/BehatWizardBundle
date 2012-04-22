@@ -1,0 +1,12 @@
+app.title: Behat Wizard
+
+# buttons
+hal_behat_wizard.btn.feature.add: Add new feature
+hal_behat_wizard.btn.help: Help
+
+# listings
+hal_behat_wizard.title.features: List of features
+hal_behat_wizard.status: Status
+hal_behat_wizard.feature: Feature
+hal_behat_wizard.infos: Details
+hal_behat_wizard.actions: ""

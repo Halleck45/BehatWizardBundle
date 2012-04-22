@@ -1,6 +1,12 @@
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+    
 hal_behat_wizard_homepage:
     pattern:  /
     defaults: { _controller: HalBehatWizardBundle:Features:list }
 hal_behat_wizard_list:
     pattern:  /hal-behat/list
     defaults: { _controller: HalBehatWizardBundle:Features:list }
+hal_behat_wizard_edit:
+    pattern:  /hal-behat/list/feature/{feature}
+    defaults: { _controller: HalBehatWizardBundle:Features:list, {feature:0} }
