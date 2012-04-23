@@ -7,7 +7,8 @@ use Doctrine\Common\Collections\Collection,
     Hal\BehatWizardBundle\Manager\Wizard\FeatureManagerInterface;
 use Behat\Gherkin\Lexer,
     Behat\Gherkin\Parser,
-    Behat\Gherkin\Keywords\ArrayKeywords;
+    Behat\Gherkin\Keywords\ArrayKeywords,
+    Behat\Gherkin\Node\FeatureNode;
 
 /*
  * This file is part of the Behat Wizard
@@ -37,7 +38,7 @@ class FeatureManager
      */
     public function __construct(FeatureManagerInterface $wizardManager, $testsFolder)
     {
-        $this->folder = (string) $testsFolder;
+        $this->folder = (string) rtrim($testsFolder, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
         $this->wizardManager = $wizardManager;
     }
 
@@ -47,7 +48,7 @@ class FeatureManager
     public function synchronize()
     {
         $this
-            ->_addNewFeatures()
+            ->_addOrUpdateFeatures()
             ->_removeOldFeatures();
     }
 
@@ -56,7 +57,7 @@ class FeatureManager
      * 
      * @return FeatureManager 
      */
-    private function _addNewFeatures()
+    private function _addOrUpdateFeatures()
     {
         $finder = new Finder();
         $finder->files()->in($this->folder)->name('*.feature');
@@ -65,11 +66,20 @@ class FeatureManager
 
             $filename = $file->getRelativePathname();
             $feature = $this->wizardManager->getFeatureByPath($filename);
-
+            $gherkinFeature = $this->factoryGherkinFeature($file->getRealpath());
             if (!$feature) {
-                $gherkinFeature = $this->factoryGherkinFeature($file->getRealpath());
-                $feature = $this->wizardManager->factoryFeatureFromGherkinFeature($gherkinFeature);
+                //
+                // new features
+                $feature = $this->wizardManager->factoryFeatureFromNode($gherkinFeature);
+                $feature->setPath($this->getRelativePath($gherkinFeature));
                 $this->wizardManager->saveFeature($feature);
+            } else {
+                //
+                // changed features
+                if (spl_object_hash($gherkinFeature) != spl_object_hash($feature->getNode())) {
+                    $this->wizardManager->updateFeatureWithNode($feature, $gherkinFeature);
+                    $this->wizardManager->saveFeature($feature);
+                }
             }
         }
         return $this;
@@ -94,6 +104,17 @@ class FeatureManager
             }
         }
         return $this;
+    }
+
+    /**
+     * Get the relative path of the given feature
+     * 
+     * @param FeatureNode $node
+     * @return type 
+     */
+    public function getRelativePath(FeatureNode $node)
+    {
+        return str_replace($this->folder, '', $node->getFile());
     }
 
     /**

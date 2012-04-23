@@ -57,7 +57,7 @@ class FeatureManager implements FeatureManagerInterface
 
     public function getFeatureByPath($path)
     {
-        return $this->getRepository()->find(array('path' => $path));
+        return $this->getRepository()->findOneBy(array('path' => $path));
     }
 
     public function getRepository()
@@ -68,13 +68,20 @@ class FeatureManager implements FeatureManagerInterface
     /**
      * @todo factory feature and its scenarios from the Gherkin Feature node given
      */
-    public function factoryFeatureFromGherkinFeature(FeatureNode $node)
+    public function factoryFeatureFromNode(FeatureNode $node)
     {
         $feature = new Feature;
+        $this->updateFeatureWithNode($feature, $node);
+        return $feature;
+    }
+    
+    public function updateFeatureWithNode(FeatureInterface $feature, FeatureNode $node) {
         $feature->setPath($node->getFile());
         $feature->setTitle($node->getTitle());
         $feature->setDescription($node->getDescription());
-        return $feature;
+        $feature->setNode($node);
     }
+    
+    
 
 }

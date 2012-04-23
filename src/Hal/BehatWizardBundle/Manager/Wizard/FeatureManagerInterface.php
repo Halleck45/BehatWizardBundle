@@ -31,5 +31,5 @@ interface FeatureManagerInterface
 
     public function removeFeature(FeatureInterface $feature);
 
-    public function factoryFeatureFromGherkinFeature(FeatureNode $node);
+    public function factoryFeatureFromNode(FeatureNode $node);
 }

@@ -16,6 +16,9 @@ Hal\BehatWizardBundle\Entity\Feature:
     description:
       type: text
       nullable: true
+    node:
+      type: object
+      nullable: true
   oneToMany:
       scenario:
           targetEntity: Scenario

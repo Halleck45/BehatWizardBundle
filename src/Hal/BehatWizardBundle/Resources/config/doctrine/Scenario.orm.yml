@@ -13,6 +13,9 @@ Hal\BehatWizardBundle\Entity\Scenario:
     title:
       type: string
       length: 255
+    node:
+      type: object
+      nullable: true
   manyToOne:
       feature:
           targetEntity: Feature

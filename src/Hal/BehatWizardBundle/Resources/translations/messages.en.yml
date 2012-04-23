@@ -3,6 +3,7 @@ app.title: Behat Wizard
 # buttons
 hal_behat_wizard.btn.feature.add: Add new feature
 hal_behat_wizard.btn.help: Help
+hal_behat_wizard.btn.synchronize: Synchronize
 
 # listings
 hal_behat_wizard.title.features: List of features

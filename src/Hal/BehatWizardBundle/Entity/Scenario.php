@@ -130,4 +130,29 @@ class Scenario
         return $this->feature;
     }
 
+    /**
+     * @var object $node
+     */
+    private $node;
+
+
+    /**
+     * Set node
+     *
+     * @param object $node
+     */
+    public function setNode($node)
+    {
+        $this->node = $node;
+    }
+
+    /**
+     * Get node
+     *
+     * @return object 
+     */
+    public function getNode()
+    {
+        return $this->node;
+    }
 }
