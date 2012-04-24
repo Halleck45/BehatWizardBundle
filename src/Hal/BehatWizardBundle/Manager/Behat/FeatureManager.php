@@ -2,10 +2,8 @@
 
 namespace Hal\BehatWizardBundle\Manager\Behat;
 
-use Doctrine\Common\Collections\Collection,
-    Symfony\Component\Finder\Finder,
-    Hal\BehatWizardBundle\Manager\Wizard\FeatureManagerInterface;
-use Behat\Gherkin\Lexer,
+use Hal\BehatWizardBundle\Manager\Wizard\FeatureManagerInterface,
+    Behat\Gherkin\Lexer,
     Behat\Gherkin\Parser,
     Behat\Gherkin\Keywords\ArrayKeywords,
     Behat\Gherkin\Node\FeatureNode;
@@ -26,9 +24,8 @@ use Behat\Gherkin\Lexer,
 class FeatureManager
 {
 
-    private $folder;
+    private $behatManager;
     private $wizardManager;
-    private $gherkin;
 
     /**
      * Constructor
@@ -36,9 +33,9 @@ class FeatureManager
      * @param FeatureManagerInterface $wizardManager
      * @param string $testsFolder 
      */
-    public function __construct(FeatureManagerInterface $wizardManager, $testsFolder)
+    public function __construct(FeatureManagerInterface $wizardManager, BehatManagerInterface $behatManager)
     {
-        $this->folder = (string) rtrim($testsFolder, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
+        $this->behatManager = $behatManager;
         $this->wizardManager = $wizardManager;
     }
 
@@ -59,25 +56,21 @@ class FeatureManager
      */
     private function _addOrUpdateFeatures()
     {
-        $finder = new Finder();
-        $finder->files()->in($this->folder)->name('*.feature');
-
-        foreach ($finder as $file) {
-
-            $filename = $file->getRelativePathname();
+        $nodes = $this->behatManager->getFeatures();
+        foreach ($nodes as $node) {
+            $filename = $this->behatManager->getRelativePath($node);
             $feature = $this->wizardManager->getFeatureByPath($filename);
-            $gherkinFeature = $this->factoryGherkinFeature($file->getRealpath());
             if (!$feature) {
                 //
                 // new features
-                $feature = $this->wizardManager->factoryFeatureFromNode($gherkinFeature);
-                $feature->setPath($this->getRelativePath($gherkinFeature));
+                $feature = $this->wizardManager->factoryFeatureFromNode($node);
+                $feature->setPath($filename);
                 $this->wizardManager->saveFeature($feature);
             } else {
                 //
                 // changed features
-                if (spl_object_hash($gherkinFeature) != spl_object_hash($feature->getNode())) {
-                    $this->wizardManager->updateFeatureWithNode($feature, $gherkinFeature);
+                if (spl_object_hash($node) == spl_object_hash($feature->getNode())) {
+                    $this->wizardManager->updateFeatureWithNode($feature, $node);
                     $this->wizardManager->saveFeature($feature);
                 }
             }
@@ -93,69 +86,13 @@ class FeatureManager
     private function _removeOldFeatures()
     {
         $features = $this->wizardManager->getFeatures();
-        $finder = new Finder();
         foreach ($features as $feature) {
-            $finder->files()->in($this->folder)->name($feature->getPath());
-            //
-            // File has been removed / moved
-            if (sizeof($finder) == 0) {
-
-                $this->wizardManager->remove($feature);
+            $node = $this->behatManager->getFeatureByPath($feature->getPath());
+            if (null === $node) {
+                $this->wizardManager->removeFeature($feature);
             }
         }
         return $this;
-    }
-
-    /**
-     * Get the relative path of the given feature
-     * 
-     * @param FeatureNode $node
-     * @return type 
-     */
-    public function getRelativePath(FeatureNode $node)
-    {
-        return str_replace($this->folder, '', $node->getFile());
-    }
-
-    /**
-     * Factory a gherkin node 
-     * 
-     * @param string $filename
-     * @return Behat\Gherkin\Node\FeatureNode
-     */
-    public function factoryGherkinFeature($filename)
-    {
-        $parser = $this->getGherkinParser();
-        return $parser->parse(file_get_contents($filename), $filename);
-    }
-
-    /**
-     * Picked from gherkin sources
-     * 
-     * @todo : extract keywords from config
-     * @return Parser 
-     */
-    protected function getGherkinParser()
-    {
-        if (null === $this->gherkin) {
-            $keywords = new ArrayKeywords(array(
-                    'en' => array(
-                        'feature' => 'Feature',
-                        'background' => 'Background',
-                        'scenario' => 'Scenario',
-                        'scenario_outline' => 'Scenario Outline',
-                        'examples' => 'Examples',
-                        'given' => 'Given',
-                        'when' => 'When',
-                        'then' => 'Then',
-                        'and' => 'And',
-                        'but' => 'But'
-                    )
-                ));
-            $this->gherkin = new Parser(new Lexer($keywords));
-        }
-
-        return $this->gherkin;
     }
 
 }

@@ -76,7 +76,6 @@ class FeatureManager implements FeatureManagerInterface
     }
     
     public function updateFeatureWithNode(FeatureInterface $feature, FeatureNode $node) {
-        $feature->setPath($node->getFile());
         $feature->setTitle($node->getTitle());
         $feature->setDescription($node->getDescription());
         $feature->setNode($node);
