@@ -1,7 +1,8 @@
 imports:
     - { resource: parameters.ini }
     - { resource: security.yml }
-
+    - { resource: "@HalBehatWizardBundle/Resources/config/config.yml" }
+    
 framework:
     #esi:             ~
     translator:      { fallback: %locale% }

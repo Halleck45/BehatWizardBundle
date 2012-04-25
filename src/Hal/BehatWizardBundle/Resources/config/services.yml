@@ -9,7 +9,7 @@ services:
         arguments: [@doctrine.orm.entity_manager]
   hbw.behat_manager:
         class: %hbw.behat_manager.class%
-        arguments: [%behat_wizard_tests_folder%]
+        arguments: [%behat_wizard_tests_folder%, @gherkin.parser]
   hbw.behat_feature_manager:
         class: %hbw.behat_feature_manager.class%
         arguments: [@hbw.wizard_feature_manager, @hbw.behat_manager]
