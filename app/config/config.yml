@@ -66,5 +66,3 @@ jms_security_extra:
     secure_controllers:  true
     secure_all_services: false
 
-parameters:
-  behat_wizard_tests_folder: /home/data/www/jeff/tools/articles-tutos/behat/day4/tests

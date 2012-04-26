@@ -17,6 +17,7 @@ $loader->registerNamespaces(array(
     'FOS'              => __DIR__.'/../vendor/bundles',
     'Behat\\Gherkin'   => __DIR__.'/../vendor/behat/gherkin/src',
     'Behat\\Behat'     => __DIR__.'/../vendor/behat/behat/src',
+    'Behat\\Mink'      => __DIR__.'/../vendor/behat/mink/src',
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',
