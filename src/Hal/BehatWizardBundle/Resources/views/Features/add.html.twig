@@ -1,0 +1,226 @@
+{% extends 'HalBehatWizardBundle::base.html.twig' %}
+
+{% block title %}{{ "hal_behat_wizard.title.add_feature"|trans }}{% endblock %}
+
+{% block body %}
+
+
+<div class="row form-actions">
+    <button class="btn btn-primary" type="submit">Save changes</button>
+    <button class="btn">Cancel</button>
+</div>
+
+
+<div class="row">
+    <div class="hero-unit">
+        <h1>En 2 mots</h1>
+        <p>Décrivez ici votre fonctionnalité en quelques mots seulement</p>
+        <form class="" method="post">
+            <div class="form-horizontal">
+
+                <fieldset>
+                    <legend>Résumé</legend>
+                    <div class="control-group">
+                        <label class="control-label" for="input01">Résumé</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge"  placeholder="Pouvoir ajouter un utilisateur...">
+                            <p class="help-block">Le titre de la fonctionnalité</p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="input01">Afin de </label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge"   name="feature-title" placeholder="Enregister un nouvel utilisateur..." />
+                            <p class="help-block">Bénéfice de la fonctionallité</p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="input01">En tant que </label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge"   name="feature-title" placeholder="Administrateur du site..." />
+                            <p class="help-block">Votre rôle au sein de l'application</p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="input01">je dois </label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge"   name="feature-title" placeholder="Inscrire moi-même un nouvel utilisateur dans le site..." />
+                            <p class="help-block">Finalité de la fonctionnalité</p>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="span4">
+        <h2>Spécificités</h2>
+        <div class="alert alert-info">Décrivez ici l'environnement nécessaire à cette fonctionnalité</div>
+        <form class="form-vertical" method="post">
+            <h3>Pré-requis :</h3>
+            <ol>
+                <li>je suis sur la page de gestion des utilisateurs</li>
+                <li>je suis administrateur</li>
+                <li><a href="#"><i class="icon icon-plus-sign"></i> nouveau pré-requis</a></li>
+            </ol>
+            <h3>Dernières actions :</h3>
+            <ul>
+                <li>j'ai cliqué sur "Nouvel utilisateur"</li>
+                <li><a href="#"><i class="icon icon-plus-sign"></i> nouvelle action</a></li>
+            </ul>
+
+        </form>
+    </div>
+    <div class="span8">
+        <div class="span8">
+            <h2>Cas d'utilisation</h2>
+            <p>Les cas d'utilisations sont autant de scénarios qui décrivent votre fonctionnalité</p>
+
+            <strong>0</strong> erreurs, <strong>0</strong> étapes non définies
+            <div class="well alert-success box-scenario">
+                <h3>
+                    <a class="btn btn-small"><i class="icon icon-pencil"></i></a>
+                    <a class="btn btn-small"><i class="icon icon-trash"></i></a>
+                    <a href="#">Ne pas pouvoir ajouter un utilisateur dont l'adresse email est invalide</a>
+                </h3>
+            </div>
+
+            <strong>0</strong> erreurs, <strong>0</strong> étapes non définies
+            <div class="well alert-success box-scenario">
+                <h3>
+                    <a class="btn btn-small"><i class="icon icon-pencil"></i></a>
+                    <a class="btn btn-small"><i class="icon icon-trash"></i></a>
+                    <a href="#">Pouvoir enregistrer un nouvel utilisateur</a>
+                </h3>
+            </div>
+
+            <strong>4</strong> erreurs, <strong>2</strong> étapes non définies
+            <div class="well alert-error box-scenario">
+                <h3>
+                    <a class="btn btn-small"><i class="icon icon-pencil"></i></a>
+                    <a class="btn btn-small"><i class="icon icon-trash"></i></a>
+                    <a href="#">Ne pas pouvoir ajouter un utilisateur qui existe déjà</a>
+                </h3>
+            </div>
+
+            (Pas encore testé)
+            <div class="well  box-scenario box-scenario-opened">
+
+                <div>
+                    <h3>
+                        <a class="btn btn-small btn-inverse"><i class="icon icon-white icon-pencil"></i></a>
+                        <a class="btn btn-small"><i class="icon icon-trash"></i></a>
+                        Pouvoir enregistrer un nouvel utilisateur
+                    </h3>
+                </div>
+
+                <div class="scenario-content">
+
+                    <div class="form-horizontal">
+                        <fieldset>
+                            <legend>Pré-requis</legend>
+                            <div class="control-group">
+                                <label class="control-label" for="input01">Etant donné que</label>
+                                <div class="controls">
+                                    <input type="text" class="input-xlarge"  placeholder="..." />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="input01">Et que </label>
+                                <div class="controls">
+                                    <input type="text" class="input-xlarge"  name="feature-title" placeholder="..." />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <a href="#"><i class="icon icon-plus-sign"></i> ajouter un pré-requis</a>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Eléments déclencheurs</legend>
+                            <div class="control-group">
+                                <label class="control-label" for="input01">Quand</label>
+                                <div class="controls">
+                                    <input type="text" class="input-xlarge"  placeholder="..." />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="input01">Et que </label>
+                                <div class="controls">
+                                    <input type="text" class="input-xlarge"  name="feature-title" placeholder="..." />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <a href="#"><i class="icon icon-plus-sign"></i> ajouter un événement</a>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Résultats attendus</legend>
+                            <div class="control-group">
+                                <label class="control-label" for="input01">Alors</label>
+                                <div class="controls">
+                                    <input type="text" class="input-xlarge"  placeholder="..." />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="input01">Et </label>
+                                <div class="controls">
+                                    <input type="text" class="input-xlarge"  name="feature-title" placeholder="..." />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <a href="#"><i class="icon icon-plus-sign"></i> ajouter un résultat attendu</a>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Par exemple</legend>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>Prénom</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Dupont</td>
+                                        <td>Martin</td>
+                                        <td>martin@dupont.fr</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dupont</td>
+                                        <td>Martin</td>
+                                        <td>martin@dupont.fr</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="act" style="text-align:right">
+                <button class="btn">Nouveau scénario</button>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="span8 box-feature-details">
+        wdf f 
+    </div>
+</div>
+
+
+{% endblock %}
+
