@@ -14,4 +14,17 @@ class FeaturesController extends Controller
     {
         return array();
     }
+    
+    /**
+     * @Template
+     */
+    public function addAction() {
+        return array();
+    }
+    public function editAction() {
+        $manager = $this->get('hbw.wizard_feature_manager');
+        $features = $manager->getFeatures();
+        var_dump($features);
+        exit;
+    }
 }

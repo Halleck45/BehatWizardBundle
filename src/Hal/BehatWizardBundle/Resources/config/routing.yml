@@ -8,8 +8,11 @@ hal_behat_wizard_list:
     pattern:  /hal-behat/list
     defaults: { _controller: HalBehatWizardBundle:Features:list }
 hal_behat_wizard_edit:
-    pattern:  /hal-behat/list/feature/{feature}
-    defaults: { _controller: HalBehatWizardBundle:Features:list, {feature:0} }
+    pattern:  /hal-behat/edit/feature/{feature}
+    defaults: { _controller: HalBehatWizardBundle:Features:edit }
+hal_behat_wizard_add:
+    pattern:  /hal-behat/add
+    defaults: { _controller: HalBehatWizardBundle:Features:add}
 hal_behat_wizard_synchronize:
     pattern:  /hal-behat/synchronize
     defaults: { _controller: HalBehatWizardBundle:Behat:synchronize }
