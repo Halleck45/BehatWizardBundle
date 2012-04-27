@@ -136,7 +136,16 @@
                             </div>
                             <div class="control-group">
                                 <div class="controls">
-                                    <a href="#"><i class="icon icon-plus-sign"></i> ajouter un pré-requis</a>
+                                    <div class="btn-group">
+                                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                            <i class="icon icon-plus-sign"></i> ajouter un pré-requis
+                                            <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Pré-requis simple</a></li>
+                                            <li><a href="#">Pré-requis avec jeu de données</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </fieldset>
@@ -155,8 +164,55 @@
                                 </div>
                             </div>
                             <div class="control-group">
+                                <label class="control-label" for="input01">Et que </label>
                                 <div class="controls">
-                                    <a href="#"><i class="icon icon-plus-sign"></i> ajouter un événement</a>
+                                    <input type="text" class="input-xlarge"  name="feature-title" placeholder="j'inscris l'utilisateur suivant" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <table class="table table-condensed controls" style="width:auto">
+                                    <thead>
+                                        <tr>
+                                            <th>Nom</th>
+                                            <th>Prénom</th>
+                                            <th>Email</th>
+                                            <th><button class="btn"><i class="icon icon-plus-sign"></i></button></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" class="input-small" placeholder="Dupont" /></td>
+                                            <td><input type="text" class="input-small" placeholder="Martin" /></td>
+                                            <td><input type="text" class="input-small" placeholder="martin@dupont.fr" /></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" class="input-small" placeholder="Dupont" /></td>
+                                            <td><input type="text" class="input-small" placeholder="Martin" /></td>
+                                            <td><input type="text" class="input-small" placeholder="martin@dupont.fr" /></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" class="input-small" placeholder="Dupont" /></td>
+                                            <td><input type="text" class="input-small" placeholder="Martin" /></td>
+                                            <td><input type="text" class="input-small" placeholder="martin@dupont.fr" /></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <div class="btn-group">
+                                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                            <i class="icon icon-plus-sign"></i> ajouter un événement
+                                            <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Evénement simple</a></li>
+                                            <li><a href="#">Evénement avec jeu de données</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </fieldset>
@@ -176,12 +232,42 @@
                             </div>
                             <div class="control-group">
                                 <div class="controls">
-                                    <a href="#"><i class="icon icon-plus-sign"></i> ajouter un résultat attendu</a>
+                                    <div class="btn-group">
+                                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                            <i class="icon icon-plus-sign"></i> ajouter un résultat attendu
+                                            <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Résultat attendu simple</a></li>
+                                            <li><a href="#">Résultat attend avec jeu de données</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </fieldset>
                         <fieldset>
-                            <legend>Par exemple</legend>
+                            <legend>Jeu d'exemples</legend>
+                            <p>
+                                Plutôt que de ne donner qu'une seule valeur pour vos exemples, vous pouvez donner un jeu 
+                                de valeurs, afin de mieux aider le développeur à comprendre votre besoin et à encadrer 
+                                vos cas limites.
+                            </p>
+                            <p>
+                                Les colonnes d'exemples sont automatiquement aujoutées lorsque vous saisissez dans un champ
+                                une valeur qui commence par un "&lt;" et finit par "&gt;".
+                            </p>
+
+                            <p>Par exemple : </p>
+                            <code>
+                                Je tente de réinscrire l'utilisateur qui a l'email "&lt;Email&gt;"
+                            </code>
+
+                            <p>Sera compris par le développeur :</p>
+                            <code>
+                                Je tente de réinscrire l'utilisateur qui a l'email "martin@dupont.fr"
+                            </code>
+
+                            <p>C'est à vous :</p>
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -192,25 +278,35 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Dupont</td>
-                                        <td>Martin</td>
-                                        <td>martin@dupont.fr</td>
+                                        <td><input type="text" class="input-small" placeholder="Dupont" /></td>
+                                        <td><input type="text" class="input-small" placeholder="Martin" /></td>
+                                        <td><input type="text" class="input-small" placeholder="martin@dupont.fr" /></td>
                                     </tr>
                                     <tr>
-                                        <td>Dupont</td>
-                                        <td>Martin</td>
-                                        <td>martin@dupont.fr</td>
+                                        <td><input type="text" class="input-small" placeholder="Dupont" /></td>
+                                        <td><input type="text" class="input-small" placeholder="Martin" /></td>
+                                        <td><input type="text" class="input-small" placeholder="martin@dupont.fr" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="input-small" placeholder="Dupont" /></td>
+                                        <td><input type="text" class="input-small" placeholder="Martin" /></td>
+                                        <td><input type="text" class="input-small" placeholder="martin@dupont.fr" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><button class="btn"><i class="icon icon-plus-sign"></i></button></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </fieldset>
                     </div>
+
+                    <div class=" form-actions">
+                        <button class="btn btn-primary" type="submit">J'ai terminé pour ce scénario</button>
+                    </div>
+
                 </div>
-            </div>
-
-
-            <div class="act" style="text-align:right">
-                <button class="btn">Nouveau scénario</button>
             </div>
 
         </div>
