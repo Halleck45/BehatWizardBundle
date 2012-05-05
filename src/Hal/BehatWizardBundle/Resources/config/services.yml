@@ -1,15 +1,48 @@
 parameters:
-  hbw.wizard_feature_manager.class: Hal\BehatWizardBundle\Manager\Wizard\FeatureManager
-  hbw.behat_feature_manager.class: Hal\BehatWizardBundle\Manager\Behat\FeatureManager
-  hbw.behat_manager.class: Hal\BehatWizardBundle\Manager\Behat\BehatManager
+  hbw.feature_wizard.manager.class: Hal\BehatWizardBundle\Manager\Wizard\FeatureManager
+  hbw.feature_behat.manager.class: Hal\BehatWizardBundle\Manager\Behat\FeatureManager
+  hbw.behat.manager.class: Hal\BehatWizardBundle\Manager\Behat\BehatManager
+  hbw.edit_feature.form.type.class: Hal\BehatWizardBundle\Form\Type\FeatureType
+  hbw.edit_feature.form.name: 'edit_feature'
+  hbw.edit_feature.form.handler.class: Hal\BehatWizardBundle\Form\Handler\EditFeatureFormHandler
+  hbw.edit_scenario.form.type.class: Hal\BehatWizardBundle\Form\Type\ScenarioType
 
 services:
-  hbw.wizard_feature_manager:
-        class: %hbw.wizard_feature_manager.class%
-        arguments: [@doctrine.orm.entity_manager]
-  hbw.behat_manager:
-        class: %hbw.behat_manager.class%
-        arguments: [%behat.paths.features%, @gherkin.parser]
-  hbw.behat_feature_manager:
-        class: %hbw.behat_feature_manager.class%
-        arguments: [@hbw.wizard_feature_manager, @hbw.behat_manager]
+  hbw.feature_wizard.manager:
+        class: %hbw.feature_wizard.manager.class%
+        arguments: 
+          - @doctrine.orm.entity_manager
+          
+  hbw.behat.manager:
+        class: %hbw.behat.manager.class%
+        arguments: 
+          - %behat.paths.features%
+          - @gherkin.parser
+          
+  hbw.feature_behat.manager:
+        class: %hbw.feature_behat.manager.class%
+        arguments: 
+          - @hbw.feature_wizard.manager
+          - @hbw.behat.manager
+        
+  hbw.edit_feature.form.form:
+        class: Symfony\Component\Form\Form
+        arguments: 
+          - @hbw.edit_feature.form.type
+          - %hbw.edit_feature.form.name%
+        factory_service: form.factory
+        factory_method: createNamed
+        
+  hbw.edit_feature.form.type:
+        class: %hbw.edit_feature.form.type.class%
+        arguments: []
+        tags: 
+          - {name: form.type}
+          
+  hbw.edit_feature.form.handler:
+        class: %hbw.edit_feature.form.handler.class%
+        arguments:
+          - @hbw.edit_feature.form.form
+          - @request
+          - @hbw.feature_wizard.manager
+        scope: request

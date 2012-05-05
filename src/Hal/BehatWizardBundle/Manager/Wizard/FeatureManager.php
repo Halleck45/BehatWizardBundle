@@ -37,6 +37,10 @@ class FeatureManager implements FeatureManagerInterface
     {
         return $this->getRepository()->find($id);
     }
+    public function createFeature()
+    {
+        return new Feature;
+    }
 
     public function saveFeature(FeatureInterface $feature)
     {
