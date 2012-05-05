@@ -125,13 +125,13 @@
                             <div class="control-group">
                                 <label class="control-label" for="input01">Etant donné que</label>
                                 <div class="controls">
-                                    <input type="text" class="input-xlarge"  placeholder="..." />
+                                    <input type="text" class="input-xlarge input-step input-step-given"  placeholder="..." />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="input01">Et que </label>
                                 <div class="controls">
-                                    <input type="text" class="input-xlarge"  name="feature-title" placeholder="..." />
+                                    <input type="text" class="input-xlarge input-step input-step-given"  name="feature-title" placeholder="..." />
                                 </div>
                             </div>
                             <div class="control-group">
@@ -154,19 +154,19 @@
                             <div class="control-group">
                                 <label class="control-label" for="input01">Quand</label>
                                 <div class="controls">
-                                    <input type="text" class="input-xlarge"  placeholder="..." />
+                                    <input type="text" class="input-xlarge input-step input-step-when"  placeholder="..." />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="input01">Et que </label>
                                 <div class="controls">
-                                    <input type="text" class="input-xlarge"  name="feature-title" placeholder="..." />
+                                    <input type="text" class="input-xlarge input-step input-step-when"  name="feature-title" placeholder="..." />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="input01">Et que </label>
                                 <div class="controls">
-                                    <input type="text" class="input-xlarge"  name="feature-title" placeholder="j'inscris l'utilisateur suivant" />
+                                    <input type="text" class="input-xlarge input-step input-step-when"  name="feature-title" placeholder="j'inscris l'utilisateur suivant" />
                                 </div>
                             </div>
                             <div class="control-group">
@@ -198,6 +198,12 @@
                                             <td><input type="text" class="input-small" placeholder="martin@dupont.fr" /></td>
                                             <td></td>
                                         </tr>
+                                        <tr>
+                                            <td><button class="btn"><i class="icon icon-plus-sign"></i></button></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -221,13 +227,13 @@
                             <div class="control-group">
                                 <label class="control-label" for="input01">Alors</label>
                                 <div class="controls">
-                                    <input type="text" class="input-xlarge"  placeholder="..." />
+                                    <input type="text" class="input-xlarge input-step input-step-then"  placeholder="..." />
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="input01">Et </label>
                                 <div class="controls">
-                                    <input type="text" class="input-xlarge"  name="feature-title" placeholder="..." />
+                                    <input type="text" class="input-xlarge input-step input-step-then"  name="feature-title" placeholder="..." />
                                 </div>
                             </div>
                             <div class="control-group">
@@ -312,11 +318,14 @@
         </div>
 
     </div>
-    <div class="span8 box-feature-details">
-        wdf f 
-    </div>
 </div>
-
-
 {% endblock %}
-
+{% block javascript %}
+<script type="text/javascript">
+    $(function() {
+        $('.input-step').typeahead({
+            source: ['abc','bcd','cde','def']
+        });
+    });
+</script>
+{% endblock %}
