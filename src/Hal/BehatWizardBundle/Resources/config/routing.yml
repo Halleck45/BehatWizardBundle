@@ -1,6 +1,6 @@
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
-    
+
 hal_behat_wizard_homepage:
     pattern:  /
     defaults: { _controller: HalBehatWizardBundle:Features:list }
@@ -16,5 +16,3 @@ hal_behat_wizard_add:
 hal_behat_wizard_synchronize:
     pattern:  /hal-behat/synchronize
     defaults: { _controller: HalBehatWizardBundle:Behat:synchronize }
-    
-    
