@@ -11,3 +11,18 @@ hal_behat_wizard.status: Status
 hal_behat_wizard.feature: Feature
 hal_behat_wizard.infos: Details
 hal_behat_wizard.actions: ""
+
+# editing
+hbw.edit.feature.group.resume: Résumé
+hbw.edit.feature.title.label: Résumé
+hbw.edit.feature.title.example: Pouvoir ajouter un utilisateur...
+hbw.edit.feature.title.help: Le titre de la fonctionnalité
+hbw.edit.feature.in_order.label: Afin de
+hbw.edit.feature.in_order.example: Enregister un nouvel utilisateur...
+hbw.edit.feature.in_order.help: Bénéfice de la fonctionallité
+hbw.edit.feature.as.label: En tant que
+hbw.edit.feature.as.example: Administrateur du site...
+hbw.edit.feature.as.help: Votre rôle au sein de l'application
+hbw.edit.feature.i_should.label: Je dois
+hbw.edit.feature.i_should.example: Inscrire moi-même un nouvel utilisateur dans le site...
+hbw.edit.feature.i_should.help: Finalité de la fonctionnalité

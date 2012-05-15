@@ -19,6 +19,7 @@ class FeaturesController extends Controller
      * @Template
      */
     public function addAction() {
+        
         $manager = $this->get('hbw.feature_wizard.manager');
         $feature = $manager->createFeature();
         $form = $this->get('hbw.edit_feature.form.form');
@@ -29,6 +30,7 @@ class FeaturesController extends Controller
             $this->setFlash('notice', 'edit_feature.flash.success');
             $this->redirect('behat_welcome');
         }
+        
         return array(
             'form' => $form->createView()
         );

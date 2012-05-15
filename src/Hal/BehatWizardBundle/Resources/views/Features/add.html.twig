@@ -19,33 +19,33 @@
             <div class="form-horizontal">
 
                 <fieldset>
-                    <legend>Résumé</legend>
+                    <legend>{{ 'hbw.edit.feature.group.resume'|trans({}) }}</legend>
                     <div class="control-group">
-                        <label class="control-label" for="input01">Résumé</label>
+                        {{ form_label(form.title, 'hbw.edit.feature.title.label', {'attr':{'class':'control-label'}}) }}
                         <div class="controls">
-                            <input type="text" class="input-xlarge"  placeholder="Pouvoir ajouter un utilisateur...">
-                            <p class="help-block">Le titre de la fonctionnalité</p>
+                            {{ form_widget(form.title, { 'attr': {'class': 'input-xlarg', 'placeholder': 'hbw.edit.feature.title.example'|trans({}) } }) }}
+                            <p class="help-block">{{ 'hbw.edit.feature.title.help'|trans({}) }}</p>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="input01">Afin de </label>
+                        {{ form_label(form.description_in_order_to, 'hbw.edit.feature.in_order.label', {'attr':{'class':'control-label'}}) }}
                         <div class="controls">
-                            <input type="text" class="input-xlarge"   name="feature-title" placeholder="Enregister un nouvel utilisateur..." />
-                            <p class="help-block">Bénéfice de la fonctionallité</p>
+                            {{ form_widget(form.description_in_order_to, { 'attr': {'class': 'input-xlarg', 'placeholder': 'hbw.edit.feature.in_order.example'|trans({}) } }) }}
+                            <p class="help-block">{{ 'hbw.edit.feature.in_order.help'|trans({}) }}</p>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="input01">En tant que </label>
+                        {{ form_label(form.description_as, 'hbw.edit.feature.as.label', {'attr':{'class':'control-label'}}) }}
                         <div class="controls">
-                            <input type="text" class="input-xlarge"   name="feature-title" placeholder="Administrateur du site..." />
-                            <p class="help-block">Votre rôle au sein de l'application</p>
+                            {{ form_widget(form.description_as, { 'attr': {'class': 'input-xlarg', 'placeholder': 'hbw.edit.feature.as.example'|trans({}) } }) }}
+                            <p class="help-block">{{ 'hbw.edit.feature.as.help'|trans({}) }}</p>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="input01">je dois </label>
+                        {{ form_label(form.description_i_should, 'hbw.edit.feature.i_should.label', {'attr':{'class':'control-label'}}) }}
                         <div class="controls">
-                            <input type="text" class="input-xlarge"   name="feature-title" placeholder="Inscrire moi-même un nouvel utilisateur dans le site..." />
-                            <p class="help-block">Finalité de la fonctionnalité</p>
+                            {{ form_widget(form.description_i_should, { 'attr': {'class': 'input-xlarg', 'placeholder': 'hbw.edit.feature.as.example'|trans({}) } }) }}
+                            <p class="help-block">{{ 'hbw.edit.feature.as.help'|trans({}) }}</p>
                         </div>
                     </div>
                 </fieldset>

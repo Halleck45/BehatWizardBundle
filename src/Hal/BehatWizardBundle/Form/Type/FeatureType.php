@@ -18,14 +18,14 @@ class FeatureType extends AbstractType
             ->add('description_as')
             ->add('description_i_should')
             ->add('scenarios', 'collection', array(
-                 'type' => new ScenarioType()
+                'type' => new ScenarioType()
                 , 'by_reference' => false
                 , 'allow_add' => true
                 , 'allow_delete' => true
                 , 'required' => false
             ))
-            
-            // @todo : background
+
+        // @todo : background
 
         ;
     }
