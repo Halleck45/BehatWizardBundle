@@ -11,12 +11,12 @@
  *
  * @author Jean-François Lépine <jeanfrancois@lepine.pro>
  */
-hbw.outline = function() {
+hbw.outline = function(content) {
 
     /**
      * Outline content
      */
-    this.content = [];
+    this.content = content || [];
 
     /**
      * Push row in the node
@@ -74,9 +74,6 @@ hbw.outline = function() {
      * @return string
      */
     this.toForm = function(scenario, step, position) {
-        if(this.content.length ==0) {
-            return '';
-        }
 
         var html = '',  key, i;
 
@@ -86,7 +83,7 @@ hbw.outline = function() {
         +'        <thead>'
         +'            <tr';
 
-        for(key in this.content) {
+        for(key in this.content[0]) {
             html += '<th>' + key + '</th>';
         }
 
@@ -95,15 +92,7 @@ hbw.outline = function() {
         + '        <tbody>';
 
         for(key in this.content) {
-            html += '<tr>';
-
-            for(i in this.content[key]) {
-                html += '<td>'
-                + '<input type="text" name="'+this.getFormName(scenario, step, position)+'" placeholder="..." value="'+this.content[key][i]+'" class="input-small">'
-                + '</td>';
-            }
-
-            html += '</tr>';
+            html += this.getFormRow(this.content, scenario, step, position);
         }
 
         html += '        </body>'
@@ -113,6 +102,33 @@ hbw.outline = function() {
         return html;
     };
 
+    /**
+     * Get the form for editing one example
+     *
+     * @param row
+     * @param scenario
+     * @param step
+     * @param position
+     * @return string
+     */
+    this.getFormRow = function(row, scenario, step, position) {
+        if(null === row) {
+            row = {
+                'foo':'bar'
+            };
+        }
+        var i, html = '<tr>';
+        for(i in row) {
+            html += '<td>'
+            + '<input type="text" name="'+this.getFormName(scenario, step, position)+'" placeholder="..." value="'+row[i]+'" class="input-small">'
+            + '</td>';
+        }
+
+        html += '</tr>';
+        return html;
+    };
+
+   
     /**
      * Get adapted form name
      * In one case we work on example outline node, in another case we work on example

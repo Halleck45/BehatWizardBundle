@@ -22,10 +22,19 @@ hbw.scenario = function() {
         name: 'default'
     }
 
-    //
-    // Inheritance
-    this.renderer = new hbw.scenario.renderer(this);
-    this.datasource = new hbw.scenario.renderer(this);
+    /**
+     * Steps of the scenario
+     *
+     * @var array
+     */
+    this.steps = [];
+
+    /**
+     * Example of the scenario
+     *
+     * @var hbw.outline
+     */
+    this.outline = null;
 
     /**
      * To string conversion
@@ -33,53 +42,68 @@ hbw.scenario = function() {
      * @return string
      */
     this.toString = function () {
-        
+        var html, i;
+        for(i in this.steps) {
+            html += this.steps[i];
+        }
+        return html;
     }
 
     /**
      * Constructor
      *
-     * @param data
-     * @return void
+     * @param data [ steps:[ {content:"", example: null}, ...], example: null ]
+     * @return hbw.scenario
      */
-    this.initialize = function(data) {
-        var i;
-        
-        this
-        .render()
-        .addEvents();
-        
-        for(i in data['given']) {
-            this.addStep('given', data['given'][i]);
+    this.initialize = function(datas) {
+        var i, type, step, outline;
+        var steps = datas['steps'],
+        example = datas['example'];
+
+        for(type in steps) {
+            for(i in steps[type]) {
+                step = new hbw.step(type, steps[type][i]['content']);
+                if(typeof(steps[type][i]['example']) != 'undefined') {
+                    outline = new hbw.outline(steps[type][i]['example']);
+                    step.outline = outline;
+                }
+                this.addStep(step);
+            }
         }
-        for(i in data['when']) {
-            this.addStep('when', data['when'][i]);
-        }
-        for(i in data['then']) {
-            this.addStep('when', data['then'][i]);
-        }
-        for(i in data['example']) {
-            this.addStep('example', data['example'][i]);
-        }
+
+        outline = new hbw.outline(example);
+        this.outline = outline;
+        return this;
     }
+
+    /**
+     * Push/insert step in the scenario
+     *
+     * @param step
+     * @return hbw.scenario
+     */
+    this.addStep = function(step, position) {
+        position = position || this.steps.length;
+        if(typeof(this.steps[position]) != 'undefined') {
+            //
+            // Moves other steps to insert the newest
+            var i;
+            for(i = this.steps.length - 1; i >= position; i--) {
+                this.steps[i + 1] = this.steps[i];
+            }
+        }
+        this.steps[position] = step;
+        return this;
+    }
+
 
     /**
      * Call the rendering
      *
-     * @return void
+     * @return hbw.scenario
      */
     this.render= function() {
-        this.renderer.render();
+        return this;
     }
 
-    /**
-     * Add any step
-     *
-     * @param step hbw.step
-     * @return void
-     */
-    this.addStep = function(step) {
-        this.datasource.addStep(step);
-        this.renderer.addStep(step);
-    }
 }

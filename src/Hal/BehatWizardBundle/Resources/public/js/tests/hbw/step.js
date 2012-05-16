@@ -1,6 +1,5 @@
 test('Step can be converted to string', function() {
 
-    var scenario1 = new hbw.scenario();
     var step1 = new hbw.step('given','example of description');
 
     equal(step1.toString(), 'example of description', 'Step is converted to string');
