@@ -58,3 +58,60 @@
 #box-controls ul {
     display:inline-block;
 }
+
+
+/* ---- Edit a feature ----- */
+/* ------------------------- */
+
+.box-act {
+    text-align:right;
+}
+
+/* ----- Box Title, descr ---- */
+.feature-title {
+    position:relative;
+    padding-right:15px;
+    margin-bottom:10px;
+}
+#btn-feature-edit {
+    position:absolute;
+    right:0;
+    top:0;
+    width:16px;
+    height:16px;
+}
+.clone-order,
+.clone-as,
+.clone-should {
+    display:block;
+}
+.clone-order span,
+.clone-as span,
+.clone-should span {
+    display:inline-block;
+    margin-right:3px;
+}
+
+
+/* ---- Scenarios ----- */
+.scenario {
+    border:1px solid #CCC;
+    background:#FFF;
+    padding:3px 0 3px 3px;
+    clear:left;
+    margin-top:-1px;
+}
+.scenario-opts {
+    float:right;
+    width:50px;
+}
+
+/* ----- details ----- */
+#feature-box-details a {
+    display:block;
+}
+
+/* ----- Page editing ---- */
+#page-editing .well {
+    min-height:500px;
+}

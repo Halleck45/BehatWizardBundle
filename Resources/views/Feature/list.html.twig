@@ -62,7 +62,9 @@
                        ">{% endspaceless %}</i></span>
 
 
-                <span class="feature-title"><strong>{{ feature.getGherkin().getTitle() }}</strong></span>
+                <span class="feature-title">
+                    <strong><a href="{{ path('hbw.edit', {feature: feature.getHash() }) }}">{{ feature.getGherkin().getTitle() }}</a></strong>
+                </span>
                 <div class="feature-count">
                     (
                     <span class="feature-count-success">{{ feature.getReport().countSuccess() }}</span>

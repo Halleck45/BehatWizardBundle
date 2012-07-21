@@ -23,4 +23,16 @@ class FeatureController extends ContainerAware
         );
     }
 
+    /**
+     * @Template
+     */
+    public function editAction($feature)
+    {
+        $repository = $this->container->get('hbt.feature.repository');
+
+        return array(
+            $repository->loadFeatureByHash($feature)
+        );
+    }
+
 }
