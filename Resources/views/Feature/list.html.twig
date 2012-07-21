@@ -5,5 +5,90 @@
 {% block body %}
 
 
+
+
+
+
+
+<div id="wrapper">
+    <div class="row" id="box-controls">
+        <ul class="splitter "  >
+            <li class="span8">Show:
+                <ul class="controls">
+                    <li class="segment-1 selected-1"><a class="btn" data-value="all" href="#">Everything</a></li>
+                    <li class="segment-0"><a class="btn" data-value="success" href="#">Success</a></li>
+                    <li class="segment-0"><a class="btn" data-value="failure" href="#">Failures</a></li>
+                    <li class="segment-2"><a class="btn" data-value="pending" href="#">Pending</a></li>
+                </ul>
+            </li>
+            <li class="span4">Sort by:
+                <ul class="controls">
+                    <li class="segment-1 selected-1"><a class="btn" data-value="name" href="#">Name</a></li>
+                    <li class="segment-2"><a class="btn" data-value="failure" href="#">Failures</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="features" id="list-features">
+        {% for feature in features%}
+        <div class="feature {% spaceless %}
+             {% if feature.getReport().countSuccess() == feature.getReport().countTests() and feature.getReport().countTests() > 0 %}
+             success
+             {% else %}
+             failure
+             {% endif %}
+             {% if feature.getReport().countPending() > 0 or feature.getReport().countTests() == 0 %}
+             pending
+             {% endif %}
+             "
+             data-failure="{{ feature.getReport().countFailures() }}"
+             data-pending="{{ feature.getReport().countPending() }}"
+             data-id="{{ loop.index0 }}"
+             >
+            {% endspaceless %}
+            <div class="feature-box">
+
+                <span class="feature-state">
+                    <i class="icon {% spaceless %}
+                       {% if feature.getReport().countSuccess() == feature.getReport().countTests() and feature.getReport().countTests() > 0 %}
+                       icon-ok 
+                       {% else %}
+                       icon-exclamation-sign
+                       {% endif %}
+                       {% if feature.getReport().countPending() > 0 or feature.getReport().countTests() == 0 %}
+                       icon-time
+                       {% endif %}
+                       ">{% endspaceless %}</i></span>
+
+
+                <span class="feature-title"><strong>{{ feature.getGherkin().getTitle() }}</strong></span>
+                <span class="feature-count">
+                    (
+                    <span class="feature-count-success">{{ feature.getReport().countSuccess() }}</span>
+                    / <span class="feature-count-pending">{{ feature.getReport().countPending() }}</span>
+                    / <span class="feature-count-fails">{{ feature.getReport().countFailures() }}</span>
+                    / <span class="feature-count-tests">{{ feature.getReport().countTests() }}</span>
+                    )
+                </span>
+
+                <div class="feature-description">{{ feature.getGherkin().getDescription() | nl2br }}</div>
+
+
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
 {% endblock %}
 
