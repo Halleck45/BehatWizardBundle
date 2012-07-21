@@ -1,17 +1,8 @@
-## generic files to ignore
-*~
-*.lock
-*.DS_Store
-*.swp
-*.out
+# Symfony directories
+vendor/*
+*/logs/*
+*/cache/*
 
-## IDE files to ignore
-nbproject/
-.idea/
-*.tmproj
-
-# Symfony files to ignore
-app/cache/*
-app/logs/*
-vendor/
-web/bundles/
+# Dependencies
+composer.phar
+composer.lock

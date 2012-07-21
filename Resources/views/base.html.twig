@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        {% block stylesheets %}
+        <link href="{{ asset('bundles/halbehatwizard/bootstrap/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('bundles/halbehatwizard/css/style.css') }}" type="text/css" rel="stylesheet" />
+
+        {% endblock %}
+        <title>{{ "hbw.app.title" | trans }}</title>
+    </head>
+    <body>
+
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="{{ path('hal_behat_wizard_homepage') }}">{{ "hbw.app.title"|trans }}</a>
+
+                    <div class="nav-collapse">
+                        <ul class="nav">
+                            <li><a href="{{ path('hbw.home') }}"><i class="icon-white icon-home"></i></a></li>
+                            <li><a href="">{{ "hbw.goto.home"|trans }}</a></li>
+                            <li><a href="">{{ "hbw.goto.help"|trans }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container page">
+
+            {% for key, message in app.session.getFlashes() %}
+            <div class="alert alert-{{ key }}">
+                {{ message|trans({}) }}
+            </div>
+            {% endfor %}
+
+
+            <section>
+                <h2>{% block title %}{% endblock %}</h2>
+                <div id="content">
+                    {% block body %}{% endblock %}
+                </div>
+            </section>
+
+        </div>
+        {% javascripts
+        '@HalBehatWizardBundle/Resources/public/js/jquery.min.js'
+        '@HalBehatWizardBundle/Resources/public/bootstrap/js/bootstrap.min.js'
+        '@HalBehatWizardBundle/Resources/public/js/hbw.js'
+        '@HalBehatWizardBundle/Resources/public/js/hbw/exception.js'
+        '@HalBehatWizardBundle/Resources/public/js/hbw/step.js'
+        '@HalBehatWizardBundle/Resources/public/js/hbw/scenario.js'
+        '@HalBehatWizardBundle/Resources/public/js/hbw/outline.js'
+        '@HalBehatWizardBundle/Resources/public/js/bootstrap-typeahead.js'
+        output='js/compiled/behat-wizard.js'
+        %}
+        <script src="{{ asset_url }}" type="text/javascript"></script>
+        {% endjavascripts %}
+        {% block javascript %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,3 @@
+hbw.home:
+     pattern:  /behat/wizard/list
+     defaults: { _controller: HalBehatWizardBundle:Feature:list}

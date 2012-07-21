@@ -1,0 +1,22 @@
+{
+    "name": "halleck45/behat-wizard-bundle",
+    "description": "This bundle provides a graphical interface to manage your features",
+    "keywords": ["behat"],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+    {
+        "name": "Jean-François Lépine",
+        "homepage": "http://blog.lepine.pro"
+    }
+    ],
+    "require": {
+        "symfony/framework-bundle": ">=2.0,<2.2-dev",
+        "behat/gherkin": ">=2.2.0,<2.3.0-dev"
+    },
+    "autoload": {
+        "psr-0": {
+            "Hal\\Bundle\\BehatWizard": ""
+        }
+    }
+}
