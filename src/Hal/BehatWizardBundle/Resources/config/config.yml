@@ -1,6 +1,0 @@
-#imports:
-#    - { resource: "Behat/Behat/DependencyInjection/config/behat.xml" }
-#twig:
-#    form:
-#        resources:
-#            - 'HalBehatWizardBundle:Form:fields.html.twig'
