@@ -1,7 +1,4 @@
 /* ----- List of features ----- */
-.features {
-    border-bottom:1px solid #CCC;
-}
 .feature {
     border: 1px solid #DDDDDD;
     border-radius: 3px 3px 3px 3px;
@@ -15,6 +12,11 @@
     background-image: -moz-linear-gradient(center top , #FFFFFF, #F5F5F5);
     background-repeat: repeat-x;
     padding: 7px 14px;
+    height:100px;
+    min-height:100px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
 }
 .success {
     background-color:#46a546;

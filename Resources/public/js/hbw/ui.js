@@ -101,18 +101,19 @@ $(function() {
                     var $filtered_data = $data.find('.feature.' + sorting_kind);
                 }
 
-                if (sorting_type == 'failure') {
-                    var $sorted_data = $filtered_data.sorted({
-                        by: function(v) {
-                            return parseFloat($(v).data('failure'));
-                        }
-                    });
-                } else {
+                if (sorting_type == 'name') {
                     var $sorted_data = $filtered_data.sorted({
                         by: function(v) {
                             return $(v).find('.feature-title').text().toLowerCase();
                         }
                     });
+                } else {
+                    var $sorted_data = $filtered_data.sorted({
+                        by: function(v) {
+                            return parseFloat($(v).data(sorting_type));
+                        }
+                    });
+                    
                 }
                 $list.quicksand($sorted_data, $preferences);
 

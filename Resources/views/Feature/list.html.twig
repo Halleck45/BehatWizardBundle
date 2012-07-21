@@ -25,13 +25,14 @@
                 <ul class="controls">
                     <li class="segment-1 selected-1"><a class="btn" data-value="name" href="#">Name</a></li>
                     <li class="segment-2"><a class="btn" data-value="failure" href="#">Failures</a></li>
+                    <li class="segment-2"><a class="btn" data-value="pending" href="#">Pending</a></li>
                 </ul>
             </li>
         </ul>
     </div>
-    <div class="features" id="list-features">
+    <div class="features row" id="list-features">
         {% for feature in features%}
-        <div class="feature {% spaceless %}
+        <div class="feature span4 {% spaceless %}
              {% if feature.getReport().countSuccess() == feature.getReport().countTests() and feature.getReport().countTests() > 0 %}
              success
              {% else %}
@@ -41,8 +42,8 @@
              pending
              {% endif %}
              "
-             data-failure="{{ feature.getReport().countFailures() }}"
-             data-pending="{{ feature.getReport().countPending() }}"
+             data-failure="{{ 1000 - feature.getReport().countFailures() }}"
+             data-pending="{{ 1000 - feature.getReport().countPending() }}"
              data-id="{{ loop.index0 }}"
              >
             {% endspaceless %}
@@ -62,14 +63,14 @@
 
 
                 <span class="feature-title"><strong>{{ feature.getGherkin().getTitle() }}</strong></span>
-                <span class="feature-count">
+                <div class="feature-count">
                     (
                     <span class="feature-count-success">{{ feature.getReport().countSuccess() }}</span>
                     / <span class="feature-count-pending">{{ feature.getReport().countPending() }}</span>
                     / <span class="feature-count-fails">{{ feature.getReport().countFailures() }}</span>
                     / <span class="feature-count-tests">{{ feature.getReport().countTests() }}</span>
                     )
-                </span>
+                </div>
 
                 <div class="feature-description">{{ feature.getGherkin().getDescription() | nl2br }}</div>
 
