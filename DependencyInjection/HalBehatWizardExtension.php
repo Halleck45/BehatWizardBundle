@@ -24,10 +24,12 @@ class HalBehatWizardExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
-        
-        $extension = new \Behat\Behat\DependencyInjection\BehatExtension;
+
+        $basePath = $container->getparameter('behat.paths.base');
+        $extension = new \Behat\Behat\DependencyInjection\BehatExtension($basePath);
         $extension->load($configs, $container);
         
-        
+        $extension = new \Hal\Bundle\BehatTools\DependencyInjection\HalBehatToolsExtension;
+        $extension->load($configs, $container);
     }
 }
