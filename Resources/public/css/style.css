@@ -66,6 +66,10 @@
 .box-act {
     text-align:right;
 }
+.box-act-add-scenario {
+    text-align:center;
+    margin-top:20px;
+}
 
 /* ----- Box Title, descr ---- */
 .feature-title {
@@ -80,10 +84,9 @@
     width:16px;
     height:16px;
 }
-.clone-order,
-.clone-as,
-.clone-should {
-    display:block;
+.keyword {
+    margin-right:2px;
+    display:inline-block;
 }
 .clone-order span,
 .clone-as span,
@@ -114,4 +117,14 @@
 /* ----- Page editing ---- */
 #page-editing .well {
     min-height:500px;
+}
+.outline-node {
+    background-color:#F5F5F5;
+}
+#outline-node-head {
+    text-align:center;
+}
+#outline-row-remove {
+    width:20px;
+    vertical-align:middle;
 }

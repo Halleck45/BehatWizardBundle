@@ -5,6 +5,76 @@
 {% block body %}
 
 
+
+<!-- Models -->
+<div id="box-models" style="display:none">
+    <!-- Step Given -->
+    <div id="step-given" class="control-group">
+        <label class="control-label" for="step">Etant donné</label>
+        <div class="controls">
+            <input type="text" class="step-given input-xlarge input-step input-step-given"  placeholder="..." />
+        </div>
+    </div>
+    <!-- Step When -->
+    <div id="step-when" class="control-group">
+        <label class="control-label" for="step">Quand</label>
+        <div class="controls">
+            <input type="text" class="step-when input-xlarge input-step input-step-when"  placeholder="..." />
+        </div>
+    </div>
+    <!-- Step Then -->
+    <div id="step-then" class="control-group">
+        <label class="control-label" for="step">Alors</label>
+        <div class="controls">
+            <input type="text" class="step-then input-xlarge input-step input-step-then"  placeholder="..." />
+        </div>
+    </div>
+
+    <!-- scenario -->
+    <div class="scenario" id="scenario">
+        <div class="scenario-opts">
+            <a href="#" class="btn-scenario-edit" data-callback-enter="editScenario"><i class="icon icon-pencil"></i></a>
+            <a href="#" class="btn-scenario-edit"><i class="icon icon-trash"></i></a>
+        </div>
+        <div class="scenario-title">
+            <a href="#"  data-callback-enter="editScenario" class="btn-scenario-edit"><span class="scenario-title-text">Loading title</span></a>
+        </div>
+    </div>
+
+    <!-- Outline -->
+    <div id="outline-node" class="outline-node control-group">
+        <table class="table table-condensed controls" style="width:auto">
+                <thead>
+                    <tr>
+                    </tr>
+                </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div class="table-condensed controls">
+            <button class="btn btn-small btn-outline-add-column">Add column</button>
+            <button class="btn btn-small  btn-outline-add-row">Add Row</button>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th id="outline-node-head"><a href="#" class="btn-outline-remove-column"><i class="icon icon-trash"></i></a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="outline-node-cell"><input  type="text" class="outline-content outline-cell input-small" placeholder="martin@dupont.fr" /></td>
+                <td id="outline-row-remove" class="decorator">
+                    <a href="#" class="btn-outline-remove-row"><i class="icon icon-trash"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
 <form >
 
 
@@ -22,15 +92,15 @@
 
 
             <!-- title, descr -->
-            <div class="well form " id="feature-box-title">
+            <div class="well form" id="feature-box-title">
                 <h4 class="feature-title">
                     <span class="clone-title">My Feature</span>
-                    <a class="btn" href="#" id="btn-feature-edit"><i class="icon icon-pencil"></i></a>
+                    <a class="btn" href="#" id="btn-feature-edit" data-callback-out="editMain"><i class="icon icon-pencil"></i></a>
                 </h4>
                 <div>
-                    <span class="clone-order"><span>In order to</span>do anything</span>
-                    <span class="clone-as"><span>As</span>user</span>
-                    <span class="clone-should"><span>I should</span>do anything</span>
+                    <div><span class="keyword descr-keyword">In order to</span><span class="clone-inorder">...</span></div>
+                    <div><span class="keyword descr-keyword">As</span><span class="clone-as">...</span></div>
+                    <div><span class="keyword descr-keyword">I should</span><span class="clone-should">...</span></div>
                 </div>
             </div>
 
@@ -38,43 +108,13 @@
             <!-- scenarios -->
             <div class="well form " id="feature-box-scenarios">
                 <h4 class="feature-title">
-                    <span class="clone-title">Scenarios</span>
+                    <span class="clone-scenario-title">Scenarios</span>
                 </h4>
                 <div class="scenarios">
 
-                    <!-- scenario -->
-                    <div class="scenario">
-                        <div class="scenario-opts">
-                            <a href="#" class="btn-scenario-edit"><i class="icon icon-pencil"></i></a>
-                            <a href="#" class="btn-scenario-edit"><i class="icon icon-trash"></i></a>
-                        </div>
-                        <div class="scenario-title">
-                            <a href="#" data-scenario="" class="btn-scenario-edit">My scenario 1</a>
-                        </div>
-                    </div>
-
-                    <!-- scenario -->
-                    <div class="scenario">
-                        <div class="scenario-opts">
-                            <a href="#" class="btn-scenario-edit"><i class="icon icon-pencil"></i></a>
-                            <a href="#" class="btn-scenario-edit"><i class="icon icon-trash"></i></a>
-                        </div>
-                        <div class="scenario-title">
-                            <a href="#" data-scenario="" class="btn-scenario-edit">My scenario 1</a>
-                        </div>
-                    </div>
-
-                    <!-- scenario -->
-                    <div class="scenario">
-                        <div class="scenario-opts">
-                            <a href="#" class="btn-scenario-edit"><i class="icon icon-pencil"></i></a>
-                            <a href="#" class="btn-scenario-edit"><i class="icon icon-trash"></i></a>
-                        </div>
-                        <div class="scenario-title">
-                            <a href="#" data-scenario="" class="btn-scenario-edit">My scenario 1</a>
-                        </div>
-                    </div>
-
+                    <p class="box-act-add-scenario">
+                        <a class="btn btn-scenario-add btn-scenario-edit" data-callback-enter="addScenario"><i class="icon icon-plus-sign"></i> New scenario</a>
+                    </p>
                 </div>
             </div>
 
@@ -86,13 +126,9 @@
                     Details
                 </h4>
                 <p>
-                    <a href="#" class="btn btn-examples-edit">Change / add examples</a>
-                </p>
-                <p>
                     <a href="#" class="btn btn-background-edit">Change background</a>
                 </p>
             </div>
-
         </div>
 
 
@@ -109,7 +145,7 @@
 
 
                 <!-- Box Scenario -->
-                <div id="box-edit-scenario">
+                <div id="box-edit-scenario" class="box-editing" style="display:none">
                     <div class="">
                         <h1>Cas d'utilisation</h1>
                         <p>Les cas d'utilisations sont autant de scénarios qui décrivent votre fonctionnalité</p>
@@ -118,34 +154,40 @@
 
 
                             <div class="form-horizontal">
-                                    <fieldset>
-                                        <legend>Résumé</legend>
-                                        <div class="control-group">
-                                            <label class="control-label" for="scenario-title">Titre</label>
-                                            <div class="controls">
-                                                <input type="text" id="scenario-title" name="scenario-title" class="input-xlarge input-step input-step-given"  placeholder="..." />
-                                            </div>
+                                <fieldset>
+                                    <legend>Résumé</legend>
+                                    <div class="control-group">
+                                        <label class="control-label" for="scenario-title">Titre</label>
+                                        <div class="controls">
+                                            <input type="text" id="scenario-title" name="scenario-title" class="input-xlarge input-step input-scenario-title"  placeholder="..." />
                                         </div>
-                                        </fieldset>
-                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
 
 
                             <div class="scenario-content">
                                 <div class="form-horizontal">
                                     <fieldset>
                                         <legend>Pré-requis</legend>
-                                        <div class="control-group">
-                                            <label class="control-label" for="input01">Etant donné que</label>
-                                            <div class="controls">
-                                                <input type="text" class="input-xlarge input-step input-step-given"  placeholder="..." />
+
+                                        <div id="box-steps-given">
+
+                                            <div class="control-group">
+                                                <label class="control-label" for="input01">Etant donné que</label>
+                                                <div class="controls">
+                                                    <input type="text" class="input-xlarge input-step input-step-given"  placeholder="..." />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label" for="input01">Et que </label>
-                                            <div class="controls">
-                                                <input type="text" class="input-xlarge input-step input-step-given"  name="feature-title" placeholder="..." />
+                                            <div class="control-group">
+                                                <label class="control-label" for="input01">Et que </label>
+                                                <div class="controls">
+                                                    <input type="text" class="input-xlarge input-step input-step-given"  name="feature-title" placeholder="..." />
+                                                </div>
                                             </div>
+
                                         </div>
+
                                         <div class="control-group">
                                             <div class="controls">
                                                 <div class="btn-group">
@@ -160,64 +202,69 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     </fieldset>
                                     <fieldset>
                                         <legend>Eléments déclencheurs</legend>
-                                        <div class="control-group">
-                                            <label class="control-label" for="input01">Quand</label>
-                                            <div class="controls">
-                                                <input type="text" class="input-xlarge input-step input-step-when"  placeholder="..." />
+
+                                        <div id="box-steps-when">
+                                            <div class="control-group">
+                                                <label class="control-label" for="step">Quand</label>
+                                                <div class="controls">
+                                                    <input type="text" class="input-xlarge input-step input-step-when"  placeholder="..." />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label" for="input01">Et que </label>
-                                            <div class="controls">
-                                                <input type="text" class="input-xlarge input-step input-step-when"  name="feature-title" placeholder="..." />
+                                            <div class="control-group">
+                                                <label class="control-label" for="input01">Et que </label>
+                                                <div class="controls">
+                                                    <input type="text" class="input-xlarge input-step input-step-when"  name="feature-title" placeholder="..." />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label" for="input01">Et que </label>
-                                            <div class="controls">
-                                                <input type="text" class="input-xlarge input-step input-step-when"  name="feature-title" placeholder="j'inscris l'utilisateur suivant" />
+                                            <div class="control-group">
+                                                <label class="control-label" for="input01">Et que </label>
+                                                <div class="controls">
+                                                    <input type="text" class="input-xlarge input-step input-step-when"  name="feature-title" placeholder="j'inscris l'utilisateur suivant" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <table class="table table-condensed controls" style="width:auto">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Nom</th>
-                                                        <th>Prénom</th>
-                                                        <th>Email</th>
-                                                        <th><button class="btn"><i class="icon icon-plus-sign"></i></button></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><input type="text" class="input-small" placeholder="Dupont" /></td>
-                                                        <td><input type="text" class="input-small" placeholder="Martin" /></td>
-                                                        <td><input type="text" class="input-small" placeholder="martin@dupont.fr" /></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><input type="text" class="input-small" placeholder="Dupont" /></td>
-                                                        <td><input type="text" class="input-small" placeholder="Martin" /></td>
-                                                        <td><input type="text" class="input-small" placeholder="martin@dupont.fr" /></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><input type="text" class="input-small" placeholder="Dupont" /></td>
-                                                        <td><input type="text" class="input-small" placeholder="Martin" /></td>
-                                                        <td><input type="text" class="input-small" placeholder="martin@dupont.fr" /></td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><button class="btn"><i class="icon icon-plus-sign"></i></button></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                            <div class="control-group">
+                                                <table class="table table-condensed controls" style="width:auto">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Nom</th>
+                                                            <th>Prénom</th>
+                                                            <th>Email</th>
+                                                            <th><button class="btn"><i class="icon icon-plus-sign"></i></button></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><input type="text" class="input-small" placeholder="Dupont" /></td>
+                                                            <td><input type="text" class="input-small" placeholder="Martin" /></td>
+                                                            <td><input type="text" class="input-small" placeholder="martin@dupont.fr" /></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="text" class="input-small" placeholder="Dupont" /></td>
+                                                            <td><input type="text" class="input-small" placeholder="Martin" /></td>
+                                                            <td><input type="text" class="input-small" placeholder="martin@dupont.fr" /></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="text" class="input-small" placeholder="Dupont" /></td>
+                                                            <td><input type="text" class="input-small" placeholder="Martin" /></td>
+                                                            <td><input type="text" class="input-small" placeholder="martin@dupont.fr" /></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><button class="btn"><i class="icon icon-plus-sign"></i></button></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
                                         </div>
                                         <div class="control-group">
                                             <div class="controls">
@@ -236,17 +283,22 @@
                                     </fieldset>
                                     <fieldset>
                                         <legend>Résultats attendus</legend>
-                                        <div class="control-group">
-                                            <label class="control-label" for="input01">Alors</label>
-                                            <div class="controls">
-                                                <input type="text" class="input-xlarge input-step input-step-then"  placeholder="..." />
+
+                                        <div id="box-steps-then">
+
+                                            <div class="control-group">
+                                                <label class="control-label" for="input01">Alors</label>
+                                                <div class="controls">
+                                                    <input type="text" class="input-xlarge input-step input-step-then"  placeholder="..." />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label" for="input01">Et </label>
-                                            <div class="controls">
-                                                <input type="text" class="input-xlarge input-step input-step-then"  name="feature-title" placeholder="..." />
+                                            <div class="control-group">
+                                                <label class="control-label" for="input01">Et </label>
+                                                <div class="controls">
+                                                    <input type="text" class="input-xlarge input-step input-step-then"  name="feature-title" placeholder="..." />
+                                                </div>
                                             </div>
+
                                         </div>
                                         <div class="control-group">
                                             <div class="controls">
@@ -335,7 +387,7 @@
 
 
                 <!-- Box Feature -->
-                <div id="box-edit-title">
+                <div id="box-edit-title" class="box-editing" data-callback-out="editMain">
                     <div class="hero-unit">
                         <h1>En 2 mots</h1>
                         <p>Décrivez ici votre fonctionnalité en quelques mots seulement</p>
@@ -351,23 +403,23 @@
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label for="title" class="control-label">Afin de:</label>
+                                    <label for="inorder" class="control-label">Afin de:</label>
                                     <div class="controls">
-                                        <input name="title" id="title" placeholder="Enregister un nouvel utilisateur..." class="input-xlarg" />
+                                        <input name="inorder" id="inorder" placeholder="Enregister un nouvel utilisateur..." class="input-xlarg" />
                                         <p class="help-block">Finalité de la fonctionnalité</p>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label for="title" class="control-label">En tant que:</label>
+                                    <label for="as" class="control-label">En tant que:</label>
                                     <div class="controls">
-                                        <input name="title" id="title" placeholder="Administrateur du site..." class="input-xlarg" />
+                                        <input name="as" id="as" placeholder="Administrateur du site..." class="input-xlarg" />
                                         <p class="help-block">Rôle de l'utilisateur qui agit</p>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label for="title" class="control-label">je dois:</label>
+                                    <label for="should" class="control-label">je dois:</label>
                                     <div class="controls">
-                                        <input name="title" id="title" placeholder=" Inscrire moi-même un nouvel utilisateur dans le site..." class="input-xlarg" />
+                                        <input name="should" id="should" placeholder=" Inscrire moi-même un nouvel utilisateur dans le site..." class="input-xlarg" />
                                         <p class="help-block">Bénéfice direct de la fonctionnalité</p>
                                     </div>
                                 </div>
@@ -395,3 +447,14 @@
 
 {% endblock %}
 
+
+{% block javascript %}
+<script type="text/javascript">
+    $(function() {
+
+
+        var feature = new hbw.domain.feature( {{ dumper.dump() | raw }});
+        hbw.ui.editing.init(feature);
+    });
+</script>
+{% endblock %}

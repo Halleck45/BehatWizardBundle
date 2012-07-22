@@ -11,16 +11,7 @@
  *
  * @author Jean-François Lépine <jeanfrancois@lepine.pro>
  */
-hbw.domain.feature = function() {
-
-    /**
-     * Form informations
-     *
-     * @var object
-     */
-    this.form = {
-        name: 'default'
-    }
+hbw.domain.feature = function(datas) {
 
     /**
      * Scenarios
@@ -37,11 +28,55 @@ hbw.domain.feature = function() {
     this.background = null;
 
     /**
-     * Examples
+     * Title
      *
-     * @var hbw.domain.outline
+     * @var string
      */
-    this.examples = null;
+
+    this.title = datas.title || null;
+    /**
+     * In Order
+     *
+     * @var string
+     */
+
+    this.inorder = datas.inorder ||  null;
+    /**
+     * As a
+     *
+     * @var string
+     */
+
+    this.as = datas.as || null;
+    /**
+     * I should
+     *
+     * @var string
+     */
+    this.should = datas.should || null;
+
+    /**
+     * Notes
+     *
+     * @var string
+     */
+    this.notes = datas.notes || null;
+
+
+    /**
+     * Constructor
+     *
+     * @param datas [ steps:[ {content:"", example: null}, ...], example: null ]
+     * @return hbw.domain.scenario
+     */
+    this.initialize = function(datas) {
+        var i, scenario, step;
+        for(i in datas.scenarios) {
+            scenario = new hbw.domain.scenario(datas.scenarios[i]);
+            this.addScenario(scenario);
+        }
+        return this;
+    }
 
 
     /**
@@ -50,43 +85,37 @@ hbw.domain.feature = function() {
      * @return string
      */
     this.toString = function () {
-//        var html, i;
-//        for(i in this.scenarios) {
-//            html += this.scenarios[i];
-//        }
-//        return html;
+
+        //
+        // Human description
+        var html = '';
+        html = 'Feature: ' + this.title
+            + '  In order to ' + this.order
+            + '  As ' + this.as
+            + '  I should ' + this.should;
+        if(this.note.length > 0) {
+            html += '\n\n  ' + this.notes
+        }
+
+        //
+        // Background
+        if(this.background) {
+            html += '\n\n  ' + this.background;
+        }
+
+        //
+        // Scenarios
+        html += '\n\n';
+        var i;
+        for(i in this.scenarios) {
+            html += this.scenarios[i].toString();
+        }
+
+        
+        return html;
     }
 
-    /**
-     * Constructor
-     *
-     * @param data [ steps:[ {content:"", example: null}, ...], example: null ]
-     * @return hbw.domain.scenario
-     */
-    this.initialize = function(datas) {
-
-
-
-
-//        var i, type, step, outline;
-//        var steps = datas['steps'],
-//        example = datas['example'];
-//
-//        for(type in steps) {
-//            for(i in steps[type]) {
-//                step = new hbw.domain.step(type, steps[type][i]['content']);
-//                if(typeof(steps[type][i]['example']) != 'undefined') {
-//                    outline = new hbw.domain.outline(steps[type][i]['example']);
-//                    step.outline = outline;
-//                }
-//                this.addStep(step);
-//            }
-//        }
-//
-//        outline = new hbw.domain.outline(example);
-//        this.outline = outline;
-        return this;
-    }
+    
 
     /**
      * Push/insert scenario in this feature
@@ -125,5 +154,5 @@ hbw.domain.feature = function() {
     }
 
 
-
+    this.initialize(datas);
 }

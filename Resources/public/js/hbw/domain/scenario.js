@@ -11,16 +11,16 @@
  *
  * @author Jean-François Lépine <jeanfrancois@lepine.pro>
  */
-hbw.domain.scenario = function() {
+hbw.domain.scenario = function(datas) {
+
+    datas = datas || {};
 
     /**
-     * Form informations
-     *
-     * @var object
+     * Title
+     * 
+     * @Var string
      */
-    this.form = {
-        name: 'default'
-    }
+    this.title = null;
 
     /**
      * Steps of the scenario
@@ -34,18 +34,23 @@ hbw.domain.scenario = function() {
      *
      * @var hbw.domain.outline
      */
-    this.outline = null;
+    this.examples = null;
 
     /**
      * To string conversion
      *
      * @return string
      */
-    this.toString = function () {
+    this.tooooString = function () {
         var html, i;
         for(i in this.steps) {
             html += this.steps[i];
         }
+
+        // @todo
+        // @todo
+        // @todo
+        // Ajouter l'example !!!!
         return html;
     }
 
@@ -56,23 +61,18 @@ hbw.domain.scenario = function() {
      * @return hbw.domain.scenario
      */
     this.initialize = function(datas) {
-        var i, type, step, outline;
-        var steps = datas['steps'],
-        example = datas['example'];
 
-        for(type in steps) {
-            for(i in steps[type]) {
-                step = new hbw.domain.step(type, steps[type][i]['content']);
-                if(typeof(steps[type][i]['example']) != 'undefined') {
-                    outline = new hbw.domain.outline(steps[type][i]['example']);
-                    step.outline = outline;
-                }
-                this.addStep(step);
-            }
+        var i, step;
+
+        this.title = datas.title || '';
+        if(datas.isOutline) {
+            this.examples = new hbw.domain.outline(datas.examples);
         }
 
-        outline = new hbw.domain.outline(example);
-        this.outline = outline;
+        for(i in datas.steps) {
+            step = new hbw.domain.step(datas.steps[i]);
+            this.addStep(step);
+        }
         return this;
     }
 
@@ -106,4 +106,5 @@ hbw.domain.scenario = function() {
         return this;
     }
 
+    this.initialize(datas);
 }

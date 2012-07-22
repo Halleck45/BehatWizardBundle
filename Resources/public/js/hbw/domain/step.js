@@ -11,21 +11,38 @@
  *
  * @author Jean-François Lépine <jeanfrancois@lepine.pro>
  */
-hbw.domain.step = function(type, content) {
+hbw.domain.step = function(datas) {
     /**
      * Type : given,when,then
      */
-    this.type = type;
+    this.type = null;
 
     /**
      * Step's description
      */
-    this.content = content || '';
+    this.text = null;
 
     /**
      * Outline content (with following : "")
      */
-    this.outline = new hbw.domain.outline;
+    this.outline = null;
+
+
+    /**
+     * Constructor
+     *
+     * @param datas
+     * @return hbw.domain.step
+     */
+    this.initialize = function(datas) {
+        this.type = datas.type;
+        this.text = datas.text;
+        if(datas.outline.length > 0) {
+            this.outline = new hbw.domain.outline(datas.outline);
+        }
+        return this;
+    }
+
 
     /**
      * Convert step to string
@@ -33,23 +50,9 @@ hbw.domain.step = function(type, content) {
      * @return string
      */
     this.toString = function() {
-        return this.content +  this.outline.toString();
+        return this.text +  this.outline.toString();
     }
-    
-    /**
-     * Convert step to form element
-     *
-     * @param scenario
-     * @param position
-     */
-    this.toForm = function(scenario, position) {
-        return ''
-        +'<div class="control-group">'
-        +'    <label class="control-label" for="input01">'+this.type+'</label>'
-        +'    <div class="controls">'
-        +'        <input type="text" name="'+scenario.form.name+'[step]['+this.type+']['+position+'][content]" class="input-xlarge input-step input-step-'+this.type+'"  name="feature-title" placeholder="..." value="'+this.content+'" />'
-        +'    </div>'
-        +'</div>'
-        + this.outline.toForm(scenario, position);
-    }
+
+
+    this.initialize(datas);
 };
