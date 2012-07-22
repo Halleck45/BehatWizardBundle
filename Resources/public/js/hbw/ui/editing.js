@@ -5,7 +5,7 @@ hbw.ui.editing = {
             mainInfos        : '#box-edit-title',
             scenarios        : '#box-edit-scenario',
             examples         : '#examples',
-            background       : null,
+            background       : '#box-edit-background',
             listScenarios    : '#feature-box-scenarios .scenarios',
             stepgiven        : '#box-steps-given',
             stepwhen         : '#box-steps-when',
@@ -15,17 +15,20 @@ hbw.ui.editing = {
             title           : '#title',
             inorder         : '#inorder',
             as              : '#as',
-            should         : '#should'
+            should          : '#should'
         },
 
         btn: {
             editMain        : '.btn-feature-edit',
             editScenario    : '.btn-scenario-edit',
+            editBackground  : '.btn-background-edit',
             addScenario     : '.btn-scenario-add',
             addOutlineRow   : '.btn-outline-add-row',
             addOutlineColumn: '.btn-outline-add-column',
             removeOutlineColumn: '.btn-outline-remove-column',
-            removeOutlineRow: '.btn-outline-remove-row'
+            removeOutlineRow: '.btn-outline-remove-row',
+            addStep         : '.btn-step-add',
+            addOutlineStep  : '.btn-step-outline-add'
         },
         models: {
             scenario        : '#box-models #scenario',
@@ -43,12 +46,14 @@ hbw.ui.editing = {
         out: {
             editMain            : function(){},
             editScenario        : function(){},
+            editBackground      : function(){},
             updateScenarioDatas : function(){},
             editStep            : function(){}
         },
         enter: {
             editMain            : function(){},
             editScenario        : function(){},
+            editbackground      : function(){},
             addScenario         : function(){}
         }
     },
@@ -140,7 +145,7 @@ hbw.ui.editing = {
     },
     
     populateScenarioView: function(scenario, $box) {
-        
+
         //
         // Datas
         $box.data('scenario', scenario);
@@ -212,7 +217,46 @@ hbw.ui.editing = {
             }
         }
         hbw.ui.editing.updateExample($example, true);
+
+    },
+    populatebackgroundView: function(background, $box) {
         
+        //
+        // Datas
+        $box.data('background', background);
+
+        //
+        // Cleans old datas
+        $(hbw.ui.editing.selector.box['stepgiven']).empty();
+        $(hbw.ui.editing.selector.box['stepwhen']).empty();
+        $(hbw.ui.editing.selector.box['stepthen']).empty();
+
+        var i, step, type, $target, $model, $clone;
+        for(i in background.steps) {
+            step = background.steps[i];
+            type = step.type.toLowerCase();
+            $target = $(hbw.ui.editing.selector.box['step' + type]);
+
+            //
+            // Build a clone, copying a model
+            $model = $(hbw.ui.editing.selector.models['step' + type]);
+            $clone = $model.clone(true);
+            $('.input-step-' + type, $clone).val(step.text);
+            $target.append($clone);
+
+            //
+            // Outline nodes
+            if(step.outline != null) {
+                var $cont = $('<div></div>');
+                $cont
+                .data('step', step)
+                .data('for', $clone)
+                .data('outline', step.outline)
+                .addClass('outline')
+                .appendTo($target);
+                hbw.ui.editing.populateOutlineView(step.outline, $cont);
+            }
+        }
     },
 
     populateOutlineView: function(outline, $box) {
@@ -426,5 +470,36 @@ hbw.ui.editing = {
                 $tr.prepend($model.clone(true));
             }
         });
+    },
+
+
+
+    addStep: function($container, type, isOutline) {
+        var $model = $(hbw.ui.editing.selector.models['step' + type]);
+        var step = new hbw.domain.step;
+        var $clone = $model.clone(true);
+        $clone.data('step', step);
+        $container.append($clone);
+
+        console.log($model.length)
+        console.log($container.length)
+        console.log(type)
+        console.log(isOutline)
+
+        if(isOutline) {
+
+            step.outline = new hbw.domain.outline;
+            step.outline.parent = step;
+
+            var $cont = $('<div></div>');
+            $cont
+            .data('step', step)
+            .data('for', $clone)
+            .data('outline', step.outline)
+            .addClass('outline')
+            .appendTo($container);
+            hbw.ui.editing.populateOutlineView(step.outline, $cont);
+        }
+
     }
 };

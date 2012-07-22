@@ -5,6 +5,7 @@ hbw.ui.editing.events = {
         .applyMain()
         .applyOutline()
         .applySteps()
+        .applybackground()
         .applyScenarios();
     },
     
@@ -62,6 +63,30 @@ hbw.ui.editing.events = {
 
         return hbw.ui.editing.events;
     },
+    applybackground: function() {
+
+        //
+        // Update the background
+        var $btn = $(hbw.ui.editing.selector.btn.editBackground);
+        $btn.click(function(e) {
+            hbw.ui.editing.startEditing($(this), $(hbw.ui.editing.selector.box.background));
+            e.preventDefault();
+        });
+
+        //
+        // Callbacks
+        hbw.ui.editing.callback.enter.editBackground = function($caller, $target) {
+            var background = hbw.ui.editing.feature.background;
+            $target.data('background', background);
+            hbw.ui.editing.populatebackgroundView(background, $(hbw.ui.editing.selector.box.background) );
+        };
+        hbw.ui.editing.callback.out.updateBackgroundDatas = function($caller, $target) {
+            var background = hbw.ui.editing.feature.background;
+            hbw.ui.editing.mapper.updateBackgroundByView(background, $target);
+        };
+
+        return hbw.ui.editing.events;
+    },
     applySteps: function() {
         //
         // Update on changes
@@ -69,6 +94,23 @@ hbw.ui.editing.events = {
             var scenario = $(hbw.ui.editing.selector.box.scenarios).data('scenario');
             hbw.ui.editing.updateExample($(hbw.ui.editing.selector.box.examples));
         });
+
+
+        //
+        // Add step
+        var $btn = $(hbw.ui.editing.selector.btn.addStep);
+        $btn.click(function(e) {
+            e.preventDefault();
+            var $btn = $(this);
+            var type = $btn.data('type');
+            var isOutline = $btn.data('isoutline');
+//            var $container = $('#box-steps-' + type);
+            var $container = $btn.parents('.control-group').prev('.box-then');//$('#box-steps-' + type);
+            hbw.ui.editing.addStep($container, type, isOutline);
+        });
+
+
+
 
         return hbw.ui.editing.events;
     },

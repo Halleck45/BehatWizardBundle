@@ -25,7 +25,7 @@
                                     <fieldset>
                                         <legend>Pré-requis</legend>
 
-                                        <div id="box-steps-given">
+                                        <div id="box-steps-given" class="box-then">
                                             <!-- Content will be placed here -->
                                         </div>
 
@@ -37,8 +37,8 @@
                                                         <span class="caret"></span>
                                                     </a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a href="#">Pré-requis simple</a></li>
-                                                        <li><a href="#">Pré-requis avec jeu de données</a></li>
+                                                        <li><a class="btn-step-add" data-type="given"  data-isoutline="0" href="#">Pré-requis simple</a></li>
+                                                        <li><a class="btn-step-add btn-step-outline-add" data-type="given"  data-isoutline="1" href="#">Pré-requis avec jeu de données</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -48,7 +48,7 @@
                                     <fieldset>
                                         <legend>Eléments déclencheurs</legend>
 
-                                        <div id="box-steps-when">
+                                        <div id="box-steps-when" class="box-then">
                                             <!-- Content will be placed hre -->
                                         </div>
                                         <div class="control-group">
@@ -59,8 +59,8 @@
                                                         <span class="caret"></span>
                                                     </a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a href="#">Evénement simple</a></li>
-                                                        <li><a href="#">Evénement avec jeu de données</a></li>
+                                                        <li><a class="btn-step-add" data-type="when"  data-isoutline="0" href="#">Evénement simple</a></li>
+                                                        <li><a class="btn-step-add" data-type="when"  data-isoutline="1" href="#">Evénement avec jeu de données</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -72,7 +72,7 @@
                                         <div id="box-steps-then">
                                             <!-- Content will be placed hre -->
                                         </div>
-                                        <div class="control-group">
+                                        <div class="control-group" class="box-then">
                                             <div class="controls">
                                                 <div class="btn-group">
                                                     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -80,8 +80,8 @@
                                                         <span class="caret"></span>
                                                     </a>
                                                     <ul class="dropdown-menu">
-                                                        <li><a href="#">Résultat attendu simple</a></li>
-                                                        <li><a href="#">Résultat attend avec jeu de données</a></li>
+                                                        <li><a class="btn-step-add" data-type="then"  data-isoutline="0" href="#">Résultat attendu simple</a></li>
+                                                        <li><a class="btn-step-add" data-type="then"  data-isoutline="1" href="#">Résultat attend avec jeu de données</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -126,7 +126,7 @@
                                 </div>
 
                                 <div class=" form-actions">
-                                    <button class="btn btn-primary" type="submit" class="btn-feature-edit" data-callback-out="editMain">J'ai terminé pour ce scénario</button>
+                                    <button class="btn btn-primary btn-feature-edit " type="submit" data-callback-out="editMain">J'ai terminé pour ce scénario</button>
                                 </div>
 
                             </div>

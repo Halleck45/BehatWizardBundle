@@ -75,6 +75,9 @@ hbw.domain.feature = function(datas) {
             scenario = new hbw.domain.scenario(datas.scenarios[i]);
             this.addScenario(scenario);
         }
+
+        this.background = new hbw.domain.scenario(datas.background);
+
         return this;
     }
 

@@ -50,5 +50,10 @@ hbw.ui.editing.mapper = {
         //
         // Push scenario into feature
         feature.addScenario(scenario, index);
+    },
+
+
+    updateBackgroundByView: function(background, $container) {
+        
     }
 }
