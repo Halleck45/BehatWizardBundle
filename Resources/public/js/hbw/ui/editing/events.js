@@ -29,8 +29,17 @@ hbw.ui.editing.events = {
         //
         // Callbacks
         hbw.ui.editing.callback.out.editMain = function() {
+            hbw.ui.editing.mapper.updateFeatureByView(hbw.ui.editing.feature, $(hbw.ui.editing.selector.box.mainInfos));
             hbw.ui.editing.refreshVisualInfos();
         };
+
+        //
+        // Save
+        $(hbw.ui.editing.selector.btn.save).click(function(e) {
+            e.preventDefault();
+            hbw.ui.editing.saveFeature();
+            e.stopPropagation();
+        });
 
         return hbw.ui.editing.events;
     },

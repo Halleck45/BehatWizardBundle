@@ -128,3 +128,6 @@
     width:20px;
     vertical-align:middle;
 }
+#form-save {
+    display:none;
+}

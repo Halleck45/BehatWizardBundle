@@ -57,12 +57,14 @@ hbw.domain.outline = function(datas) {
      *
      * @return string
      */
-    this.tooooString = function() {
+    this.asString = function() {
         var i, j, content = '';
         for(i in this.rows) {
-            content += (content.length > 0 ? "\n" : '');
+//            content += (content.length > 0 ? "\n" : '');
+//            content += (content.length == 0 ? '\n' : '');
+            content += '\n      ';
 
-            for(j in this.content[i]) {
+            for(j in this.rows[i]) {
                 content += '| ' + this.rows[i][j] + ' ';
             }
 

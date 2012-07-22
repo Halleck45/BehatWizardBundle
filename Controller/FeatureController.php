@@ -6,6 +6,17 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 use Hal\Bundle\BehatTools\Domain\Model\Feature\Dumper\Json as Feature_Dumper_Json;
+use Hal\Bundle\BehatWizard\Form\Type\FeatureType;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+/*
+ * This file is part of the Behat Tools
+ * (c) 2012 Jean-François Lépine <jeanfrancois@lepine.pro>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 class FeatureController extends ContainerAware
 {
 
@@ -30,18 +41,27 @@ class FeatureController extends ContainerAware
     {
         $repository = $this->container->get('hbt.feature.repository');
         $feature = $repository->loadFeatureByHash($feature);
-
-        //
-        // Prepare datas
         $representation = new Feature_Dumper_Json($feature);
 
-//echo '<pre>'.$representation->dump();
-//exit;
+
+        $form = $this->container->get('form.factory')->create(new FeatureType(), $feature);
+        $request = $this->container->get('request');
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+            if ($form->isValid()) {
+                $repository->saveFeature($feature);
+
+                $url = $this->container->get('router')->generate('hbw.home');
+                return  new RedirectResponse($url);
+            }
+        }
+
         return array(
             'feature' => $feature
             , 'gherkin' => $feature->getGherkin()
             , 'report' => $feature->getReport()
             , 'dumper' => $representation
+            , 'form' => $form->createView(),
         );
     }
 

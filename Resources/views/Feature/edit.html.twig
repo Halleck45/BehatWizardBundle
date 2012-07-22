@@ -7,28 +7,30 @@
 
 <!-- models -->
 {% include "HalBehatWizardBundle:Feature:edit/models.html.twig" %}
-
-<form >
-    <div class="row">
-
-        <!-- Side panel -->
-        {% include "HalBehatWizardBundle:Feature:edit/side.panel.html.twig" %}
-
-        <!--  Modified content  -->
-        <div id="page-editing" class="span8">
-            <div class="well">
-
-                <!-- Box Scenario -->
-                {% include "HalBehatWizardBundle:Feature:edit/edit.scenario.html.twig" %}
-                <!-- Box Background -->
-                {% include "HalBehatWizardBundle:Feature:edit/edit.background.html.twig" %}
-                <!-- Box Feature -->
-                {% include "HalBehatWizardBundle:Feature:edit/edit.main.html.twig" %}
-            </div>
-        </div>
-
-    </div>
+<form id="form-save" method="post">
+    {{ form_widget(form) }}
 </form>
+
+<div class="row">
+
+    <!-- Side panel -->
+    {% include "HalBehatWizardBundle:Feature:edit/side.panel.html.twig" %}
+
+    <!--  Modified content  -->
+    <div id="page-editing" class="span8">
+        <div class="well">
+
+            <!-- Box Scenario -->
+            {% include "HalBehatWizardBundle:Feature:edit/edit.scenario.html.twig" %}
+            <!-- Box Background -->
+            {% include "HalBehatWizardBundle:Feature:edit/edit.background.html.twig" %}
+            <!-- Box Feature -->
+            {% include "HalBehatWizardBundle:Feature:edit/edit.main.html.twig" %}
+        </div>
+    </div>
+
+</div>
+
 {% endblock %}
 
 

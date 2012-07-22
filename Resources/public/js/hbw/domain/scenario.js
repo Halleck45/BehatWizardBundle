@@ -41,10 +41,31 @@ hbw.domain.scenario = function(datas) {
      *
      * @return string
      */
-    this.tooooString = function () {
-        var html, i;
+    this.asString = function (keyword) {
+        var html = '', i;
+
+        if(typeof(keyword) == 'undefined') {
+            if(this.examples) {
+                keyword = 'Scenario Outline';
+            } else {
+                keyword = 'Scenario';
+            }
+        }
+
+        //
+        // Title
+        html = '\n\n  '+keyword +': ' + this.title
+
+        //
+        // Steps
         for(i in this.steps) {
-            html += this.steps[i];
+            html += this.steps[i].asString();
+        }
+
+        //
+        // Example
+        if(this.examples) {
+            html += '\n\n  Examples: ' + this.examples.asString();
         }
 
         // @todo

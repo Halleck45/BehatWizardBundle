@@ -53,8 +53,12 @@ hbw.domain.step = function(datas) {
      *
      * @return string
      */
-    this.toString = function() {
-        return this.text +  this.outline.toString();
+    this.asString = function() {
+        var html = '\n    ' + this.type + ' ' + this.text;
+        if(this.outline) {
+            html +=  this.outline.asString();
+        }
+        return html;
     }
 
 

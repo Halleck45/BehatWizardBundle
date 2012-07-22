@@ -9,15 +9,16 @@ hbw.ui.editing = {
             listScenarios    : '#feature-box-scenarios .scenarios',
             stepgiven        : '#box-steps-given',
             stepwhen         : '#box-steps-when',
-            stepthen         : '#box-steps-then'
+            stepthen         : '#box-steps-then',
+            formsave         : '#form-save'
         },
         input: {
             title           : '#title',
             inorder         : '#inorder',
             as              : '#as',
-            should          : '#should'
+            should          : '#should',
+            allcontent      : '#feature_content'
         },
-
         btn: {
             editMain        : '.btn-feature-edit',
             editScenario    : '.btn-scenario-edit',
@@ -28,7 +29,8 @@ hbw.ui.editing = {
             removeOutlineColumn: '.btn-outline-remove-column',
             removeOutlineRow: '.btn-outline-remove-row',
             addStep         : '.btn-step-add',
-            addOutlineStep  : '.btn-step-outline-add'
+            addOutlineStep  : '.btn-step-outline-add',
+            save            : '#btn-save'
         },
         models: {
             scenario        : '#box-models #scenario',
@@ -79,6 +81,8 @@ hbw.ui.editing = {
         // Events
         self.events.applyAll();
         self.refreshVisualInfos();
+
+        $(hbw.ui.editing.selector.btn.editMain).click();
     },
 
     stopEditingExcept: function($caller, $target) {
@@ -90,6 +94,11 @@ hbw.ui.editing = {
         //
         // Display
         $('.box-editing.current').not('#' + $target.attr('id')).hide().removeClass('current');
+    },
+    
+    stopEditing: function() {
+        hbw.ui.editing.stopEditingExcept(null, $(hbw.ui.editing.selector.box.mainInfos));
+        $(hbw.ui.editing.selector.box.mainInfos).fadeIn().addClass('current');
     },
 
     
@@ -481,11 +490,6 @@ hbw.ui.editing = {
         $clone.data('step', step);
         $container.append($clone);
 
-        console.log($model.length)
-        console.log($container.length)
-        console.log(type)
-        console.log(isOutline)
-
         if(isOutline) {
 
             step.outline = new hbw.domain.outline;
@@ -501,5 +505,15 @@ hbw.ui.editing = {
             hbw.ui.editing.populateOutlineView(step.outline, $cont);
         }
 
+    },
+
+
+    saveFeature: function() {
+        hbw.ui.editing.stopEditing();
+        var string = hbw.ui.editing.feature.asString();
+//        $('#feature_content').val(string);
+        $(hbw.ui.editing.selector.input.allcontent).val(string);
+        $(hbw.ui.editing.selector.box.formsave).submit();
     }
+
 };

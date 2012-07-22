@@ -5,47 +5,19 @@ hbw.ui.editing.mapper = {
         var feature = scenario.parent;
         var index = scenario.index;
 
-        
         scenario = new hbw.domain.scenario({});
 
         //
         // Title
-        scenario.title = $('#scenario-title').val();
+        scenario.title = $('#scenario-title', $container).val();
 
         //
         // Steps
-        $('.step:text',$container).each(function() {
-            var $ipt = $(this);
-            var $box = $ipt.parents('.box-step');
-            
-            var step = new hbw.domain.step;
-            step.type = $ipt.data('step-type');
-            step.text = $ipt.val();
+        hbw.ui.editing.mapper.pushStepsIntoNode(scenario, $container);
 
-            //
-            // Outline
-            var $outline = $box.next('.outline');
-            var oldOutline = $outline.data('outline');
-            var outline = new hbw.domain.outline();
-            $('.outline-row', $outline).each(function() {
-                var $tr = $(this);
-                var row = [];
-                $('.outline-content', $tr).each(function() {
-                    row.push($(this).val());
-                });
-                outline.push(row);
-            });
-            if(outline.rows.length > 0) {
-                step.outline = outline;
-            }
-
-            scenario.addStep(step);
-        });
-
+        //
         // Examples
-
-
-        console.log(scenario);
+        this.pushOutlineIntoNode(scenario, $container , $('.outline-node.examples', $container), 'examples');
 
         //
         // Push scenario into feature
@@ -54,6 +26,62 @@ hbw.ui.editing.mapper = {
 
 
     updateBackgroundByView: function(background, $container) {
-        
+        var feature = background.parent;
+
+        background = new hbw.domain.scenario({});
+        background.parent = feature;
+
+        //
+        // Steps
+        hbw.ui.editing.mapper.pushStepsIntoNode(background, $container);
+
+        //
+        // Push scenario into feature
+        feature.background = background;
+    },
+    updateFeatureByView: function(feature, $container) {
+        hbw.ui.editing.feature.title = $('#title', $container).val();
+        hbw.ui.editing.feature.inorder = $('#inorder', $container).val();
+        hbw.ui.editing.feature.as = $('#as', $container).val();
+        hbw.ui.editing.feature.should = $('#should', $container).val();
+        hbw.ui.editing.feature.notes = $('#notes', $container).val();
+    },
+
+
+    pushStepsIntoNode: function(node, $container) {
+        //
+        // Steps
+        $('.step:text',$container).each(function() {
+            var $ipt = $(this);
+            var $box = $ipt.parents('.box-step');
+
+            var step = new hbw.domain.step;
+            step.type = $ipt.data('step-type');
+            step.text = $ipt.val();
+
+            //
+            // Outline
+            var $outline = $box.next('.outline');
+            hbw.ui.editing.mapper.pushOutlineIntoNode(step, $outline);
+
+            node.addStep(step);
+        });
+    },
+
+    pushOutlineIntoNode:function(node, $outline, attributeName) {
+        attributeName = attributeName || 'outline';
+        var outline = new hbw.domain.outline();
+        $('.outline-row', $outline).each(function() {
+            var $tr = $(this);
+            var row = [];
+            $('.outline-content', $tr).each(function() {
+                row.push($(this).val());
+            });
+            outline.push(row);
+        });
+        if(outline.rows.length > 0) {
+            node.outline = outline;
+            node[attributeName] = outline;
+        }
     }
 }

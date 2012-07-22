@@ -77,7 +77,7 @@ hbw.domain.feature = function(datas) {
         }
 
         this.background = new hbw.domain.scenario(datas.background);
-
+        this.background.parent = this;
         return this;
     }
 
@@ -87,31 +87,30 @@ hbw.domain.feature = function(datas) {
      *
      * @return string
      */
-    this.toString = function () {
+    this.asString = function () {
 
         //
         // Human description
         var html = '';
         html = 'Feature: ' + this.title
-            + '  In order to ' + this.order
-            + '  As ' + this.as
-            + '  I should ' + this.should;
-        if(this.note.length > 0) {
+            + '\n  In order to ' + this.inorder
+            + '\n  As ' + this.as
+            + '\n  I should ' + this.should;
+        if(this.notes) {
             html += '\n\n  ' + this.notes
         }
 
         //
         // Background
         if(this.background) {
-            html += '\n\n  ' + this.background;
+            html += '\n  ' + this.background.asString('Background');
         }
 
         //
         // Scenarios
-        html += '\n\n';
         var i;
         for(i in this.scenarios) {
-            html += this.scenarios[i].toString();
+            html += this.scenarios[i].asString();
         }
 
         
@@ -151,7 +150,7 @@ hbw.domain.feature = function(datas) {
      * @return hbw.domain.scenario
      */
     this.render= function() {
-        return this.toString();
+        return this.asString();
     }
 
 
