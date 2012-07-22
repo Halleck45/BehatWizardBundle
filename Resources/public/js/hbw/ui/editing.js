@@ -19,7 +19,7 @@ hbw.ui.editing = {
         },
 
         btn: {
-            editMain        : '#btn-feature-edit',
+            editMain        : '.btn-feature-edit',
             editScenario    : '.btn-scenario-edit',
             addScenario     : '.btn-scenario-add',
             addOutlineRow   : '.btn-outline-add-row',

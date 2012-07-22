@@ -1,0 +1,68 @@
+<!-- Models -->
+<div id="box-models" style="display:none">
+    <!-- Step Given -->
+    <div id="step-given" class="box-step control-group">
+        <label class="control-label" for="step">Etant donné</label>
+        <div class="controls">
+            <input data-step-type="Given" type="text" class="step step-given input-xlarge input-step input-step-given"  placeholder="..." />
+        </div>
+    </div>
+    <!-- Step When -->
+    <div id="step-when" class="box-step control-group">
+        <label class="control-label" for="step">Quand</label>
+        <div class="controls">
+            <input data-step-type="When" type="text" class="step step-when input-xlarge input-step input-step-when"  placeholder="..." />
+        </div>
+    </div>
+    <!-- Step Then -->
+    <div id="step-then" class="box-step control-group">
+        <label class="control-label" for="step">Alors</label>
+        <div class="controls">
+            <input data-step-type="Then" type="text" class="step step-then input-xlarge input-step input-step-then"  placeholder="..." />
+        </div>
+    </div>
+
+    <!-- scenario -->
+    <div class="scenario" id="scenario">
+        <div class="scenario-opts">
+            <a href="#" class="btn-scenario-edit" data-callback-out="updateScenarioDatas" data-callback-enter="editScenario"><i class="icon icon-pencil"></i></a>
+            <a href="#" class="btn-scenario-edit"><i class="icon icon-trash"></i></a>
+        </div>
+        <div class="scenario-title">
+            <a href="#"  data-callback-enter="editScenario" data-callback-out="updateScenarioDatas" class="btn-scenario-edit"><span class="scenario-title-text">Loading title</span></a>
+        </div>
+    </div>
+
+    <!-- Outline -->
+    <div id="outline-node" class="outline-node control-group">
+        <table class="table table-condensed controls" style="width:auto">
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div class="table-condensed controls">
+            <button class="btn btn-small btn-outline-add-column">Add column</button>
+            <button class="btn btn-small  btn-outline-add-row">Add Row</button>
+        </div>
+    </div>
+
+    <!-- container only -->
+    <table>
+        <thead>
+            <tr>
+                <th id="outline-node-head"><a href="#" class="btn-outline-remove-column"><i class="icon icon-trash"></i></a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="outline-node-cell"><input  type="text" class="outline-content outline-cell input-small" placeholder="martin@dupont.fr" /></td>
+                <td id="outline-row-remove" class="decorator">
+                    <a href="#" class="btn-outline-remove-row"><i class="icon icon-trash"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

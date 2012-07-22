@@ -1,0 +1,135 @@
+                <!-- Box Scenario -->
+                <div id="box-edit-scenario" class="box-editing" style="display:none">
+                    <div class="">
+                        <h1>Cas d'utilisation</h1>
+                        <p>Les cas d'utilisations sont autant de scénarios qui décrivent votre fonctionnalité</p>
+
+                        <div class=" box-scenario box-scenario-opened">
+
+
+                            <div class="form-horizontal">
+                                <fieldset>
+                                    <legend>Résumé</legend>
+                                    <div class="control-group">
+                                        <label class="control-label" for="scenario-title">Titre</label>
+                                        <div class="controls">
+                                            <input type="text" id="scenario-title" name="scenario-title" class="input-xlarge input-step input-scenario-title"  placeholder="..." />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+
+                            <div class="scenario-content">
+                                <div class="form-horizontal">
+                                    <fieldset>
+                                        <legend>Pré-requis</legend>
+
+                                        <div id="box-steps-given">
+                                            <!-- Content will be placed here -->
+                                        </div>
+
+                                        <div class="control-group">
+                                            <div class="controls">
+                                                <div class="btn-group">
+                                                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                                        <i class="icon icon-plus-sign"></i> ajouter un pré-requis
+                                                        <span class="caret"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">Pré-requis simple</a></li>
+                                                        <li><a href="#">Pré-requis avec jeu de données</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                    <fieldset>
+                                        <legend>Eléments déclencheurs</legend>
+
+                                        <div id="box-steps-when">
+                                            <!-- Content will be placed hre -->
+                                        </div>
+                                        <div class="control-group">
+                                            <div class="controls">
+                                                <div class="btn-group">
+                                                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                                        <i class="icon icon-plus-sign"></i> ajouter un événement
+                                                        <span class="caret"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">Evénement simple</a></li>
+                                                        <li><a href="#">Evénement avec jeu de données</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset>
+                                        <legend>Résultats attendus</legend>
+
+                                        <div id="box-steps-then">
+                                            <!-- Content will be placed hre -->
+                                        </div>
+                                        <div class="control-group">
+                                            <div class="controls">
+                                                <div class="btn-group">
+                                                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                                        <i class="icon icon-plus-sign"></i> ajouter un résultat attendu
+                                                        <span class="caret"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">Résultat attendu simple</a></li>
+                                                        <li><a href="#">Résultat attend avec jeu de données</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+
+                                    <fieldset>
+                                        <legend>Jeu d'exemples</legend>
+                                        <p>
+                                            Les colonnes d'exemples sont automatiquement aujoutées lorsque vous saisissez dans un champ
+                                            une valeur qui commence par un "&lt;" et finit par "&gt;".
+                                        </p>
+
+                                        <p>Par exemple : </p>
+                                        <code>
+                                            Je tente de réinscrire l'utilisateur qui a l'email "&lt;Email&gt;"
+                                        </code>
+
+                                        <p>Sera compris par le développeur :</p>
+                                        <code>
+                                            Je tente de réinscrire l'utilisateur qui a l'email "martin@dupont.fr"
+                                        </code>
+
+                                        <p>C'est à vous :</p>
+                                        <div class="outline-node">
+                                            <table  id="examples" class="outline-node examples table">
+                                                <thead>
+                                                    <tr>
+                                                        <!-- Content will be placed hre -->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- Content will be placed hre -->
+                                                </tbody>
+                                            </table>
+                                            <div class="table-condensed controls">
+                                                <button class="btn btn-small  btn-outline-add-row">Add Row</button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+
+                                <div class=" form-actions">
+                                    <button class="btn btn-primary" type="submit" class="btn-feature-edit" data-callback-out="editMain">J'ai terminé pour ce scénario</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
