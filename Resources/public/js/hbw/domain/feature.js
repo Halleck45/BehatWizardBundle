@@ -134,6 +134,10 @@ hbw.domain.feature = function(datas) {
             }
         }
         this.scenarios[position] = scenario;
+
+        scenario.index = position;
+        scenario.parent = this;
+
         return this;
     }
 

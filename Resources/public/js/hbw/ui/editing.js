@@ -4,7 +4,7 @@ hbw.ui.editing = {
         box: {
             mainInfos        : '#box-edit-title',
             scenarios        : '#box-edit-scenario',
-            examples         : null,
+            examples         : '#examples',
             background       : null,
             listScenarios    : '#feature-box-scenarios .scenarios',
             stepgiven        : '#box-steps-given',
@@ -42,7 +42,9 @@ hbw.ui.editing = {
     callback : {
         out: {
             editMain            : function(){},
-            editScenario        : function(){}
+            editScenario        : function(){},
+            updateScenarioDatas : function(){},
+            editStep            : function(){}
         },
         enter: {
             editMain            : function(){},
@@ -50,6 +52,8 @@ hbw.ui.editing = {
             addScenario         : function(){}
         }
     },
+
+    nextOutCallback: function(){},
 
     init: function(feature) {
         var self = hbw.ui.editing, i;
@@ -76,10 +80,7 @@ hbw.ui.editing = {
 
         //
         // Callback
-        var callbackName = $caller.data('callback-out');
-        if(typeof(callbackName) != 'undefined') {
-            hbw.ui.editing.callback.out[callbackName]($caller, $target);
-        }
+        hbw.ui.editing.nextOutCallback();
 
         //
         // Display
@@ -89,15 +90,29 @@ hbw.ui.editing = {
     
     startEditing: function($caller, $target) {
         //
+        // Out
+        hbw.ui.editing.stopEditingExcept($caller, $target);
+
+        //
         // Callback
         var callbackName = $caller.data('callback-enter');
         if(typeof(callbackName) != 'undefined') {
             hbw.ui.editing.callback.enter[callbackName]($caller, $target);
         }
+
+        // Prepare next out
+        var callbackName = $caller.data('callback-out');
+        hbw.ui.editing.nextOutCallbackname = function() {};
+        if(typeof(callbackName) != 'undefined') {
+            hbw.ui.editing.nextOutCallback = function(callbackName, $caller, $target) {
+                return function() {
+                    hbw.ui.editing.callback.out[callbackName]($caller, $target);
+                }
+            }(callbackName, $caller, $target);
+        }
         
         //
         // Display
-        hbw.ui.editing.stopEditingExcept($caller, $target);
         $target.fadeIn().addClass('current');
     },
 
@@ -158,17 +173,54 @@ hbw.ui.editing = {
                 .data('step', step)
                 .data('for', $clone)
                 .data('outline', step.outline)
+                .addClass('outline')
                 .appendTo($target);
                 hbw.ui.editing.populateOutlineView(step.outline, $cont);
             }
         }
+
+        //
+        // Example
+        var $example = $(hbw.ui.editing.selector.box.examples);
+
+        hbw.ui.editing.updateExample($example, false);
+        if(scenario.examples !== null) {
+            var example = scenario.examples; // outline element
+
+            var row, dupRow, name, index, names = [], len = 0, heading, mapNames = [], map = [];
+
+            $example.data('examples', example);
+
+            heading = example.rows[0];
+
+            // name mapping (order of columns is not neccessary the same)
+            $('thead th', $example).not('.decorator').each(function(index) {
+                names.push($(this).text());
+                mapNames[$(this).text()] = index;
+            });
+            for(i in heading) {
+                map[i] =  mapNames[heading[i]];
+            }
+
+            len = example.rows.length;
+            for(i = 1; i < len; i++) {
+                row = [];
+                for(index in example.rows[i]) {
+                    row[map[index]] = example.rows[i][index];
+                }
+                hbw.ui.editing.addOutlineRow($example, row);
+            }
+        }
+        hbw.ui.editing.updateExample($example, true);
+        
     },
 
     populateOutlineView: function(outline, $box) {
-        var $model, $clone, row,i, nbCols;
+        var $model, $clone, row,i, nbCols, isExample;
 
         //
         // Cleans old datas
+        isExample = $box.is('.examples');
         $box.empty();
 
         //
@@ -198,18 +250,30 @@ hbw.ui.editing = {
                 hbw.ui.editing.addOutlineRow($clone, outline.rows[i]);
             }
         }
-        
+
+        $clone.data('outline', outline);
+
+        if(isExample) {
+            $clone.addClass('examples');
+            $clone.find('table').addClass('examples');
+        }
         $box.append($clone);
     },
 
 
     addOutlineColumn: function($table, defaultValue) {
-        var $model, $clone, i, $tr;
+        var $model, $modelHead,$clone, i, $tr;
         $model = $(hbw.ui.editing.selector.models.outlinecell);
-        $('tr', $table).each(function() {
+        $modelHead = $(hbw.ui.editing.selector.models.outlinehead);
+        $('tbody tr', $table).each(function() {
             $tr = $(this);
             $clone = $model.clone(true);
             $clone.find('.outline-content').val(defaultValue);
+            $tr.append($clone);
+        });
+        $('thead tr', $table).each(function() {
+            $tr = $(this);
+            $clone = $modelHead.clone(true);
             $tr.append($clone);
         });
         hbw.ui.editing._updateOutlineDecorators($table);
@@ -228,7 +292,7 @@ hbw.ui.editing = {
         var $model, $modelHead, $clone, i, $tr;
 
         $model = $(hbw.ui.editing.selector.models.outlinecell);
-        $tr = $('<tr></tr>');
+        $tr = $('<tr class="outline-row"></tr>');
 
         if(row.length > 0) {
             for(i in row) {
@@ -237,10 +301,19 @@ hbw.ui.editing = {
                 $tr.append($clone);
             }
         } else {
-            var nbCols = $('tbody tr:first-child td', $table)
-            .not('.decorator')
-            .length;
-            for(i  = 0; i < nbCols; i++) {
+            var nbCols;
+            
+            if($('tbody tr', $table).length > 0) {
+                // existent rowset
+                nbCols = $('tbody tr:first-child td', $table)
+                .not('.decorator')
+                .length;
+            } else {
+                // empty rowset
+                nbCols = $('thead tr:first-child th', $table)
+                .length - 1;
+            }
+            for(i = 0; i < nbCols; i++) {
                 $clone = $model.clone(true);
                 $tr.append($clone);
             }
@@ -255,18 +328,93 @@ hbw.ui.editing = {
     },
     
 
-    _updateOutlineDecorators: function($table) {
-        var $model,$tr, i, nbCols;
+    updateExample: function($table, doDefaultRowset) {
+
+        if(typeof(doDefaultRowset) == 'undefined') {
+            doDefaultRowset = true;
+        }
 
         //
-        // Btn remove a column
-        $model = $(hbw.ui.editing.selector.models.outlinehead);
-        $tr = $('thead tr', $table);
-        $tr.empty();
-        nbCols = $('tbody tr:first-child td', $table).length;
-        $tr.append($('<td></td>'));
-        for(i = 1; i < nbCols; i++) {
-            $tr.append($model.clone(true));
+        // Example
+        var outline = $table.data('example');
+
+        // search previous column names
+        var mapNameIndex = {};
+        $('thead th', $table).each(function(i) {
+            mapNameIndex[$(this).text()] = i;
+        });
+
+        // looks for variables
+        var names = [];
+        $('.step:text', hbw.ui.editing.selector.box.scenarios).each(function() {
+            var text = $(this).val();
+            var name = text.match(/<(.*)>/);
+            if(name != null) {
+                name = name[1];
+                if(-1 == $.inArray(name, names)) {
+                    names.push(name);
+                }
+            }
+        });
+
+        var i, name;
+        for(i in names) {
+            name = names[i];
+            if(typeof(mapNameIndex[name]) != 'undefined') {
+            //
+            // Existent variables
+            } else {
+                //
+                // New variable
+                hbw.ui.editing.addOutlineColumn($table, '');
+            }
+        }
+        //
+        // Remove old columns
+        for(i in mapNameIndex) {
+            if(-1 == $.inArray(mapNameIndex[i], names)) {
+                hbw.ui.editing.removeOutlineColumn($table, i);
+            }
+        }
+
+        //
+        // Create heading view
+        $('thead th', $table).remove();
+        $table.find('thead tr').append($('<th class="decorator"></th>'));
+        var $th;
+        for(i in names) {
+            $th = $('<th>'+ names[i] +'</th>');
+            $th.data('name', name);
+            $table.find('thead tr').append($th);
+        }
+
+        //
+        // Default rows
+        if(doDefaultRowset && $('tbody tr', $table).length == 0) {
+            hbw.ui.editing.addOutlineRow($table, []);
+            hbw.ui.editing.addOutlineRow($table, []);
+            hbw.ui.editing.addOutlineRow($table, []);
+        }
+    },
+
+    _updateOutlineDecorators: function($table) {
+        var $model,$tr, i, nbCols;
+        if($table.is('.examples')) {
+        //            hbw.ui.editing.updateExample($table);
+        } else {
+            //
+            // Simple outline node
+
+            //
+            // Btn remove a column
+            $model = $(hbw.ui.editing.selector.models.outlinehead);
+            $tr = $('thead tr', $table);
+            $tr.empty();
+            nbCols = $('tbody tr:first-child td', $table).length;
+            $tr.append($('<td></td>'));
+            for(i = 1; i < nbCols; i++) {
+                $tr.append($model.clone(true));
+            }
         }
 
         //

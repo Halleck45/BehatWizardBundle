@@ -12,6 +12,9 @@
  * @author Jean-François Lépine <jeanfrancois@lepine.pro>
  */
 hbw.domain.step = function(datas) {
+
+    datas = datas || {};
+
     /**
      * Type : given,when,then
      */
@@ -37,8 +40,9 @@ hbw.domain.step = function(datas) {
     this.initialize = function(datas) {
         this.type = datas.type;
         this.text = datas.text;
-        if(datas.outline.length > 0) {
+        if(datas.outline && datas.outline.length > 0) {
             this.outline = new hbw.domain.outline(datas.outline);
+            this.outline.parent = this;
         }
         return this;
     }

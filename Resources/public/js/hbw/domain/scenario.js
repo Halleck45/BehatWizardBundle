@@ -92,6 +92,10 @@ hbw.domain.scenario = function(datas) {
                 this.steps[i + 1] = this.steps[i];
             }
         }
+
+        step.index = position;
+        step.parent = this;
+
         this.steps[position] = step;
         return this;
     }

@@ -4,6 +4,7 @@ hbw.ui.editing.events = {
         hbw.ui.editing.events
         .applyMain()
         .applyOutline()
+        .applySteps()
         .applyScenarios();
     },
     
@@ -46,12 +47,28 @@ hbw.ui.editing.events = {
         // Callbacks
         hbw.ui.editing.callback.enter.editScenario = function($caller, $target) {
             var scenario = $caller.data('scenario');
+            $target.data('scenario', scenario);
             hbw.ui.editing.populateScenarioView(scenario, $(hbw.ui.editing.selector.box.scenarios) );
         };
         hbw.ui.editing.callback.enter.addScenario = function($caller, $target) {
             var scenario = new hbw.domain.scenario;
+            $target.data('scenario', scenario);
             hbw.ui.editing.populateScenarioView(scenario, $(hbw.ui.editing.selector.box.scenarios) );
         };
+        hbw.ui.editing.callback.out.updateScenarioDatas = function($caller, $target) {
+            var scenario =  $caller.data('scenario');
+            hbw.ui.editing.mapper.updateScenarioByView(scenario, $target);
+        };
+
+        return hbw.ui.editing.events;
+    },
+    applySteps: function() {
+        //
+        // Update on changes
+        $('.step:text').change(function() {
+            var scenario = $(hbw.ui.editing.selector.box.scenarios).data('scenario');
+            hbw.ui.editing.updateExample($(hbw.ui.editing.selector.box.examples));
+        });
 
         return hbw.ui.editing.events;
     },
@@ -66,7 +83,7 @@ hbw.ui.editing.events = {
             var $btn = $(this);
             var $table = $btn.parents('.outline-node').find('table');
             hbw.ui.editing.addOutlineRow($table, []);
-                        e.preventDefault();
+            e.preventDefault();
 
         });
 
