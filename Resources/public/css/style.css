@@ -41,6 +41,25 @@
     color:#9d261d;
 }
 
+/* ---- details of each feature ---- */
+.testcase {
+    border:1px solid #FFF;
+    padding:2px;
+    margin-top:-1px;
+}
+.testcase.undefined {
+    background-color:#f89406;
+    color:#FFF;
+}
+.testcase.failed {
+    background-color:#9d261d;
+    color:#FFF;
+}
+.testcase.success {
+    background-color:#46a546;
+    color:#FFF;
+}
+
 /* ----- Controls ----- */
 #box-controls {
     margin-bottom:10px;

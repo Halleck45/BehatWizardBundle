@@ -17,13 +17,18 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  * file that was distributed with this source code.
  */
 
-class FeatureController extends ContainerAware {
+class FeatureController extends ContainerAware
+{
 
     /**
      * @Template
      */
-    public function listAction() {
+    public function listAction()
+    {
         $repository = $this->container->get('hbt.feature.repository');
+
+        $features = $repository->getFailingFeatures();
+
         return array(
             'features' => $repository->getFeatures()
             , 'pendingFeatures' => $repository->getPendingFeatures()
@@ -35,7 +40,8 @@ class FeatureController extends ContainerAware {
     /**
      * @Template
      */
-    public function editAction($feature) {
+    public function editAction($feature)
+    {
         $repository = $this->container->get('hbt.feature.repository');
         $feature = $repository->loadFeatureByHash($feature);
 
@@ -67,10 +73,11 @@ class FeatureController extends ContainerAware {
         );
     }
 
-    public function removeAction($feature) {
+    public function removeAction($feature)
+    {
         $repository = $this->container->get('hbt.feature.repository');
         $feature = $repository->loadFeatureByHash($feature);
-        if(!$feature) {
+        if (!$feature) {
             return new Response('Feature was not found', 404);
         }
         $repository->removeFeature($feature);
