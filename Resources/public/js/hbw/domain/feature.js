@@ -33,27 +33,26 @@ hbw.domain.feature = function(datas) {
      * @var string
      */
 
-    this.title = datas.title || null;
+    this.title = datas.title || null; 
     /**
      * In Order
      *
      * @var string
      */
-
-    this.inorder = datas.inorder ||  null;
+    this.inorder = datas.inorder.replace(/^(In order to\s*)/, '') ||  null; // @todo traduction
     /**
      * As a
      *
      * @var string
      */
 
-    this.as = datas.as || null;
+    this.as = datas.as.replace(/^(As\s*)/, '') ||  null; // @todo traduction
     /**
      * I should
      *
      * @var string
      */
-    this.should = datas.should || null;
+    this.should = datas.should.replace(/^(I should\s*)/, '') ||  null; // @todo traduction
 
     /**
      * Notes
