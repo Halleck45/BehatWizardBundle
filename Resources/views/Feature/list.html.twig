@@ -34,7 +34,7 @@
             <div class="feature span4 {% spaceless %}
              {% if feature.getReport().countSuccess() == feature.getReport().countTests() and feature.getReport().countTests() > 0 %}
                  success
-             {% else %}
+             {% elseif feature.getReport().countFailures() > 0 and feature.getReport().countTests() > 0 %}
                  failure
              {% endif %}
              {% if feature.getReport().countPending() > 0 or feature.getReport().countTests() == 0 %}
