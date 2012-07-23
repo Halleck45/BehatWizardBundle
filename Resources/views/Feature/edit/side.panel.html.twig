@@ -1,7 +1,7 @@
 <div class="span4" id="ui-side">
 
             <p class="box-act">
-                <a class="btn" id="btn-cancel">Cancel</a>
+                <a href="{{ path('hbw.home') }}" class="btn" id="btn-cancel">Cancel</a>
                 <a class="btn btn-primary" id="btn-save">Save</a>
 
             </p>
@@ -29,7 +29,7 @@
                 <div class="scenarios">
 
                     <p class="box-act-add-scenario">
-                        <a class="btn btn-scenario-add btn-scenario-edit" data-callback-enter="addScenario"><i class="icon icon-plus-sign"></i> New scenario</a>
+                        <a class="btn btn-scenario-add btn-scenario-edit" data-callback-out="addScenario" data-callback-enter="addScenario"><i class="icon icon-plus-sign"></i> New scenario</a>
                     </p>
                 </div>
             </div>

@@ -10,7 +10,9 @@ hbw.ui.editing.mapper = {
         //
         // Title
         scenario.title = $('#scenario-title', $container).val();
-
+        if(scenario.title.length == 0) {
+            scenario.title = '[None]';
+        }
         //
         // Steps
         hbw.ui.editing.mapper.pushStepsIntoNode(scenario, $container);
@@ -22,6 +24,7 @@ hbw.ui.editing.mapper = {
         //
         // Push scenario into feature
         feature.addScenario(scenario, index);
+        return scenario;
     },
 
 

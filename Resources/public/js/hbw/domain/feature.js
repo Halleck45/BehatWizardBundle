@@ -126,6 +126,14 @@ hbw.domain.feature = function(datas) {
      * @return hbw.domain.feature
      */
     this.addScenario = function(scenario, position) {
+        
+        var i;
+        for(i in this.scenarios) {
+            if(this.scenarios[i].id === scenario.id) {
+                return this;
+            }
+        }
+        
         position = position || this.scenarios.length;
         if(typeof(this.scenarios[position]) != 'undefined') {
             //
@@ -140,6 +148,24 @@ hbw.domain.feature = function(datas) {
         scenario.index = position;
         scenario.parent = this;
 
+        return this;
+    }
+    
+    /**
+     * Remove the scenario
+     *
+     * @param hbw.domain.scenario
+     * @return hbw.domain.feature
+     */
+    this.removeScenario = function(scenario) {
+        var i;
+        for(i in this.scenarios) {
+            if(this.scenarios[i].id === scenario.id) {
+                delete this.scenarios[i];
+                return this;
+            }
+        }
+        throw new hbw.exception('Scenario cannot be removed : it was not found');
         return this;
     }
 

@@ -5,6 +5,7 @@
         <label class="control-label" for="step">Etant donné</label>
         <div class="controls">
             <input data-step-type="Given" type="text" class="step step-given input-xlarge input-step input-step-given"  placeholder="..." />
+            <a href="#" class="btn-step-remove"><i class="icon icon-trash"></i></a>
         </div>
     </div>
     <!-- Step When -->
@@ -12,6 +13,7 @@
         <label class="control-label" for="step">Quand</label>
         <div class="controls">
             <input data-step-type="When" type="text" class="step step-when input-xlarge input-step input-step-when"  placeholder="..." />
+            <a href="#" class="btn-step-remove"><i class="icon icon-trash"></i></a>
         </div>
     </div>
     <!-- Step Then -->
@@ -19,6 +21,7 @@
         <label class="control-label" for="step">Alors</label>
         <div class="controls">
             <input data-step-type="Then" type="text" class="step step-then input-xlarge input-step input-step-then"  placeholder="..." />
+            <a href="#" class="btn-step-remove"><i class="icon icon-trash"></i></a>
         </div>
     </div>
 
@@ -26,7 +29,7 @@
     <div class="scenario" id="scenario">
         <div class="scenario-opts">
             <a href="#" class="btn-scenario-edit" data-callback-out="updateScenarioDatas" data-callback-enter="editScenario"><i class="icon icon-pencil"></i></a>
-            <a href="#" class="btn-scenario-edit"><i class="icon icon-trash"></i></a>
+            <a href="#" class="btn-scenario-remove"><i class="icon icon-trash"></i></a>
         </div>
         <div class="scenario-title">
             <a href="#"  data-callback-enter="editScenario" data-callback-out="updateScenarioDatas" class="btn-scenario-edit"><span class="scenario-title-text">Loading title</span></a>

@@ -5,3 +5,6 @@ hbw.home:
 hbw.edit:
      pattern:  /behat/wizard/edit/{feature}
      defaults: { _controller: HalBehatWizardBundle:Feature:edit, feature: ""}
+hbw.add:
+     pattern:  /behat/wizard/add
+     defaults: { _controller: HalBehatWizardBundle:Feature:edit, feature: ""}

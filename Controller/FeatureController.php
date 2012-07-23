@@ -41,6 +41,11 @@ class FeatureController extends ContainerAware
     {
         $repository = $this->container->get('hbt.feature.repository');
         $feature = $repository->loadFeatureByHash($feature);
+        
+        if(is_null($feature)) {
+            $feature = $repository->createFeature();
+        }
+        
         $representation = new Feature_Dumper_Json($feature);
 
 

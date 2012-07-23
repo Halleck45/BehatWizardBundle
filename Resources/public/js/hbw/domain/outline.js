@@ -31,7 +31,7 @@ hbw.domain.outline = function(datas) {
         
         if(this.rows.length > 0) {
             if(data.length != this.rows[0].length) {
-                throw new hbw.domain.exception("Incorrect example given");
+//                throw new hbw.domain.exception("Incorrect example given");
             }
         }
 

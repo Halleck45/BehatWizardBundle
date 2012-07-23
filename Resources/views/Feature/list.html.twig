@@ -1,14 +1,13 @@
 {% extends 'HalBehatWizardBundle::base.html.twig' %}
 
-{% block title %}{{ "hbw.title.features.all"|trans }}{% endblock %}
+{% block title %}My features{% endblock %}
 
 {% block body %}
 
 
-
-
-
-
+<p class="box-act">
+    <a class="btn btn-info" href="{{ path('hbw.add') }}"><i class="icon-white icon-plus-sign"></i> New feature</a>
+</p>
 
 <div id="wrapper">
     <div class="row" id="box-controls">
@@ -32,57 +31,57 @@
     </div>
     <div class="features row" id="list-features">
         {% for feature in features%}
-        <div class="feature span4 {% spaceless %}
+            <div class="feature span4 {% spaceless %}
              {% if feature.getReport().countSuccess() == feature.getReport().countTests() and feature.getReport().countTests() > 0 %}
-             success
+                 success
              {% else %}
-             failure
+                 failure
              {% endif %}
              {% if feature.getReport().countPending() > 0 or feature.getReport().countTests() == 0 %}
-             pending
+                 pending
              {% endif %}
-             "
-             data-failure="{{ 1000 - feature.getReport().countFailures() }}"
-             data-pending="{{ 1000 - feature.getReport().countPending() }}"
-             data-id="{{ loop.index0 }}"
-             >
+                 "
+                 data-failure="{{ 1000 - feature.getReport().countFailures() }}"
+                 data-pending="{{ 1000 - feature.getReport().countPending() }}"
+                 data-id="{{ loop.index0 }}"
+                 >
             {% endspaceless %}
-            <div class="feature-box">
+                     <div class="feature-box">
 
-                <span class="feature-state">
-                    <i class="icon {% spaceless %}
+                         <span class="feature-state">
+                             <i class="icon {% spaceless %}
                        {% if feature.getReport().countSuccess() == feature.getReport().countTests() and feature.getReport().countTests() > 0 %}
-                       icon-ok 
+                                icon-ok 
                        {% else %}
-                       icon-exclamation-sign
+                                icon-exclamation-sign
                        {% endif %}
                        {% if feature.getReport().countPending() > 0 or feature.getReport().countTests() == 0 %}
-                       icon-time
+                                icon-time
                        {% endif %}
-                       ">{% endspaceless %}</i></span>
+                                ">{% endspaceless %}</i></span>
 
 
-                <span class="feature-title">
-                    <strong><a href="{{ path('hbw.edit', {feature: feature.getHash() }) }}">{{ feature.getGherkin().getTitle() }}</a></strong>
-                </span>
-                <div class="feature-count">
-                    (
-                    <span class="feature-count-success">{{ feature.getReport().countSuccess() }}</span>
-                    / <span class="feature-count-pending">{{ feature.getReport().countPending() }}</span>
-                    / <span class="feature-count-fails">{{ feature.getReport().countFailures() }}</span>
-                    / <span class="feature-count-tests">{{ feature.getReport().countTests() }}</span>
-                    )
-                </div>
+                             <span class="feature-title">
+                                 <strong><a href="{{ path('hbw.edit', {feature: feature.getHash() }) }}">{{ feature.getGherkin().getTitle() }}</a></strong>
+                             </span>
+                             <div class="feature-count">
+                                 (
+                                 <span class="feature-count-success">{{ feature.getReport().countSuccess() }}</span>
+                                 / <span class="feature-count-pending">{{ feature.getReport().countPending() }}</span>
+                                 / <span class="feature-count-fails">{{ feature.getReport().countFailures() }}</span>
+                                 / <span class="feature-count-tests">{{ feature.getReport().countTests() }}</span>
+                                 )
+                             </div>
 
-                <div class="feature-description">{{ feature.getGherkin().getDescription() | nl2br }}</div>
+                             <div class="feature-description">{{ feature.getGherkin().getDescription() | nl2br }}</div>
 
 
-            </div>
-        </div>
+                         </div>
+                     </div>
         {% endfor %}
 
-    </div>
-</div>
+                 </div>
+            </div>
 
 
 

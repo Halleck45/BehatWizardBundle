@@ -22,12 +22,14 @@ hbw.ui.editing = {
         btn: {
             editMain        : '.btn-feature-edit',
             editScenario    : '.btn-scenario-edit',
+            removeScenario  : '.btn-scenario-remove',
             editBackground  : '.btn-background-edit',
             addScenario     : '.btn-scenario-add',
             addOutlineRow   : '.btn-outline-add-row',
             addOutlineColumn: '.btn-outline-add-column',
             removeOutlineColumn: '.btn-outline-remove-column',
             removeOutlineRow: '.btn-outline-remove-row',
+            removeStep      : '.btn-step-remove',
             addStep         : '.btn-step-add',
             addOutlineStep  : '.btn-step-outline-add',
             save            : '#btn-save'
@@ -48,6 +50,7 @@ hbw.ui.editing = {
         out: {
             editMain            : function(){},
             editScenario        : function(){},
+            addScenario         : function(){},
             editBackground      : function(){},
             updateScenarioDatas : function(){},
             editStep            : function(){}
@@ -150,7 +153,28 @@ hbw.ui.editing = {
         var $clone = $model.clone(true);
         $clone.find('.scenario-title-text').text(scenario.title);
         $('.btn-scenario-edit', $clone).data('scenario', scenario);
+        $clone.data('scenario', scenario);
         $(hbw.ui.editing.selector.box.listScenarios).prepend($clone);
+        
+//        this.feature.addScenario(scenario); // done by the mapper
+    },
+    removeScenario: function(scenario) {
+        
+        if(scenario === null) {
+            return;
+        }
+        
+        $('#ui-side .scenario').each(function() {
+            var $el = $(this);
+            if($el.data('scenario').id === scenario.id) {
+                $el.remove();
+            }
+        });
+        
+        hbw.ui.editing.startEditing(
+            $(hbw.ui.editing.selector.btn.editMain)
+            , $(hbw.ui.editing.selector.box.mainInfos)
+            );
     },
     
     populateScenarioView: function(scenario, $box) {
@@ -158,7 +182,7 @@ hbw.ui.editing = {
         //
         // Datas
         $box.data('scenario', scenario);
-        $('.input-scenario-title', $box).val('test' + scenario.title);
+        $('.input-scenario-title', $box).val(scenario.title);
 
         //
         // Cleans old datas
@@ -506,12 +530,20 @@ hbw.ui.editing = {
         }
 
     },
+    
+    
+    removeStep: function($container) {
+        if($container.next('.outline').length == 1) {
+            $container.next('.outline').remove();
+        }
+        $container.remove();
+    },
 
 
     saveFeature: function() {
         hbw.ui.editing.stopEditing();
         var string = hbw.ui.editing.feature.asString();
-//        $('#feature_content').val(string);
+        //        $('#feature_content').val(string);
         $(hbw.ui.editing.selector.input.allcontent).val(string);
         $(hbw.ui.editing.selector.box.formsave).submit();
     }

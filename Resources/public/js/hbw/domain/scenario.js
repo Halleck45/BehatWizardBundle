@@ -35,6 +35,13 @@ hbw.domain.scenario = function(datas) {
      * @var hbw.domain.outline
      */
     this.examples = null;
+    
+    /**
+     * Uniq id
+     * 
+     * @var integer
+     */
+    this.id = Math.floor(Math.random()* 1000000);
 
     /**
      * To string conversion

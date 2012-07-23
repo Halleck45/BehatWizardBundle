@@ -52,6 +52,16 @@ hbw.ui.editing.events = {
             hbw.ui.editing.startEditing($(this), $(hbw.ui.editing.selector.box.scenarios));
             e.preventDefault();
         });
+        
+        //
+        // Remove a scenario
+        var $btn = $(hbw.ui.editing.selector.btn.removeScenario);
+        $btn.click(function(e) {
+            var $btn = $(this);
+            var scenario = $btn.parents('.scenario').data('scenario');
+            hbw.ui.editing.removeScenario(scenario);        
+            e.preventDefault();
+        });
 
         //
         // Callbacks
@@ -62,12 +72,19 @@ hbw.ui.editing.events = {
         };
         hbw.ui.editing.callback.enter.addScenario = function($caller, $target) {
             var scenario = new hbw.domain.scenario;
+            scenario.parent = hbw.ui.editing.feature;
             $target.data('scenario', scenario);
             hbw.ui.editing.populateScenarioView(scenario, $(hbw.ui.editing.selector.box.scenarios) );
         };
         hbw.ui.editing.callback.out.updateScenarioDatas = function($caller, $target) {
             var scenario =  $caller.data('scenario');
             hbw.ui.editing.mapper.updateScenarioByView(scenario, $target);
+        };
+        hbw.ui.editing.callback.out.addScenario = function($caller, $target) {
+            var scenario =  $target.data('scenario');
+            scenario.parent = hbw.ui.editing.feature;
+            scenario = hbw.ui.editing.mapper.updateScenarioByView(scenario, $target);
+            hbw.ui.editing.addScenario(scenario);
         };
 
         return hbw.ui.editing.events;
@@ -113,9 +130,19 @@ hbw.ui.editing.events = {
             var $btn = $(this);
             var type = $btn.data('type');
             var isOutline = $btn.data('isoutline');
-//            var $container = $('#box-steps-' + type);
             var $container = $btn.parents('.control-group').prev('.box-then');//$('#box-steps-' + type);
             hbw.ui.editing.addStep($container, type, isOutline);
+        });
+        
+        
+        //
+        // Remove step
+        var $btn = $(hbw.ui.editing.selector.btn.removeStep);
+        $btn.click(function(e) {
+            e.preventDefault();
+            var $btn = $(this);
+            var $container = $btn.parents('.box-step');
+            hbw.ui.editing.removeStep($container);
         });
 
 
