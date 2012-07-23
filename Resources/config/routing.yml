@@ -1,10 +1,12 @@
 hbw.home:
      pattern:  /behat/wizard/list
      defaults: { _controller: HalBehatWizardBundle:Feature:list}
-
 hbw.edit:
      pattern:  /behat/wizard/edit/{feature}
      defaults: { _controller: HalBehatWizardBundle:Feature:edit, feature: ""}
 hbw.add:
      pattern:  /behat/wizard/add
      defaults: { _controller: HalBehatWizardBundle:Feature:edit, feature: ""}
+hbw.remove:
+     pattern:  /behat/wizard/remove/{feature}
+     defaults: { _controller: HalBehatWizardBundle:Feature:remove}

@@ -17,14 +17,12 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  * file that was distributed with this source code.
  */
 
-class FeatureController extends ContainerAware
-{
+class FeatureController extends ContainerAware {
 
     /**
      * @Template
      */
-    public function listAction()
-    {
+    public function listAction() {
         $repository = $this->container->get('hbt.feature.repository');
         return array(
             'features' => $repository->getFeatures()
@@ -37,15 +35,14 @@ class FeatureController extends ContainerAware
     /**
      * @Template
      */
-    public function editAction($feature)
-    {
+    public function editAction($feature) {
         $repository = $this->container->get('hbt.feature.repository');
         $feature = $repository->loadFeatureByHash($feature);
-        
-        if(is_null($feature)) {
+
+        if (is_null($feature)) {
             $feature = $repository->createFeature();
         }
-        
+
         $representation = new Feature_Dumper_Json($feature);
 
 
@@ -57,7 +54,7 @@ class FeatureController extends ContainerAware
                 $repository->saveFeature($feature);
 
                 $url = $this->container->get('router')->generate('hbw.home');
-                return  new RedirectResponse($url);
+                return new RedirectResponse($url);
             }
         }
 
@@ -68,6 +65,17 @@ class FeatureController extends ContainerAware
             , 'dumper' => $representation
             , 'form' => $form->createView(),
         );
+    }
+
+    public function removeAction($feature) {
+        $repository = $this->container->get('hbt.feature.repository');
+        $feature = $repository->loadFeatureByHash($feature);
+        if(!$feature) {
+            return new Response('Feature was not found', 404);
+        }
+        $repository->removeFeature($feature);
+        $url = $this->container->get('router')->generate('hbw.home');
+        return new RedirectResponse($url);
     }
 
 }
