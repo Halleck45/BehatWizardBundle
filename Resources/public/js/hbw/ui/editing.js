@@ -148,6 +148,11 @@ hbw.ui.editing = {
 
 
     updateScenario: function(scenario, $target) {
+        
+        if(typeof(scenario) == 'undefined') {
+            return;
+        }
+        
         //
         // Find element
         var $el;
@@ -171,8 +176,11 @@ hbw.ui.editing = {
     },
     addScenario: function(scenario, $target) {
         
-        scenario = hbw.ui.editing.mapper.updateScenarioByView(scenario, $target);
-        scenario.parent = hbw.ui.editing.feature;
+        if($target) {
+            hbw.ui.editing.feature.addScenario(scenario);
+            scenario = hbw.ui.editing.mapper.updateScenarioByView(scenario, $target);
+            scenario.parent = hbw.ui.editing.feature;
+        }
         
         //
         // Build a clone, copying a model
@@ -183,9 +191,9 @@ hbw.ui.editing = {
         $clone.data('scenario', scenario);
         $(hbw.ui.editing.selector.box.listScenarios).prepend($clone);
         
-        hbw.ui.editing.mapper.updateScenarioByView(scenario, $target);
-        
-        this.updateScenario(scenario, $target)
+        //
+        // Create default fields for step
+        $(hbw.ui.editing.selector.box.scenarios).find('.btn-step-add').not('.btn-step-outline-add').click();
     },
     removeScenario: function(scenario) {
         
@@ -204,6 +212,8 @@ hbw.ui.editing = {
             $(hbw.ui.editing.selector.btn.editMain)
             , $(hbw.ui.editing.selector.box.mainInfos)
             );
+                
+        hbw.ui.editing.feature.removeScenario(scenario);
     },
     
     populateScenarioView: function(scenario, $box) {

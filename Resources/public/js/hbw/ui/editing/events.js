@@ -74,9 +74,10 @@ hbw.ui.editing.events = {
         hbw.ui.editing.callback.enter.addScenario = function($caller, $target) {
             var scenario = new hbw.domain.scenario;
             scenario.parent = hbw.ui.editing.feature;
+            scenario.title = 'My New Scenario';
             $target.data('scenario', scenario);
             hbw.ui.editing.populateScenarioView(scenario, $(hbw.ui.editing.selector.box.scenarios) );
-            hbw.ui.editing.addScenario(scenario, $target);
+//            hbw.ui.editing.addScenario(scenario, $target);
         };
         hbw.ui.editing.callback.out.updateScenarioDatas = function($caller, $target) {
             var scenario =  $caller.data('scenario');
@@ -141,7 +142,7 @@ hbw.ui.editing.events = {
         $btn.click(function(e) {
             e.preventDefault();
             var $btn = $(this);
-            var $container = $btn.parents('.box-step');
+            var $container = $btn.parents('.box-step:first');
             hbw.ui.editing.removeStep($container);
         });
 

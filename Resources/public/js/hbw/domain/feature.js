@@ -92,9 +92,9 @@ hbw.domain.feature = function(datas) {
         // Human description
         var html = '';
         html = 'Feature: ' + this.title
-            + '\n  In order to ' + this.inorder
-            + '\n  As ' + this.as
-            + '\n  I should ' + this.should;
+        + '\n  In order to ' + this.inorder
+        + '\n  As ' + this.as
+        + '\n  I should ' + this.should;
         if(this.notes) {
             html += '\n\n  ' + this.notes
         }
@@ -164,7 +164,7 @@ hbw.domain.feature = function(datas) {
                 return this;
             }
         }
-        throw new hbw.exception('Scenario cannot be removed : it was not found');
+        throw new hbw.domain.exception('Scenario cannot be removed : it was not found');
         return this;
     }
 

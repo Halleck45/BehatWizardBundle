@@ -12,6 +12,13 @@
     background-image: -moz-linear-gradient(center top , #FFFFFF, #F5F5F5);
     background-repeat: repeat-x;
     padding: 7px 14px;
+    height:120px;
+    min-height:120px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+.feature-content {
     height:100px;
     min-height:100px;
     overflow:hidden;
@@ -39,6 +46,18 @@
 }
 .feature-count-fails {
     color:#9d261d;
+}
+
+.feature-tags ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+.feature-tags li {
+    display:inline-block;
+}
+.tag {
+    
 }
 
 /* ---- details of each feature ---- */
@@ -81,7 +100,6 @@
 
 /* ---- Edit a feature ----- */
 /* ------------------------- */
-
 .box-act {
     text-align:right;
 }
@@ -106,12 +124,17 @@
 .keyword {
     margin-right:2px;
     display:inline-block;
+    color:#7a46b6;
+}
+.feature-context-sentence {
+    margin-bottom:6px;
 }
 .clone-order span,
 .clone-as span,
 .clone-should span {
     display:inline-block;
     margin-right:3px;
+    
 }
 
 
@@ -150,6 +173,7 @@
 #form-save {
     display:none;
 }
+
 
 /* ----- Effects ----- */
 .outline-node .btn-outline-add-row,

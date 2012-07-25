@@ -5,6 +5,7 @@ hbw.ui.editing.mapper = {
         var feature = scenario.parent;
         var index = scenario.index;
 
+        feature.removeScenario(scenario);
         scenario = new hbw.domain.scenario({});
 
         //

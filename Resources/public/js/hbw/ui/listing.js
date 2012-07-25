@@ -73,7 +73,7 @@ $(function() {
     var $list = $('#list-features');
     var $data = $list.clone();
 
-    var $controls = $('ul.splitter ul');
+    var $controls = $('ul.splitter ul, .feature-tags');
 
     $controls.each(function(i) {
 
@@ -102,6 +102,8 @@ $(function() {
                 var sorting_kind = determine_kind($controls.eq(0).find('a'));
                 if (sorting_kind == 'all') {
                     var $filtered_data = $data.find('.feature');
+                } else if (sorting_kind == 'tag') {
+                    var $filtered_data = $data.find('.feature.tag-' + $button.data('tag'));
                 } else {
                     var $filtered_data = $data.find('.feature.' + sorting_kind);
                 }
