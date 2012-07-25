@@ -24,6 +24,9 @@ hbw.ui.editing.mapper = {
         //
         // Push scenario into feature
         feature.addScenario(scenario, index);
+        
+        //
+        // Updat
         return scenario;
     },
 

@@ -6,7 +6,8 @@ hbw.ui.editing.events = {
         .applyOutline()
         .applySteps()
         .applybackground()
-        .applyScenarios();
+        .applyScenarios()
+        .applyShortcuts();
     },
     
     applyMain: function() {
@@ -75,16 +76,15 @@ hbw.ui.editing.events = {
             scenario.parent = hbw.ui.editing.feature;
             $target.data('scenario', scenario);
             hbw.ui.editing.populateScenarioView(scenario, $(hbw.ui.editing.selector.box.scenarios) );
+            hbw.ui.editing.addScenario(scenario, $target);
         };
         hbw.ui.editing.callback.out.updateScenarioDatas = function($caller, $target) {
             var scenario =  $caller.data('scenario');
-            hbw.ui.editing.mapper.updateScenarioByView(scenario, $target);
+            hbw.ui.editing.updateScenario(scenario, $target);
         };
         hbw.ui.editing.callback.out.addScenario = function($caller, $target) {
             var scenario =  $target.data('scenario');
-            scenario.parent = hbw.ui.editing.feature;
-            scenario = hbw.ui.editing.mapper.updateScenarioByView(scenario, $target);
-            hbw.ui.editing.addScenario(scenario);
+            hbw.ui.editing.addScenario(scenario, $target);
         };
 
         return hbw.ui.editing.events;
@@ -130,7 +130,7 @@ hbw.ui.editing.events = {
             var $btn = $(this);
             var type = $btn.data('type');
             var isOutline = $btn.data('isoutline');
-            var $container = $btn.parents('.control-group').prev('.box-then');//$('#box-steps-' + type);
+            var $container = $btn.parents('.control-group').prev('.box-step');
             hbw.ui.editing.addStep($container, type, isOutline);
         });
         
@@ -200,9 +200,44 @@ hbw.ui.editing.events = {
         });
         
         return hbw.ui.editing.events;
+    },
+    
+    
+    applyShortcuts : function() {
+        
+        //
+        // Data of step
+        $(':text', $(hbw.ui.editing.selector.input.stepAll)).keypress(function(e) {
+            var $e = $(this);
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if(code == 13) {
+                if($e.val() != '') {
+                    //
+                    // Step is not empty : add new step
+                    var $btn = $e.parents('.box-step').next('.control-group').find('.btn-step-add:first');
+                    $btn.click();
+                    e.stopPropagation();
+                } else {
+                    //
+                    // Step is empty : go to the next step type
+                    var $parent = $e.parents('.box-step:first');
+                    
+                    if($parent.is('#step-given')) {
+                        $('#box-steps-when').parents('fieldset').find(':text:empty:first').focus();
+                    }else if($parent.is('#step-when')) {
+                        $('#box-steps-then').parents('fieldset').find(':text:empty:first').focus();
+                    } else if($parent.is('#step-then')) {
+                        $e.parents('.box-scenario').find('.btn-feature-edit:first').click();
+                    }
+                    
+                    //
+                    // Remove unused steps
+                    if($(':text[value=""]', $e.parents('fieldset')).length > 0) {
+                        $e.parents('.box-step:first').remove();
+                    }
+                    
+                }
+            }
+        });
     }
-
-
-
-
 };

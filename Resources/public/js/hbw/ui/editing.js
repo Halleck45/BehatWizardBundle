@@ -17,7 +17,8 @@ hbw.ui.editing = {
             inorder         : '#inorder',
             as              : '#as',
             should          : '#should',
-            allcontent      : '#feature_content'
+            allcontent      : '#feature_content',
+            stepAll         : '#box-models #step-given, #box-models #step-when, #box-models #step-then'
         },
         btn: {
             editMain        : '.btn-feature-edit',
@@ -146,7 +147,31 @@ hbw.ui.editing = {
     },
 
 
-    addScenario: function(scenario) {
+    updateScenario: function(scenario, $target) {
+        //
+        // Find element
+        var $el;
+        $('.scenario', $(hbw.ui.editing.selector.box.listScenarios)).each(function() {
+            if(scenario.id === $(this).data('scenario').id && scenario.id != null)  {
+                $el = $(this);
+            }
+        });
+        if($el == null) {
+            throw "Error : we cannot update the scenario object : DOM element was not found";
+        }
+        
+        scenario = hbw.ui.editing.mapper.updateScenarioByView(scenario, $target);
+        scenario.parent = hbw.ui.editing.feature;
+        
+        $el.data('scenario', scenario);
+        $el.find('.btn-scenario-edit').data('scenario', scenario);
+        $el.find('.scenario-title-text').text(scenario.title);
+    },
+    addScenario: function(scenario, $target) {
+        
+        scenario = hbw.ui.editing.mapper.updateScenarioByView(scenario, $target);
+        scenario.parent = hbw.ui.editing.feature;
+        
         //
         // Build a clone, copying a model
         var $model = $(hbw.ui.editing.selector.models.scenario);
@@ -156,7 +181,9 @@ hbw.ui.editing = {
         $clone.data('scenario', scenario);
         $(hbw.ui.editing.selector.box.listScenarios).prepend($clone);
         
-//        this.feature.addScenario(scenario); // done by the mapper
+        hbw.ui.editing.mapper.updateScenarioByView(scenario, $target);
+        
+        this.updateScenario(scenario, $target)
     },
     removeScenario: function(scenario) {
         
@@ -528,6 +555,9 @@ hbw.ui.editing = {
             .appendTo($container);
             hbw.ui.editing.populateOutlineView(step.outline, $cont);
         }
+        
+        $(':text', $clone).focus();
+
 
     },
     
