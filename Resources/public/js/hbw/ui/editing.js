@@ -33,7 +33,7 @@ hbw.ui.editing = {
             removeStep      : '.btn-step-remove',
             addStep         : '.btn-step-add',
             addOutlineStep  : '.btn-step-outline-add',
-            save            : '#btn-save'
+            save            : '.btn-save'
         },
         models: {
             scenario        : '#box-models #scenario',
@@ -166,6 +166,8 @@ hbw.ui.editing = {
         $el.data('scenario', scenario);
         $el.find('.btn-scenario-edit').data('scenario', scenario);
         $el.find('.scenario-title-text').text(scenario.title);
+        
+        $(hbw.ui.editing.selector.box.scenarios).find('.input-scenario-title').focus();
     },
     addScenario: function(scenario, $target) {
         
