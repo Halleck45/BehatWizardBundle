@@ -7,6 +7,8 @@ use Behat\Behat\Context\ClosuredContextInterface,
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
 
+use Behat\Hal\Behat\Context\HalContext;
+
 //
 // Require 3rd-party libraries here:
 //
@@ -25,20 +27,10 @@ class FeatureContext extends BehatContext
      *
      * @param array $parameters context parameters (set them up through behat.yml)
      */
-    public function __construct(array $parameters)
-    {
-        // Initialize your context here
+    public function __construct(array $parameters) {
+        $this->useContext(
+                'hal', new HalContext($parameters)
+        );
     }
 
-//
-// Place your definition and hook methods here:
-//
-//    /**
-//     * @Given /^I have done something with "([^"]*)"$/
-//     */
-//    public function iHaveDoneSomethingWith($argument)
-//    {
-//        doSomethingWith($argument);
-//    }
-//
 }

@@ -1,0 +1,17 @@
+default:
+  extensions:
+      Behat\MinkExtension\Extension:
+          base_url: http://behat-wizard/
+          goutte: ~
+          default_session: sahi
+          javascript_session: sahi
+          browser_name: chrome
+          sahi:
+            host: localhost
+            port: 9999
+
+  context:
+    parameters:
+#      debug:
+#        screenshot_dir: logs/screens
+#        screen_id: :0

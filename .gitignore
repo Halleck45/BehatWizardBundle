@@ -1,4 +1,5 @@
 # Symfony directories
+vendor/
 vendor/*
 */logs/*
 */cache/*
