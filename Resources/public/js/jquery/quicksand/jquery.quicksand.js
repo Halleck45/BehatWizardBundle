@@ -48,7 +48,7 @@ Github site: http://github.com/razorjack/quicksand
             var val;
             var animationQueue = []; // used to store all the animation params before starting the animation; solves initial animation slowdowns
 //            var $collection = $(collection).clone(); // destination (target) collection
-            var $collection = $(collection).clone(true); // destination (target) collection
+            var $collection = $(collection).clone(true,true); // destination (target) collection
             var $sourceParent = $(this); // source, the visible container of source collection
             var sourceHeight = $(this).css('height'); // used to keep height and document flow during the animation
             
@@ -76,9 +76,10 @@ Github site: http://github.com/razorjack/quicksand
                     // hack: 
                     // used to be: $sourceParent.html($dest.html()); // put target HTML into visible source container
                     // but new webkit builds cause flickering when replacing the collections
-                    $toDelete = $sourceParent.find('> *');
-                    $sourceParent.prepend($dest.find('> *'));
-                    $toDelete.remove();
+//                    $toDelete = $sourceParent.find('> *');
+//                    $sourceParent.prepend($dest.find('> *'));
+//                    $toDelete.remove();
+
                          
                     if (adjustHeightOnCallback) {
                         $sourceParent.css('height', destHeight);
@@ -149,13 +150,13 @@ Github site: http://github.com/razorjack/quicksand
                     
             // create temporary container with destination collection
 //            var $dest = $($sourceParent).clone();
-            var $dest = $($sourceParent).clone(true);
+            var $dest = $($sourceParent).clone(true,true);
             var rawDest = $dest.get(0);
             rawDest.innerHTML = '';
             rawDest.setAttribute('id', '');
             rawDest.style.height = 'auto';
             rawDest.style.width = $sourceParent.width() + 'px';
-            $dest.append($collection);      
+            $dest.append($collection);
             // insert node into HTML
             // Note that the node is under visible source container in the exactly same position
             // The browser render all the items without showing them (opacity: 0.0)
@@ -170,10 +171,6 @@ Github site: http://github.com/razorjack/quicksand
             rawDest.style.top = offset.top - correctionOffset.top + 'px';
             rawDest.style.left = offset.left - correctionOffset.left + 'px';
             
-            
-    
-            
-
             if (options.adjustHeight === 'dynamic') {
                 // If destination container has different height than source container
                 // the height can be animated, adjusting it to destination height
@@ -188,7 +185,7 @@ Github site: http://github.com/razorjack/quicksand
                     adjustHeightOnCallback = true;
                 }
             }
-                
+            
             // Now it's time to do shuffling animation
             // First of all, we need to identify same elements within source and destination collections    
             $source.each(function (i) {
@@ -242,7 +239,7 @@ Github site: http://github.com/razorjack/quicksand
                     }
                 }
             });
-            
+                   
             $collection.each(function (i) {
                 // Grab all items from target collection not present in visible source collection
                 
@@ -283,7 +280,7 @@ Github site: http://github.com/razorjack/quicksand
                     }
                     // Let's create it
 //                    d = destElement.clone();
-                    d = destElement.clone(true); // jeanfrancois
+                    d = destElement.clone(true,true); // jeanfrancois
                     var rawDestElement = d.get(0);
                     rawDestElement.style.position = 'absolute';
                     rawDestElement.style.margin = '0';
