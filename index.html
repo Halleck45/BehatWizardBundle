@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Behatwizardbundle : a symfony2 bundle to more easily use Behat (for Clients or Product Owners)" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Behatwizardbundle</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Halleck45/BehatWizardBundle">View on GitHub</a>
+
+          <h1 id="project_title">Behatwizardbundle</h1>
+          <h2 id="project_tagline">a symfony2 bundle to more easily use Behat (for Clients or Product Owners)</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Halleck45/BehatWizardBundle/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Halleck45/BehatWizardBundle/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>BehatWizardBundle</h1>
+
+<p>GUI Tool for Behat's users.</p>
+
+<p>This tool helps Product Owner to manager their features. They can:</p>
+
+<ul>
+<li>list theirs features and know the state of each feature</li>
+<li>filter features by state, tag...</li>
+<li>edit features</li>
+<li>add new features</li>
+</ul><p><img src="https://github.com/Halleck45/BehatWizardBundle/raw/master/Resources/docs/screen-home-small.jpg" alt="Listing"></p>
+
+<p><img src="https://github.com/Halleck45/BehatWizardBundle/raw/master/Resources/docs/screen-edit-small.jpg" alt="Edit feature"></p>
+
+<h2>Installation</h2>
+
+<ol>
+<li>Add the bundle and Behat to your project</li>
+<li>Enable the bundle</li>
+<li>Configure paths of behat features</li>
+<li>Enable translator</li>
+<li>Assetics</li>
+</ol><h3>Add the bundle to your project</h3>
+
+<pre><code># deps
+[BehatWizardBundle]
+    git=git://github.com/Halleck45/BehatWizardBundle.git
+    target=/bundles/Hal/Bundle/BehatWizard
+[BehatToolsBundle]
+    git=git://github.com/Halleck45/BehatToolsBundle.git
+    target=/bundles/Hal/Bundle/BehatTools
+[gherkin]
+    git=git@github.com:Halleck45/Gherkin.git
+    target=/behat/gherkin
+[behat]
+    git=git://github.com/Behat/Behat.git
+    target=/behat/behat
+</code></pre>
+
+<h3>Enable the bundle</h3>
+
+<pre><code># app/autoload.php
+'Hal\\Bundle'      =&gt; __DIR__.'/../vendor/bundles',
+'Behat\\Gherkin'   =&gt; __DIR__.'/../vendor/behat/gherkin/src',
+'Behat\\Behat'     =&gt; __DIR__.'/../vendor/behat/behat/src',
+'Behat\\Mink'      =&gt; __DIR__.'/../vendor/behat/mink/src',
+
+# app/AppKernel.php
+new Hal\Bundle\BehatTools\HalBehatToolsBundle(),
+new Hal\Bundle\BehatWizard\HalBehatWizardBundle(),
+</code></pre>
+
+<h3>Activate routes</h3>
+
+<p>Edit your routing configuration:</p>
+
+<pre><code># app/config/routing.yml
+HalBehatWizard:
+  resource: "@HalBehatWizardBundle/Resources/config/routing.yml"
+</code></pre>
+
+<h3>Configure paths of behat features</h3>
+
+<p>Add the following lines to your config.yml file:</p>
+
+<pre><code>parameters:
+  behat.paths.base: /path/to/project/
+  behat.paths.features: /path/to/project/features
+  behat.paths.reports: /path/to/project/reports
+</code></pre>
+
+<p>Note that you need to run Behat with the junit formater parameter, in order to generator reports in JUnit format:</p>
+
+<pre><code>$ behat -f junit --out /path/to/project/reports
+</code></pre>
+
+<h3>Assetics</h3>
+
+<pre><code>php app/console assets:install --symlink web
+php app/console assetic:dump web
+</code></pre>
+
+<h3>Translation</h3>
+
+<p>Remember to active the translator:</p>
+
+<pre><code># app/config/config.yml
+framework:
+  translator: { fallback: en }
+</code></pre>
+
+<h2>Common bugs</h2>
+
+<h4>The list of features is never updated</h4>
+
+<p>-&gt; it's probably due to Twig's cache. Add the following rule to your config.yml</p>
+
+<pre><code>twig:
+  cache: false
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Behatwizardbundle maintained by <a href="https://github.com/Halleck45">Halleck45</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
