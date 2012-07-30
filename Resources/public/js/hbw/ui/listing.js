@@ -57,7 +57,7 @@ hbw.ui.listing = {
 
         if(hbw.ui.listing.html.$container == null) {
             hbw.ui.listing.html.$container = $(hbw.ui.listing.selector.container);
-            hbw.ui.listing.html.$clone  = hbw.ui.listing.html.$container.clone(true);
+            hbw.ui.listing.html.$clone  = hbw.ui.listing.html.$container.clone(true,true);
         }
         if(hbw.ui.listing.sortingPreference == null) {
             //

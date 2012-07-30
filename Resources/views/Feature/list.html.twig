@@ -31,7 +31,7 @@
     </div>
     <div class="features row" id="list-features">
         {% for feature in features%}
-        <div class="feature span4 {% spaceless %}
+        <div data-id="{{ loop.index0 }}" class="feature span4 {% spaceless %}
              {% if feature.getReport().countSuccess() == feature.getReport().countTests() and feature.getReport().countTests() > 0 %}
              success
              {% elseif feature.getReport().countFailures() > 0 and feature.getReport().countTests() > 0 %}
@@ -93,7 +93,7 @@
                 <div class="feature-tags">
                     <ul>
                         {% for tag in feature.getGherkin().getTags() %}
-                        <li class="segment-1 selected-1"><a href="#" data-value="tag" class="label label-info tag btn-tag" data-tag="{{ tag }}">{{ tag }}</a></li>
+                        <li class=""><a href="#" data-type="tag" class="label label-info filter filter-tag tag btn-tag" data-value="{{ tag }}">{{ tag }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
