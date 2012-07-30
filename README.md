@@ -9,7 +9,11 @@ This tool helps Product Owner to manager their features. They can:
 - edit features
 - add new features
 
+## Demo
 
+**You can see a [demo here](http://halleck45.github.com/BehatWizardBundle/demo/behat/wizard/list.html)**
+
+## Preview
 
 ![Listing](https://github.com/Halleck45/BehatWizardBundle/raw/master/Resources/docs/screen-home-small.jpg)
 
