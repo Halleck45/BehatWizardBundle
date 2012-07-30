@@ -75,10 +75,6 @@ hbw.domain.scenario = function(datas) {
             html += '\n\n  Examples: ' + this.examples.asString();
         }
 
-        // @todo
-        // @todo
-        // @todo
-        // Ajouter l'example !!!!
         return html;
     }
 

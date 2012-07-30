@@ -31,7 +31,7 @@ hbw.domain.outline = function(datas) {
         
         if(this.rows.length > 0) {
             if(data.length != this.rows[0].length) {
-//                throw new hbw.domain.exception("Incorrect example given");
+            //                throw new hbw.domain.exception("Incorrect example given");
             }
         }
 
@@ -60,15 +60,16 @@ hbw.domain.outline = function(datas) {
     this.asString = function() {
         var i, j, content = '';
         for(i in this.rows) {
-//            content += (content.length > 0 ? "\n" : '');
-//            content += (content.length == 0 ? '\n' : '');
-            content += '\n      ';
 
-            for(j in this.rows[i]) {
-                content += '| ' + this.rows[i][j] + ' ';
+            if(this.rows[i].length > 0) {
+
+                content += '\n      ';
+                for(j in this.rows[i]) {
+                    content += '| ' + this.rows[i][j] + ' ';
+                }
+                content += '|';
+                
             }
-
-            content += '|';
         }
         return content;
     };

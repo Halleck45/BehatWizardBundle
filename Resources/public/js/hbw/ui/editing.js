@@ -273,12 +273,11 @@ hbw.ui.editing = {
             // name mapping (order of columns is not neccessary the same)
             $('thead th', $example).not('.decorator').each(function(index) {
                 names.push($(this).text());
-                mapNames[$(this).text()] = index;
+                mapNames[index] = $(this).text();
             });
             for(i in heading) {
-                map[i] =  mapNames[heading[i]];
+                map[i] =  mapNames.indexOf(heading[i]);
             }
-
             len = example.rows.length;
             for(i = 1; i < len; i++) {
                 row = [];
@@ -500,14 +499,14 @@ hbw.ui.editing = {
         var $th;
         for(i in names) {
             $th = $('<th>'+ names[i] +'</th>');
+            $th.append($('<input type="hidden" class="outline-content" name="" value="'+ names[i] +'" />'));
             $th.data('name', name);
             $table.find('thead tr').append($th);
         }
 
         //
         // Default rows
-        if(doDefaultRowset && $('tbody tr', $table).length == 0) {
-            hbw.ui.editing.addOutlineRow($table, []);
+        if(doDefaultRowset && names.length > 0 && $('tbody tr', $table).length == 0) {
             hbw.ui.editing.addOutlineRow($table, []);
             hbw.ui.editing.addOutlineRow($table, []);
         }
@@ -585,7 +584,6 @@ hbw.ui.editing = {
     saveFeature: function() {
         hbw.ui.editing.stopEditing();
         var string = hbw.ui.editing.feature.asString();
-        //        $('#feature_content').val(string);
         $(hbw.ui.editing.selector.input.allcontent).val(string);
         $(hbw.ui.editing.selector.box.formsave).submit();
     }

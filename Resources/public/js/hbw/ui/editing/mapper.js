@@ -20,14 +20,14 @@ hbw.ui.editing.mapper = {
 
         //
         // Examples
-        this.pushOutlineIntoNode(scenario, $container , $('.outline-node.examples', $container), 'examples');
-
+        this.pushOutlineIntoNode(scenario, $('.outline-node.examples', $container), 'examples');
+        
         //
         // Push scenario into feature
         feature.addScenario(scenario, index);
         
         //
-        // Updat
+        // Update
         return scenario;
     },
 
