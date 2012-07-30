@@ -1,0 +1,204 @@
+/* ----- List of features ----- */
+.feature {
+    border: 1px solid #DDDDDD;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 1px 0 #FFFFFF inset;
+    margin: 0 0 18px;
+    padding-left:14px;
+}
+.feature-box {
+    padding:0 10px;
+    background-color: #FBFBFB;
+    background-image: -moz-linear-gradient(center top , #FFFFFF, #F5F5F5);
+    background-repeat: repeat-x;
+    padding: 7px 14px;
+    height:120px;
+    min-height:120px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+.feature-content {
+    height:100px;
+    min-height:100px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+}
+.success {
+    background-color:#46a546;
+}
+.failure {
+    background-color:#9d261d;
+}
+.pending {
+    background-color:#f89406;
+}
+
+.feature-count-tests {
+
+}
+.feature-count-success {
+    color:#46a546;
+}
+.feature-count-pending {
+    color:#f89406;
+}
+.feature-count-fails {
+    color:#9d261d;
+}
+
+.feature-tags ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+.feature-tags li {
+    display:inline-block;
+}
+.tag {
+    
+}
+
+/* ---- details of each feature ---- */
+.testcase {
+    border:1px solid #FFF;
+    padding:2px;
+    margin-top:-1px;
+}
+.testcase.undefined {
+    background-color:#f89406;
+    color:#FFF;
+}
+.testcase.failed {
+    background-color:#9d261d;
+    color:#FFF;
+}
+.testcase.success {
+    background-color:#46a546;
+    color:#FFF;
+}
+
+/* ----- Controls ----- */
+#box-controls {
+    margin-bottom:10px;
+}
+#box-controls .splitter {
+    list-style:none;
+    padding:0;
+}
+#box-controls li {
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:inline-block;
+}
+#box-controls ul {
+    display:inline-block;
+}
+
+
+/* ---- Edit a feature ----- */
+/* ------------------------- */
+.box-act {
+    text-align:right;
+}
+.box-act-add-scenario {
+    text-align:center;
+    margin-top:20px;
+}
+
+/* ----- Box Title, descr ---- */
+.feature-title {
+    position:relative;
+    padding-right:15px;
+    margin-bottom:10px;
+}
+#btn-feature-edit {
+    position:absolute;
+    right:0;
+    top:0;
+    width:16px;
+    height:16px;
+}
+.keyword {
+    margin-right:2px;
+    display:inline-block;
+    color:#7a46b6;
+}
+.feature-context-sentence {
+    margin-bottom:6px;
+}
+.clone-order span,
+.clone-as span,
+.clone-should span {
+    display:inline-block;
+    margin-right:3px;
+    
+}
+
+
+/* ---- Scenarios ----- */
+.scenario {
+    border:1px solid #CCC;
+    background:#FFF;
+    padding:3px 0 3px 3px;
+    clear:left;
+    margin-top:-1px;
+}
+.scenario-opts {
+    float:right;
+    width:50px;
+}
+
+/* ----- details ----- */
+#feature-box-details a {
+    display:block;
+}
+
+/* ----- Page editing ---- */
+#page-editing .well {
+    min-height:500px;
+}
+.outline-node {
+    background-color:#F5F5F5;
+}
+#outline-node-head {
+    text-align:center;
+}
+#outline-row-remove {
+    width:20px;
+    vertical-align:middle;
+}
+#form-save {
+    display:none;
+}
+
+
+/* ----- Effects ----- */
+.outline-node .btn-outline-add-row,
+.outline-node .btn-outline-add-column,
+.btn-outline-remove-row,
+.btn-outline-remove-column,
+.btn-step-remove {
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    transition: all 0.5s;
+
+    filter:alpha(opacity=0);
+    -moz-opacity:0;
+    -khtml-opacity:0;
+    opacity:0;
+}
+.box-step:hover .btn-step-remove,
+.outline-node:hover .btn-outline-add-row,
+.outline-node:hover .btn-outline-add-column,
+.outline-node table:hover .btn-outline-remove-row,
+.outline-node table:hover .btn-outline-remove-column {
+    filter:alpha(opacity=100);
+    -moz-opacity:1;
+    -khtml-opacity:1;
+    opacity:1;
+}

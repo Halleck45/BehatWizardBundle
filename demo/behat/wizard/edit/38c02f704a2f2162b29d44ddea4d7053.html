@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+    
+<!-- Mirrored from behat-wizard/behat/wizard/edit/38c02f704a2f2162b29d44ddea4d7053 by HTTrack Website Copier/3.x [XR&CO'2008], Mon, 30 Jul 2012 16:54:43 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8"><!-- /Added by HTTrack -->
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <link href="../../../bundles/halbehatwizard/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+        <link href="../../../bundles/halbehatwizard/css/style.css" type="text/css" rel="stylesheet" />
+
+                <title>Behat Wizard</title>
+    </head>
+    <body>
+
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="../list.html">Behat Wizard</a>
+
+                    <div class="nav-collapse">
+                        <ul class="nav">
+                            <li><a href="../list.html"><i class="icon-white icon-home"></i> My features</a></li>
+                            <li><a href="../add.html"><i class="icon-white icon-plus-sign"></i> New feature</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container page">
+
+            
+
+            <section>
+                <h2>My feature</h2>
+                <div id="content">
+                    
+
+<!-- models -->
+<!-- Models -->
+<div id="box-models" style="display:none">
+    <!-- Step Given -->
+    <div id="step-given" class="box-step control-group">
+        <label class="control-label" for="step">Given</label>
+        <div class="controls">
+            <input data-step-type="Given" type="text" class="step step-given input-xlarge input-step input-step-given"  placeholder="..." />
+            <a href="#" class="btn-step-remove"><i class="icon icon-trash"></i></a>
+        </div>
+    </div>
+    <!-- Step When -->
+    <div id="step-when" class="box-step control-group">
+        <label class="control-label" for="step">When</label>
+        <div class="controls">
+            <input data-step-type="When" type="text" class="step step-when input-xlarge input-step input-step-when"  placeholder="..." />
+            <a href="#" class="btn-step-remove"><i class="icon icon-trash"></i></a>
+        </div>
+    </div>
+    <!-- Step Then -->
+    <div id="step-then" class="box-step control-group">
+        <label class="control-label" for="step">Then</label>
+        <div class="controls">
+            <input data-step-type="Then" type="text" class="step step-then input-xlarge input-step input-step-then"  placeholder="..." />
+            <a href="#" class="btn-step-remove"><i class="icon icon-trash"></i></a>
+        </div>
+    </div>
+
+    <!-- scenario -->
+    <div class="scenario" id="scenario">
+        <div class="scenario-opts">
+            <a href="#" class="btn-scenario-edit" data-callback-out="updateScenarioDatas" data-callback-enter="editScenario"><i class="icon icon-pencil"></i></a>
+            <a href="#" class="btn-scenario-remove"><i class="icon icon-trash"></i></a>
+        </div>
+        <div class="scenario-title">
+            <a href="#"  data-callback-enter="editScenario" data-callback-out="updateScenarioDatas" class="btn-scenario-edit"><span class="scenario-title-text">Loading title</span></a>
+        </div>
+    </div>
+
+    <!-- Outline -->
+    <div id="outline-node" class="outline-node control-group">
+        <table class="table table-condensed controls" style="width:auto">
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div class="table-condensed controls">
+            <button class="btn btn-small btn-outline-add-column">Add column</button>
+            <button class="btn btn-small  btn-outline-add-row">Add row</button>
+        </div>
+    </div>
+
+    <!-- container only -->
+    <table>
+        <thead>
+            <tr>
+                <th id="outline-node-head"><a href="#" class="btn-outline-remove-column"><i class="icon icon-trash"></i></a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="outline-node-cell"><input  type="text" class="outline-content outline-cell input-small" placeholder="..." /></td>
+                <td id="outline-row-remove" class="decorator">
+                    <a href="#" class="btn-outline-remove-row"><i class="icon icon-trash"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<form id="form-save" method="post">
+    <div id="feature"><input type="hidden" id="feature__token" name="feature[_token]" value="f557726b01b147b1a268a232a14ae24502a28fb7" /><div><label for="feature_content" class=" required">Content</label><textarea id="feature_content" name="feature[content]" required="required"># language: en
+Feature: Incomplete
+  In order to anything
+  As as anything
+  I should be able to do anything
+
+  Scenario: never-tested - correct scenario 1
+    Given anything true
+    When anything true
+    Then anything true
+
+  Scenario: never-tested - incorrect scenario 2
+    Given anything true
+    Given anything not defined
+    When anything true
+    Then anything true
+
+  Scenario: never-tested - incorrect scenario 3
+    Given anything true
+    When anything not defined
+    When anything true
+    Then anything true
+
+  Scenario: never-tested - correct scenario 4
+    Given anything not defined
+    When anything not defined
+    Then anything true
+    Then anything true</textarea></div></div>
+</form>
+<div class="row">
+
+    <!-- Side panel -->
+    <div class="span4" id="ui-side">
+
+    <p class="box-act">
+        <a href="http://behat-wizard/behat/wizard/remove/38c02f704a2f2162b29d44ddea4d7053" class="btn" id="btn-remove">Remove</a>
+        <a href="../list.html" class="btn" id="btn-cancel">Cancel</a>
+        <a href="#" class="btn btn-primary btn-success btn-save" id="btn-save">Save</a>
+
+    </p>
+
+
+    <!-- title, descr -->
+    <div class="well form" id="feature-box-title">
+        <h4 class="feature-title">
+            <a class="btn-feature-edit" href="#"  data-callback-out="editMain"><i class="icon icon-pencil"></i></a>
+            <a class="btn-feature-edit" href="#"  data-callback-out="editMain"><span class="clone-title">(loading)</span></a>
+        </h4>
+        <div>
+            <div class="feature-context-sentence"><span class="keyword descr-keyword">In order</span><span class="clone-inorder">...</span></div>
+            <div class="feature-context-sentence"><span class="keyword descr-keyword">As</span><span class="clone-as">...</span></div>
+            <div class="feature-context-sentence"><span class="keyword descr-keyword">I should</span><span class="clone-should">...</span></div>
+        </div>
+    </div>
+
+
+    <!-- scenarios -->
+    <div class="well form " id="feature-box-scenarios">
+        <h4 class="feature-title">
+            <span class="clone-scenario-title">Scenarios</span>
+        </h4>
+        <div class="scenarios">
+
+            <p class="box-act-add-scenario">
+                <a href="#" title="New Scenario" class="btn btn-scenario-add btn-scenario-edit" data-callback-out="addScenario" data-callback-enter="addScenario"><i class="icon icon-plus-sign"></i> New Scenario</a>
+            </p>
+        </div>
+    </div>
+
+
+
+    <!-- details -->
+    <div class="well form " id="feature-box-details">
+        <h4 class="feature-details">
+            Details
+        </h4>
+        <p>
+            <a href="#" data-callback-enter="editBackground" data-callback-out="updateBackgroundDatas" class="btn btn-background-edit">Change background</a>
+        </p>
+    </div>
+</div>
+    <!--  Modified content  -->
+    <div id="page-editing" class="span8">
+        <div class="well">
+
+            <!-- Box Scenario -->
+            <!-- Box Scenario -->
+<div id="box-edit-scenario" class="box-editing" style="display:none">
+    <div class="box-act">
+        <button class="btn btn-primary btn-feature-edit " type="submit" data-callback-out="editMain">I finished for this scenario</button></div>
+
+    <div class="">
+        <h1>Use case</h1>
+        <p>Use cases are scenarios that describe your feature</p>
+
+        <div class=" box-scenario box-scenario-opened">
+
+
+            <div class="form-horizontal">
+                <fieldset>
+                    <legend>Resume</legend>
+                    <div class="control-group">
+                        <label class="control-label" for="scenario-title">Title</label>
+                        <div class="controls">
+                            <input type="text" id="scenario-title" name="scenario-title" class="input-xlarge input-step input-scenario-title"  placeholder="..." />
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+
+            <div class="scenario-content">
+                <div class="form-horizontal">
+                    <fieldset>
+                        <legend>Pre-requisites</legend>
+
+                        <div id="box-steps-given" class="box-step box-given">
+                            <!-- Content will be placed here -->
+                        </div>
+
+                        <div class="control-group">
+                            <div class="controls">
+                                <div class="btn-group">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="icon icon-plus-sign"></i> Add a pre-requisite
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="btn-step-add" data-type="given"  data-isoutline="0" href="#">simple pre-requisite</a></li>
+                                        <li><a class="btn-step-add btn-step-outline-add" data-type="given"  data-isoutline="1" href="#">pre-requisite with dataset</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                    <fieldset>
+                        <legend>Events</legend>
+
+                        <div id="box-steps-when" class="box-step box-when">
+                            <!-- Content will be placed hre -->
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <div class="btn-group">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="icon icon-plus-sign"></i> Add an event
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="btn-step-add" data-type="when"  data-isoutline="0" href="#">simple event</a></li>
+                                        <li><a class="btn-step-add btn-step-outline-add" data-type="when"  data-isoutline="1" href="#">event with dataset</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Expected result</legend>
+
+                        <div id="box-steps-then" class="box-step box-then">
+                            <!-- Content will be placed hre -->
+                        </div>
+                        <div class="control-group" >
+                            <div class="controls">
+                                <div class="btn-group">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="icon icon-plus-sign"></i> Add an expected result
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="btn-step-add" data-type="then"  data-isoutline="0" href="#">simple expected result</a></li>
+                                        <li><a class="btn-step-add btn-step-outline-add" data-type="then"  data-isoutline="1" href="#">expected result with dataset</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+
+                    <fieldset>
+                        <legend>Examples</legend>
+
+                        <p>Columns of examples are added when your steps contain a value begininning with "&lt;" and finishing with "&gt;" <p>For example: </p> <code>
+    I sign in with email "&lt;email&gt;"
+</code> <p>Will add the column "email".</p>
+
+                        
+
+                        <div class="outline-node outline-examples">
+                            <table  id="examples" class="outline-node examples table">
+                                <thead>
+                                    <tr class="outline-row">
+                                        <!-- Content will be placed hre -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Content will be placed hre -->
+                                </tbody>
+                            </table>
+                            <div class="table-condensed controls">
+                                <button class="btn btn-small  btn-outline-add-row">Add row</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class=" box-act form-actions">
+                    <button class="btn btn-primary btn-feature-edit " type="submit" data-callback-out="editMain">I finished for this scenario</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>            <!-- Box Background -->
+            
+<!-- Box Background -->
+<div id="box-edit-background" class="box-editing" style="display:none">
+    <div class="">
+        <h1>background</h1>
+        <p>Context common to all your scenarios</p>
+
+        <div class=" box-scenario box-scenario-opened">
+
+            <div class="scenario-content">
+                <div class="form-horizontal">
+                    <fieldset>
+                        <legend>Pre-requisites</legend>
+
+                        <div id="box-steps-given" class="box-then">
+                            <!-- Content will be placed here -->
+                        </div>
+
+                        <div class="control-group">
+                            <div class="controls">
+                                <div class="btn-group">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="icon icon-plus-sign"></i> Add a pre-requisite
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="btn-step-add" data-type="given"  data-isoutline="0" href="#">simple pre-requisite</a></li>
+                                        <li><a class="btn-step-add" data-type="given"  data-isoutline="1" href="#">pre-requisite with dataset</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                    <fieldset>
+                        <legend>Events</legend>
+
+                        <div id="box-steps-when" class="box-then">
+                            <!-- Content will be placed hre -->
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <div class="btn-group">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="icon icon-plus-sign"></i> Add an event
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="btn-step-add" data-type="when"  data-isoutline="0"href="#">simple event</a></li>
+                                        <li><a class="btn-step-add" data-type="when"  data-isoutline="1" href="#">event with dataset</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Expected result</legend>
+
+                        <div id="box-steps-then" class="box-then">
+                            <!-- Content will be placed hre -->
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <div class="btn-group">
+                                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="icon icon-plus-sign"></i> Add an expected result
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="btn-step-add" data-type="then"  data-isoutline="0" href="#">simple expected result</a></li>
+                                        <li><a class="btn-step-add" data-type="then"  data-isoutline="1" href="#">expected result with dataset</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+
+                </div>
+
+                <div class=" form-actions box-act">
+                    <button class="btn btn-primary btn-feature-edit" type="submit" data-callback-out="editMain">I finished for this background</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- Box Feature -->
+                            <!-- Box Feature -->
+                <div id="box-edit-title" class="current box-editing" data-callback-out="editMain">
+                    
+                    <div class="box-act">
+                        <a class="btn btn-scenario-add btn-scenario-edit" data-callback-out="addScenario" data-callback-enter="addScenario">New scenario</a>
+                    </div>
+                    
+                    <div class="hero-unit">
+                        <h1>In two words</h1>
+                        <p>Describe your feature here in a few words</p>
+                        <div class="form-horizontal">
+
+                            <fieldset>
+                                <legend>In brief</legend>
+                                <div class="control-group">
+                                    <label for="title" class="control-label">Title</label>
+                                    <div class="controls">
+                                        <input name="title" id="title" placeholder="..." class="input-xlarg" />
+                                        <p class="help-block">Title of your feature</p>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label for="inorder" class="control-label">In order</label>
+                                    <div class="controls">
+                                        <input name="inorder" id="inorder" placeholder="..." class="input-xlarg" />
+                                        <p class="help-block">Objective of your feature</p>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label for="as" class="control-label">As</label>
+                                    <div class="controls">
+                                        <input name="as" id="as" placeholder="..." class="input-xlarg" />
+                                        <p class="help-block">Actor of your feature</p>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label for="should" class="control-label">I should</label>
+                                    <div class="controls">
+                                        <input name="should" id="should" placeholder=" ..." class="input-xlarg" />
+                                        <p class="help-block">Benefice of your feature</p>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="box-notes">
+                                <legend>Notes</legend>
+                                <div class="control-group">
+                                    <textarea name="notes" id="notes" placeholder="..." class="field  span6" rows="6"></textarea>
+                                    <p class="help-block">Fill notes ONLY if it&#039;s really essential to understanding.</p>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                        
+                        
+                        <div>
+                            <p>
+                                If you think your feature needs to be described in more detail, you can add scenarios.
+                            </p>
+                            
+                            <div class="box-act">
+                                <a class="btn btn-scenario-add btn-scenario-edit" data-callback-out="addScenario" data-callback-enter="addScenario">New scenario</a>
+                                <a class="btn btn-primary btn-save">I&#039;ve finished</a>
+                            </div>
+                        </div>
+                        
+                </div>        </div>
+    </div>
+
+</div>
+
+                </div>
+            </section>
+
+        </div>
+                <script src="../../../js/compiled/behat-wizard.js" type="text/javascript"></script>
+                <script type="text/javascript">
+    $(function() {
+
+        var feature = new hbw.domain.feature( {"title":"Incomplete","notes":"","inorder":"In order to anything","as":"As as anything","should":"I should be able to do anything","scenarios":[{"title":"never-tested - correct scenario 1","steps":[{"type":"Given","text":"anything true","outline":[]},{"type":"When","text":"anything true","outline":[]},{"type":"Then","text":"anything true","outline":[]}],"isOutline":false,"examples":[]},{"title":"never-tested - incorrect scenario 2","steps":[{"type":"Given","text":"anything true","outline":[]},{"type":"Given","text":"anything not defined","outline":[]},{"type":"When","text":"anything true","outline":[]},{"type":"Then","text":"anything true","outline":[]}],"isOutline":false,"examples":[]},{"title":"never-tested - incorrect scenario 3","steps":[{"type":"Given","text":"anything true","outline":[]},{"type":"When","text":"anything not defined","outline":[]},{"type":"When","text":"anything true","outline":[]},{"type":"Then","text":"anything true","outline":[]}],"isOutline":false,"examples":[]},{"title":"never-tested - correct scenario 4","steps":[{"type":"Given","text":"anything not defined","outline":[]},{"type":"When","text":"anything not defined","outline":[]},{"type":"Then","text":"anything true","outline":[]},{"type":"Then","text":"anything true","outline":[]}],"isOutline":false,"examples":[]}],"background":[]});
+        hbw.ui.editing.init(feature);
+    });
+</script>
+    </body>
+
+<!-- Mirrored from behat-wizard/behat/wizard/edit/38c02f704a2f2162b29d44ddea4d7053 by HTTrack Website Copier/3.x [XR&CO'2008], Mon, 30 Jul 2012 16:54:43 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8"><!-- /Added by HTTrack -->
+</html>
