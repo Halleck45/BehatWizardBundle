@@ -2379,8 +2379,7 @@ hbw.ui.editing = {
     saveFeature: function() {
         hbw.ui.editing.stopEditing();
         var string = hbw.ui.editing.feature.asString();
-        $(hbw.ui.editing.selector.input.allcontent).val(string);
-        $(hbw.ui.editing.selector.box.formsave).submit();
+        alert("That's only a demo. But your feature looks as following:\n\n-----------\n" + string)
     }
 
 };
