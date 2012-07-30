@@ -10,9 +10,17 @@
         "homepage": "http://blog.lepine.pro"
     }
     ],
+    "repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/Halleck45/BehatToolsBundle.git",
+        "branch": "master"
+    }
+    ],
     "require": {
         "symfony/framework-bundle": ">=2.0,<2.2-dev",
-        "behat/gherkin": ">=2.2.0,<2.3.0-dev"
+        "behat/gherkin": ">=2.2.0,<2.3.0-dev",
+        "halleck45/behat-tools-bundle" : "dev-master"
     },
     "autoload": {
         "psr-0": {
