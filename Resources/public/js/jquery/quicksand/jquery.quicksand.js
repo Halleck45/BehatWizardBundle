@@ -47,7 +47,8 @@ Github site: http://github.com/razorjack/quicksand
         return this.each(function (i) {
             var val;
             var animationQueue = []; // used to store all the animation params before starting the animation; solves initial animation slowdowns
-            var $collection = $(collection).clone(); // destination (target) collection
+//            var $collection = $(collection).clone(); // destination (target) collection
+            var $collection = $(collection).clone(true); // destination (target) collection
             var $sourceParent = $(this); // source, the visible container of source collection
             var sourceHeight = $(this).css('height'); // used to keep height and document flow during the animation
             
@@ -147,7 +148,8 @@ Github site: http://github.com/razorjack/quicksand
             });
                     
             // create temporary container with destination collection
-            var $dest = $($sourceParent).clone();
+//            var $dest = $($sourceParent).clone();
+            var $dest = $($sourceParent).clone(true);
             var rawDest = $dest.get(0);
             rawDest.innerHTML = '';
             rawDest.setAttribute('id', '');
@@ -280,7 +282,8 @@ Github site: http://github.com/razorjack/quicksand
                         };
                     }
                     // Let's create it
-                    d = destElement.clone();
+//                    d = destElement.clone();
+                    d = destElement.clone(true); // jeanfrancois
                     var rawDestElement = d.get(0);
                     rawDestElement.style.position = 'absolute';
                     rawDestElement.style.margin = '0';

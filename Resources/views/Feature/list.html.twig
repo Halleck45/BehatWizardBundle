@@ -14,17 +14,17 @@
         <ul class="splitter "  >
             <li class="span8">Show:
                 <ul class="controls">
-                    <li class="segment-1 selected-1"><a class="btn" data-value="all" href="#">Everything</a></li>
-                    <li class="segment-0"><a class="btn" data-value="success" href="#">Success</a></li>
-                    <li class="segment-0"><a class="btn" data-value="failure" href="#">Failures</a></li>
-                    <li class="segment-2"><a class="btn" data-value="pending" href="#">Pending</a></li>
+                    <li ><a class="btn filter filter-all" data-type="all" data-value="all" href="#">Everything</a></li>
+                    <li ><a class="btn filter filter-state" data-type="state" data-value="success" href="#">Success</a></li>
+                    <li><a class="btn filter filter-state" data-type="state" data-value="failure" href="#">Failures</a></li>
+                    <li><a class="btn filter filter-state" data-type="state" data-value="pending" href="#">Pending</a></li>
                 </ul>
             </li>
             <li class="span4">Sort by:
                 <ul class="controls">
-                    <li class="segment-1 selected-1"><a class="btn" data-value="name" href="#">Name</a></li>
-                    <li class="segment-2"><a class="btn" data-value="failure" href="#">Failures</a></li>
-                    <li class="segment-2"><a class="btn" data-value="pending" href="#">Pending</a></li>
+                    <li><a class="btn sort sort-name" data-type="name" data-value="name" href="#">Name</a></li>
+                    <li><a class="btn sort sort-state" data-type="state" data-value="failure" href="#">Failures</a></li>
+                    <li><a class="btn sort sort-state" data-type="state" data-value="pending" href="#">Pending</a></li>
                 </ul>
             </li>
         </ul>
@@ -67,9 +67,9 @@
                     <div class="help-box" id="help-for-feature-{{ loop.index0 }}" style="display:none;">
                         <div class="box-feature-fails">
                             <p><strong>{{ feature.getGherkin().getTitle() }}</strong></p>
-                        {% for testcase in feature.getReport().listTestCases() %}
-                        <div class="testcase {{ testcase.type }}">{{ testcase.name }}</div>
-                        {% endfor %}
+                            {% for testcase in feature.getReport().listTestCases() %}
+                            <div class="testcase {{ testcase.type }}">{{ testcase.name }}</div>
+                            {% endfor %}
                         </div>
                     </div>
 
@@ -92,9 +92,9 @@
                 </div>
                 <div class="feature-tags">
                     <ul>
-                    {% for tag in feature.getGherkin().getTags() %}
+                        {% for tag in feature.getGherkin().getTags() %}
                         <li class="segment-1 selected-1"><a href="#" data-value="tag" class="label label-info tag btn-tag" data-tag="{{ tag }}">{{ tag }}</a></li>
-                    {% endfor %}
+                        {% endfor %}
                     </ul>
                 </div>
 
@@ -111,12 +111,37 @@
 {% block javascript %}
 <script type="text/javascript">
     $(function() {
+
+        $('.filter').click(function(e) {
+            e.preventDefault();
+            var value = $(this).data('value');
+            var type = $(this).data('type');
+            hbw.ui.listing.filter(type, value);
+
+            $('.filter').removeClass('selected').removeClass('btn-primary');
+            $(this).addClass('selected').addClass('btn-primary');
+        });
+        $('.sort').click(function(e) {
+            e.preventDefault();
+            var value = $(this).data('value');
+            var type = $(this).data('type');
+            hbw.ui.listing.sort(type, value);
+
+            $('.sort').removeClass('selected').removeClass('btn-primary');
+            $(this).addClass('selected').addClass('btn-primary');
+        });
+
+
+        $('.sort-name').click();
+        $('.filter-all').click();
+
         $('.feature-show-details').each(function() {
             var $e = $(this);
             var $box = $($e.data('help-selector'));
             $e.data('content', $box.html());
         });
         $('.feature-show-details').popover();
+
     });
 </script>
 {% endblock %}

@@ -2,8 +2,8 @@
  * All is directly copied or inspired from http://razorjack.net/quicksand/index.html
  *
  * @author  Jacek Galanciak <https://github.com/razorjack/quicksand/>
+ * @author  Jean-François Lépine <jeanfrancois@lepine.pro>
  */
-
 (function($) {
     $.fn.sorted = function(customOptions) {
         var options = {
@@ -31,110 +31,89 @@
 
 })($);
 
-$(function() {
 
 
-    if($('#list-features').length == 0) {
-        return;
-    }
 
-    var read_button = function(class_names) {
-        var r = {
-            selected: false,
-            type: 0
-        };
-        for (var i=0; i < class_names.length; i++) {
-            if (class_names[i].indexOf('selected-') == 0) {
-                r.selected = true;
-            }
-            if (class_names[i].indexOf('segment-') == 0) {
-                r.segment = class_names[i].split('-')[1];
-            }
-        };
-        return r;
-    };
+hbw.ui.listing = {
 
-    var determine_sort = function($buttons) {
-        var $selected = $buttons.parent().filter('[class*="selected-"]');
-        return $selected.find('a').attr('data-value');
-    };
-
-    var determine_kind = function($buttons) {
-        var $selected = $buttons.parent().filter('[class*="selected-"]');
-        return $selected.find('a').attr('data-value');
-    };
-
-    var $preferences = {
+    preferences: {
         duration: 800,
         easing: 'easeInOutQuad',
         adjustHeight: false
-    };
+    },
 
-    var $list = $('#list-features');
-    var $data = $list.clone();
+    html: {
+        $container : null,
+        $clone : null
+    },
 
-    var $controls = $('ul.splitter ul, .feature-tags');
+    selector : {
+        container: '#list-features'
+    },
 
-    $controls.each(function(i) {
+    sortingPreference: null,
 
-        var $control = $(this);
-        var $buttons = $control.find('a');
+    filter: function(type, value, callback) {
 
-        $buttons.bind('click', function(e) {
-
-            var $button = $(this);
-            var $button_container = $button.parent();
-            var button_properties = read_button($button_container.attr('class').split(' '));
-            var selected = button_properties.selected;
-            var button_segment = button_properties.segment;
-
-
-            $button.addClass('btn-primary');
-            if (!selected) {
-
-                $buttons.parent().removeClass('selected-0').removeClass('selected-1').removeClass('selected-2')
-                $button_container.addClass('selected-' + button_segment)
-
-                $buttons.removeClass('btn-primary');
-                $button.addClass('btn-primary');
-
-                var sorting_type = determine_sort($controls.eq(1).find('a'));
-                var sorting_kind = determine_kind($controls.eq(0).find('a'));
-                if (sorting_kind == 'all') {
-                    var $filtered_data = $data.find('.feature');
-                } else if (sorting_kind == 'tag') {
-                    var $filtered_data = $data.find('.feature.tag-' + $button.data('tag'));
-                } else {
-                    var $filtered_data = $data.find('.feature.' + sorting_kind);
+        if(hbw.ui.listing.html.$container == null) {
+            hbw.ui.listing.html.$container = $(hbw.ui.listing.selector.container);
+            hbw.ui.listing.html.$clone  = hbw.ui.listing.html.$container.clone(true);
+        }
+        if(hbw.ui.listing.sortingPreference == null) {
+            //
+            // Default sorting
+            hbw.ui.listing.sortingPreference = {
+                by: function(v) {
+                    return $(v).find('.feature-title').text().toLowerCase();
                 }
+            };
+        }
 
-                if (sorting_type == 'name') {
-                    var $sorted_data = $filtered_data.sorted({
-                        by: function(v) {
-                            return $(v).find('.feature-title').text().toLowerCase();
-                        }
-                    });
-                } else {
-                    var $sorted_data = $filtered_data.sorted({
-                        by: function(v) {
-                            return parseFloat($(v).data(sorting_type));
-                        }
-                    });
+        //
+        // Filter elements
+        var $list = hbw.ui.listing.html.$container;
+        var $data = hbw.ui.listing.html.$clone
+        var $filteredElements;
 
-                }
-                $list.quicksand($sorted_data, $preferences);
+        switch(type) {
+            case 'all':
+                $filteredElements = $data.find('.feature');
+                break;
+            case 'tag':
+                $filteredElements = $data.find('.feature.tag-' + value);
+                break;
+            case 'state':
+                $filteredElements = $data.find('.feature.' + value);
+                break;
+        }
 
-            }
+        //
+        // Sort elements
+        $filteredElements = $filteredElements.sorted(hbw.ui.listing.sortingPreference);
 
-            e.preventDefault();
-        });
+        //
+        // Apply filter
+        $list.quicksand($filteredElements, hbw.ui.listing.preferences, callback );
+    },
 
-    });
+    sort:function(type, value, callback) {
+        
+        switch(type) {
+            case 'name':
+                hbw.ui.listing.sortingPreference = {
+                    by: function(v) {
+                        return $(v).find('.feature-title').text().toLowerCase();
+                    }
+                };
+                break;
+            case 'state':
+                hbw.ui.listing.sortingPreference = {
+                    by: function(v) {
+                        return parseFloat($(v).data(value));
+                    }
+                };
 
-
-    $('#box-controls .controls').each(function() {
-        var $a = $('a', $(this)).filter(':first');
-        $a.click();
-    });
-
-});
+        }
+        hbw.ui.listing.filter('all', null, callback);
+    }
+}
