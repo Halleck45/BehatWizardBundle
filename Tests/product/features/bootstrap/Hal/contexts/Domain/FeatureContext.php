@@ -8,14 +8,12 @@ use Behat\Behat\Context\BehatContext,
     Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode,
     Behat\Mink\Exception\ResponseTextException,
-    AssertException;
-use Behat\Behatch\Behat\Context\BehatchContext,
-    Behat\Behatch\Behat\Context\BrowserContext,
-    Behat\Behatch\Behat\Context\FileSystemContext,
-    Behat\Behatch\Behat\Context\JSONContext,
-    Behat\Behatch\Behat\Context\RESTContext,
-    Behat\Behatch\Behat\Context\TableContext,
-    Behat\Behatch\Behat\Context\DebugContext;
+    AssertException,
+    Behat\Behat\Event\FeatureEvent,
+    Behat\Behat\Event\SuiteEvent,
+    Behat\Behat\Context\Step\Given,
+    Behat\Behat\Context\Step\When,
+    Behat\Behat\Context\Step\Then;
 
 /**
  * Features context.
@@ -23,35 +21,71 @@ use Behat\Behatch\Behat\Context\BehatchContext,
 class FeatureContext extends BehatContext
 {
 
-    private $feature;
+    private $currentFeature;
+    private static $FOLDER;
+
+    /**
+     * Context initialization
+     *
+     * @param array $parameters context parameters (set them up through behat.yml)
+     */
+    public function __construct(array $parameters)
+    {
+        if (!isset($parameters["behat"]['features'])) {
+            throw new \Exception('Please specify the folder of features');
+        }
+
+        self::$FOLDER = $parameters["behat"]['features'];
+    }
 
     private function getMink()
     {
-        return $this->getMainContext()->getSubcontext('mink');
+        return $this->getMainContext()->getSubcontext('mink')->getSession();
     }
 
     /**
-     * @When /^I would like to add the following features:$/
+     * @BeforeFeature
      */
-    public function iWouldLikeToAddTheFollowingFeatures(TableNode $table)
+    public static function prepare(FeatureEvent $event)
     {
-        throw new PendingException();
+        if (!file_exists(self::$FOLDER)) {
+            mkdir(self::$FOLDER, 0775);
+        }
     }
+
 
     /**
      * @Then /^I can see that these features have been added$/
      */
     public function iCanSeeThatTheseFeaturesHaveBeenAdded()
     {
-        throw new PendingException();
+        return array(
+            new When('I go to "/behat/wizard/list"')
+            , new Then(sprintf('I should see "%s"', $this->currentFeature['title']))
+        );
     }
 
     /**
      * @When /^I would like to add the feature "([^"]*)"$/
      */
-    public function iWouldLikeToAddTheFeature($arg1)
+    public function iWouldLikeToAddTheFeature($title)
     {
-        throw new PendingException();
+        $table = new TableNode("|title|\n|{$title}|");
+        $hash = $table->getHash();
+        $this->currentFeature = $hash[0];
+        return array(
+            new Given('I go to "/behat/wizard/add"')
+            , new When(sprintf('I fill in "title" with "%s"', $this->currentFeature['title']))
+            , new When('I save the current feature')
+        );
+    }
+    /**
+     * @When /^I save the current feature$/
+     */
+    public function isSaveTheCurrentFeature()
+    {
+        $this->getMink()->getDriver()->click("//*[.='Save']");
+        $this->getMink()->wait(3000);
     }
 
     /**
@@ -59,7 +93,16 @@ class FeatureContext extends BehatContext
      */
     public function thisFeatureHasTheFollowingsScenarios(TableNode $table)
     {
-        throw new PendingException();
+        $hash = $table->getHash();
+        $steps = array();
+        foreach($hash as $scenario) {
+            $steps = array_merge($steps, array(
+                new When('I follow "New scenario"')
+                , new When(sprintf('I fill in "" with "%s"', $scenario['title']))
+                , new When('I follow "btn-feature-edit')
+            ));
+        }
+        return $steps;
     }
 
     /**

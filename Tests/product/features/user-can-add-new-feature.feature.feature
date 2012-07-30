@@ -8,10 +8,7 @@ Feature: User can add a new feature that he wishes to be present in its applicat
     Given I am product owner
 
   Scenario: add new feature
-    When I would like to add the following features:
-      | title      |
-      | MyFeature1 |
-      | MyFeature2 |
+    When I would like to add the feature "myFeature1"
     Then I can see that these features have been added
 
 

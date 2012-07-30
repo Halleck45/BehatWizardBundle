@@ -38,6 +38,7 @@ hbw.ui.editing.events = {
         // Save
         $(hbw.ui.editing.selector.btn.save).click(function(e) {
             e.preventDefault();
+            alert('licked')
             hbw.ui.editing.saveFeature();
             e.stopPropagation();
         });

@@ -12,6 +12,9 @@ default:
 
   context:
     parameters:
+      behat:
+        features: /home/data/www/jeff/tools/sym-hal/_demo/resources/features/
+        reports: /home/data/www/jeff/tools/sym-hal/_demo/resources/features/
 #      debug:
 #        screenshot_dir: logs/screens
 #        screen_id: :0

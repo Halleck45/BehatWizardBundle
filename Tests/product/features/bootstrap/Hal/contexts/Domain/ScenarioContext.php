@@ -9,13 +9,6 @@ use Behat\Behat\Context\BehatContext,
     Behat\Gherkin\Node\TableNode,
     Behat\Mink\Exception\ResponseTextException,
     AssertException;
-use Behat\Behatch\Behat\Context\BehatchContext,
-    Behat\Behatch\Behat\Context\BrowserContext,
-    Behat\Behatch\Behat\Context\FileSystemContext,
-    Behat\Behatch\Behat\Context\JSONContext,
-    Behat\Behatch\Behat\Context\RESTContext,
-    Behat\Behatch\Behat\Context\TableContext,
-    Behat\Behatch\Behat\Context\DebugContext;
 
 /**
  * Features context.
