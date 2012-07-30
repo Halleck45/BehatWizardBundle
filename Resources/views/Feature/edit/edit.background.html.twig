@@ -2,15 +2,15 @@
 <!-- Box Background -->
 <div id="box-edit-background" class="box-editing" style="display:none">
     <div class="">
-        <h1>Background</h1>
-        <p>Contexte commun à l'ensemble de vos scénarios</p>
+        <h1>{{ "hbw.edit.background.title"|trans }}</h1>
+        <p>{{ "hbw.edit.background.short"|trans }}</p>
 
         <div class=" box-scenario box-scenario-opened">
 
             <div class="scenario-content">
                 <div class="form-horizontal">
                     <fieldset>
-                        <legend>Pré-requis</legend>
+                        <legend>{{ "hbw.edit.steps.given.title"|trans }}</legend>
 
                         <div id="box-steps-given" class="box-then">
                             <!-- Content will be placed here -->
@@ -20,12 +20,12 @@
                             <div class="controls">
                                 <div class="btn-group">
                                     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                                        <i class="icon icon-plus-sign"></i> ajouter un pré-requis
+                                        <i class="icon icon-plus-sign"></i> {{ "hbw.edit.steps.given.add.text"|trans }}
                                         <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="btn-step-add" data-type="given"  data-isoutline="0" href="#">Pré-requis simple</a></li>
-                                        <li><a class="btn-step-add" data-type="given"  data-isoutline="1" href="#">Pré-requis avec jeu de données</a></li>
+                                        <li><a class="btn-step-add" data-type="given"  data-isoutline="0" href="#">{{ "hbw.edit.steps.given.add.simple"|trans }}</a></li>
+                                        <li><a class="btn-step-add" data-type="given"  data-isoutline="1" href="#">{{ "hbw.edit.steps.given.add.outline"|trans }}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -33,7 +33,7 @@
 
                     </fieldset>
                     <fieldset>
-                        <legend>Eléments déclencheurs</legend>
+                        <legend>{{ "hbw.edit.steps.when.title"|trans }}</legend>
 
                         <div id="box-steps-when" class="box-then">
                             <!-- Content will be placed hre -->
@@ -42,19 +42,19 @@
                             <div class="controls">
                                 <div class="btn-group">
                                     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                                        <i class="icon icon-plus-sign"></i> ajouter un événement
+                                        <i class="icon icon-plus-sign"></i> {{ "hbw.edit.steps.when.add.text"|trans }}
                                         <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="btn-step-add" data-type="when"  data-isoutline="0"href="#">Evénement simple</a></li>
-                                        <li><a class="btn-step-add" data-type="when"  data-isoutline="1" href="#">Evénement avec jeu de données</a></li>
+                                        <li><a class="btn-step-add" data-type="when"  data-isoutline="0"href="#">{{ "hbw.edit.steps.when.add.simple"|trans }}</a></li>
+                                        <li><a class="btn-step-add" data-type="when"  data-isoutline="1" href="#">{{ "hbw.edit.steps.when.add.outline"|trans }}</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </fieldset>
                     <fieldset>
-                        <legend>Résultats attendus</legend>
+                        <legend>{{ "hbw.edit.steps.then.title"|trans }}</legend>
 
                         <div id="box-steps-then" class="box-then">
                             <!-- Content will be placed hre -->
@@ -63,12 +63,12 @@
                             <div class="controls">
                                 <div class="btn-group">
                                     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                                        <i class="icon icon-plus-sign"></i> ajouter un résultat attendu
+                                        <i class="icon icon-plus-sign"></i> {{ "hbw.edit.steps.then.add.text"|trans }}
                                         <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="btn-step-add" data-type="then"  data-isoutline="0" href="#">Résultat attendu simple</a></li>
-                                        <li><a class="btn-step-add" data-type="then"  data-isoutline="1" href="#">Résultat attend avec jeu de données</a></li>
+                                        <li><a class="btn-step-add" data-type="then"  data-isoutline="0" href="#">{{ "hbw.edit.steps.then.add.simple"|trans }}</a></li>
+                                        <li><a class="btn-step-add" data-type="then"  data-isoutline="1" href="#">{{ "hbw.edit.steps.then.add.outline"|trans }}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -78,8 +78,8 @@
 
                 </div>
 
-                <div class=" form-actions">
-                    <button class="btn btn-primary btn-feature-edit" type="submit" data-callback-out="editMain">J'ai terminé pour ce background</button>
+                <div class=" form-actions box-act">
+                    <button class="btn btn-primary btn-feature-edit" type="submit" data-callback-out="editMain">{{ "hbw.edit.background.btn.end"|trans }}</button>
                 </div>
 
             </div>

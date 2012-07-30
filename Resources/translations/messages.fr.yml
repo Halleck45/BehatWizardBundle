@@ -1,0 +1,148 @@
+hbw:
+  app:
+    title: Behat Wizard
+  menu:
+    new: Nouvelle fonctionnalité
+    home: Mes fonctionnalités
+
+  # LIST
+  # ----------------------------
+  list:
+    title: Mes fonctionnalités
+    btn:
+      new: Nouvelle fonctionnalité
+    filter:
+      text: "Afficher :"
+      state:
+        all: Tout
+        success: Succès
+        pending: En attente
+        failure: Échecs
+    sort:
+      text: "Trier par :"
+      name: Nom
+      state:
+        pending: En attente
+        failure: Échecs
+
+  # EDIT
+  # ----------------------------
+  edit:
+    title: Ma fonctionnalité
+
+    # Background
+    background:
+      title: Contexte
+      short: Contexte commun à l'ensemble de vos scénarios
+      btn:
+        end: J'ai terminé pour ce background
+
+    # Main page
+    main:
+      btn:
+        addScenario: Nouveau scénario
+        save: J'ai terminé
+
+      title: En 2 mots
+      short: Décrivez ici votre fonctionnalité en quelques mots seulement
+      subtitle: En résumé
+      field:
+        title:
+          title: Titre
+          placeholder: ...
+          help: Titre de votre fonctionnalité
+        inorder:
+          title: Afin de
+          keyword: Afin de
+          placeholder: ...
+          help: Objective de votre fonctionnalité
+        as:
+          title: En tant que
+          keyword: En tant que
+          placeholder: ...
+          help: Acteur de votre fonctionnalité
+        should:
+          title: Je dois
+          keyword: Je dois
+          placeholder: ...
+          help: Bénéfice de votre fonctionnalité
+        notes:
+          title: Remarques
+          placeholder: ...
+          help: Ne renseignez des notes QUE si c'est vraiment indispensable à la compréhension.
+      whattodo:
+        help: Si vous pensez que votre fonctionnalité nécessite d'être décrite avec plus de détails, vous pouvez y ajouter des scénarios.
+
+    # Scenario
+    scenario:
+      title: Cas d'utilisation
+      help: Les cas d'utilisations sont autant de scénarios qui décrivent votre fonctionnalité
+      btn:
+        end: J'ai terminé pour ce scénario
+      field:
+        title:
+          title: Title
+          placeholder: ...
+          resume: Resume
+
+      # Example
+      example:
+        title: Examples
+        short: >
+          <p>Les colonnes d'exemples sont automatiquement aujoutées lorsque vous saisissez dans un champ une valeur qui commence par un "&lt;" et finit par "&gt;".</p><p>Par exemple : </p>
+          <code>
+              Je tente de réinscrire l'utilisateur qui a l'email "&lt;Email&gt;"
+          </code>
+
+          <p>Sera compris par le développeur :</p>
+          <code>
+              Je tente de réinscrire l'utilisateur qui a l'email "martin@dupont.fr"
+          </code>
+          <p>C'est à vous :</p>
+
+    # Side panel
+    side:
+      btn:
+        remove: Supprimer
+        cancel: Annuler
+        save: Enregistrer
+      scenarios:
+        title: Scénarios
+        btn:
+          addScenario: Nouveau scénario
+      background:
+        title: Détails
+        btn:
+          changeBackground: Changer le contexte
+
+
+    # Common
+    steps:
+      given:
+        title: Pré-requis
+        keyword: Étant donné
+        add:
+          text: Ajouter un pré-requis
+          simple: Pré-requis simple
+          outline: Pré-requis avec jeu de données
+      when:
+        title: Evénements décelencheur
+        keyword: Quand
+        add:
+          text: Ajouter un événement
+          simple: Evénement simple
+          outline: Evénement avec jeu de données
+      then:
+        title: Résultat attendu
+        keyword: Alors
+        add:
+          text: Ajouter un résultat attendu
+          simple: Résultat simple
+          outline: Résultat avec jeu de données
+      outline:
+        btn:
+          addRow: Nouvelle ligne
+          addColumn: Nouvelle colonne
+        placeholder: ...
+
+

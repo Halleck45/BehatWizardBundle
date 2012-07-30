@@ -1,0 +1,144 @@
+hbw:
+  app:
+    title: Behat Wizard
+  menu:
+    new: New feature
+    home: My features
+
+  # LIST
+  # ----------------------------
+  list:
+    title: My features
+    btn:
+      new: New feature
+    filter:
+      text: "Show:"
+      state:
+        all: Everything
+        success: Success
+        pending: Pending
+        failure: Failures
+    sort:
+      text: "Sort by:"
+      name: Name
+      state:
+        pending: Pending
+        failure: Failures
+
+  # EDIT
+  # ----------------------------
+  edit:
+    title: My feature
+
+    # Background
+    background:
+      title: background
+      short: Context common to all your scenarios
+      btn:
+        end: I finished for this background
+
+    # Main page
+    main:
+      btn:
+        addScenario: New scenario
+        save: I've finished
+
+      title: In two words
+      short: Describe your feature here in a few words
+      subtitle: In brief
+      field:
+        title:
+          title: Title
+          placeholder: ...
+          help: Title of your feature
+        inorder:
+          title: In order
+          keyword: In order
+          placeholder: ...
+          help: Objective of your feature
+        as:
+          title: As
+          keyword: As
+          placeholder: ...
+          help: Actor of your feature
+        should:
+          title: I should
+          keyword: I should
+          placeholder: ...
+          help: Benefice of your feature
+        notes:
+          title: Notes
+          placeholder: ...
+          help: Fill notes ONLY if it's really essential to understanding.
+      whattodo:
+        help: If you think your feature needs to be described in more detail, you can add scenarios.
+
+    # Scenario
+    scenario:
+      title: Use case
+      help: Use cases are scenarios that describe your feature
+      btn:
+        end: I finished for this scenario
+      field:
+        title:
+          title: Title
+          placeholder: ...
+          resume: Resume
+
+      # Example
+      example:
+        title: Examples
+        short: >
+          <p>Columns of examples are added when your steps contain a value begininning with "&lt;" and finishing with "&gt;"
+          <p>For example: </p>
+          <code>
+              I sign in with email "&lt;email&gt;"
+          </code>
+          <p>Will add the column "email".</p>
+
+    # Side panel
+    side:
+      btn:
+        delete: Remove
+        cancel: Cancel
+        save: Save
+      scenarios:
+        title: Scenarios
+        btn:
+          addScenario: New Scenario
+      background:
+        title: Details
+        btn:
+          changeBackground: Change background
+
+
+    # Common
+    steps:
+      given:
+        title: Pre-requisites
+        keyword: Given
+        add:
+          text: Add a pre-requisite
+          simple: simple pre-requisite
+          outline: pre-requisite with dataset
+      when:
+        title: Evénements décelencheur
+        keyword: When
+        add:
+          text: Add an event
+          simple: simple event
+          outline: event with dataset
+      then:
+        title: Expected result
+        keyword: Then
+        add:
+          text: Add an expected result
+          simple: simple expected result
+          outline: expected result with dataset
+      outline:
+        btn:
+          addRow: Add row
+          addColumn: Add column
+        placeholder: ...
+
+

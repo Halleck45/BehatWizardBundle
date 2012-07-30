@@ -1,9 +1,9 @@
 <div class="span4" id="ui-side">
 
     <p class="box-act">
-        <a href="{{ path('hbw.remove', {feature: feature.getHash()}) }}" class="btn" id="btn-remove">Delete</a>
-        <a href="{{ path('hbw.home') }}" class="btn" id="btn-cancel">Cancel</a>
-        <a href="#" class="btn btn-primary btn-success btn-save" id="btn-save">Save</a>
+        <a href="{{ path('hbw.remove', {feature: feature.getHash()}) }}" class="btn" id="btn-remove">{{ "hbw.edit.side.btn.delete"|trans }}</a>
+        <a href="{{ path('hbw.home') }}" class="btn" id="btn-cancel">{{ "hbw.edit.side.btn.cancel"|trans }}</a>
+        <a href="#" class="btn btn-primary btn-success btn-save" id="btn-save">{{ "hbw.edit.side.btn.save"|trans }}</a>
 
     </p>
 
@@ -12,12 +12,12 @@
     <div class="well form" id="feature-box-title">
         <h4 class="feature-title">
             <a class="btn-feature-edit" href="#"  data-callback-out="editMain"><i class="icon icon-pencil"></i></a>
-            <a class="btn-feature-edit" href="#"  data-callback-out="editMain"><span class="clone-title">My Feature</span></a>
+            <a class="btn-feature-edit" href="#"  data-callback-out="editMain"><span class="clone-title">(loading)</span></a>
         </h4>
         <div>
-            <div class="feature-context-sentence"><span class="keyword descr-keyword">In order to</span><span class="clone-inorder">...</span></div>
-            <div class="feature-context-sentence"><span class="keyword descr-keyword">As</span><span class="clone-as">...</span></div>
-            <div class="feature-context-sentence"><span class="keyword descr-keyword">I should</span><span class="clone-should">...</span></div>
+            <div class="feature-context-sentence"><span class="keyword descr-keyword">{{ "hbw.edit.main.field.inorder.keyword"|trans }}</span><span class="clone-inorder">...</span></div>
+            <div class="feature-context-sentence"><span class="keyword descr-keyword">{{ "hbw.edit.main.field.as.keyword"|trans }}</span><span class="clone-as">...</span></div>
+            <div class="feature-context-sentence"><span class="keyword descr-keyword">{{ "hbw.edit.main.field.should.keyword"|trans }}</span><span class="clone-should">...</span></div>
         </div>
     </div>
 
@@ -25,12 +25,12 @@
     <!-- scenarios -->
     <div class="well form " id="feature-box-scenarios">
         <h4 class="feature-title">
-            <span class="clone-scenario-title">Scenarios</span>
+            <span class="clone-scenario-title">{{ "hbw.edit.side.scenarios.title"|trans }}</span>
         </h4>
         <div class="scenarios">
 
             <p class="box-act-add-scenario">
-                <a href="#" title="New scenario" class="btn btn-scenario-add btn-scenario-edit" data-callback-out="addScenario" data-callback-enter="addScenario"><i class="icon icon-plus-sign"></i> New scenario</a>
+                <a href="#" title="{{ "hbw.edit.side.scenarios.btn.addScenario"|trans }}" class="btn btn-scenario-add btn-scenario-edit" data-callback-out="addScenario" data-callback-enter="addScenario"><i class="icon icon-plus-sign"></i> {{ "hbw.edit.side.scenarios.btn.addScenario"|trans }}</a>
             </p>
         </div>
     </div>
@@ -40,10 +40,10 @@
     <!-- details -->
     <div class="well form " id="feature-box-details">
         <h4 class="feature-details">
-            Details
+            {{ "hbw.edit.side.background.title"|trans }}
         </h4>
         <p>
-            <a href="#" data-callback-enter="editBackground" data-callback-out="updateBackgroundDatas" class="btn btn-background-edit">Change background</a>
+            <a href="#" data-callback-enter="editBackground" data-callback-out="updateBackgroundDatas" class="btn btn-background-edit">{{ "hbw.edit.side.background.btn.changeBackground"|trans }}</a>
         </p>
     </div>
 </div>

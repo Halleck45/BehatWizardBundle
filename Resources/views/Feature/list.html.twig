@@ -1,30 +1,30 @@
 {% extends 'HalBehatWizardBundle::base.html.twig' %}
 
-{% block title %}My features{% endblock %}
+{% block title %}{{ "hbw.list.title" | trans }}{% endblock %}
 
 {% block body %}
 
 
 <p class="box-act">
-    <a class="btn btn-info" href="{{ path('hbw.add') }}"><i class="icon-white icon-plus-sign"></i> New feature</a>
+    <a class="btn btn-info" href="{{ path('hbw.add') }}"><i class="icon-white icon-plus-sign"></i> {{ "hbw.list.btn.new" | trans }}</a>
 </p>
 
 <div id="wrapper">
     <div class="row" id="box-controls">
         <ul class="splitter "  >
-            <li class="span8">Show:
+            <li class="span8">{{ "hbw.list.filter.text" | trans }}
                 <ul class="controls">
-                    <li ><a class="btn filter filter-all" data-type="all" data-value="all" href="#">Everything</a></li>
-                    <li ><a class="btn filter filter-state" data-type="state" data-value="success" href="#">Success</a></li>
-                    <li><a class="btn filter filter-state" data-type="state" data-value="failure" href="#">Failures</a></li>
-                    <li><a class="btn filter filter-state" data-type="state" data-value="pending" href="#">Pending</a></li>
+                    <li ><a class="btn filter filter-all" data-type="all" data-value="all" href="#">{{ "hbw.list.filter.state.all" | trans }}</a></li>
+                    <li ><a class="btn filter filter-state" data-type="state" data-value="success" href="#">{{ "hbw.list.filter.state.success" | trans }}</a></li>
+                    <li><a class="btn filter filter-state" data-type="state" data-value="failure" href="#">{{ "hbw.list.filter.state.failure" | trans }}</a></li>
+                    <li><a class="btn filter filter-state" data-type="state" data-value="pending" href="#">{{ "hbw.list.filter.state.pending" | trans }}</a></li>
                 </ul>
             </li>
-            <li class="span4">Sort by:
+            <li class="span4">{{ "hbw.list.sort.text" | trans }}
                 <ul class="controls">
-                    <li><a class="btn sort sort-name" data-type="name" data-value="name" href="#">Name</a></li>
-                    <li><a class="btn sort sort-state" data-type="state" data-value="failure" href="#">Failures</a></li>
-                    <li><a class="btn sort sort-state" data-type="state" data-value="pending" href="#">Pending</a></li>
+                    <li><a class="btn sort sort-name" data-type="name" data-value="name" href="#">{{ "hbw.list.sort.name" | trans }}</a></li>
+                    <li><a class="btn sort sort-state" data-type="state" data-value="failure" href="#">{{ "hbw.list.sort.state.failure" | trans }}</a></li>
+                    <li><a class="btn sort sort-state" data-type="state" data-value="pending" href="#">{{ "hbw.list.sort.state.pending" | trans }}</a></li>
                 </ul>
             </li>
         </ul>

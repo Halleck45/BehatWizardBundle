@@ -2,7 +2,7 @@
 <div id="box-models" style="display:none">
     <!-- Step Given -->
     <div id="step-given" class="box-step control-group">
-        <label class="control-label" for="step">Etant donné</label>
+        <label class="control-label" for="step">{{ "hbw.edit.steps.given.keyword"|trans }}</label>
         <div class="controls">
             <input data-step-type="Given" type="text" class="step step-given input-xlarge input-step input-step-given"  placeholder="..." />
             <a href="#" class="btn-step-remove"><i class="icon icon-trash"></i></a>
@@ -10,7 +10,7 @@
     </div>
     <!-- Step When -->
     <div id="step-when" class="box-step control-group">
-        <label class="control-label" for="step">Quand</label>
+        <label class="control-label" for="step">{{ "hbw.edit.steps.when.keyword"|trans }}</label>
         <div class="controls">
             <input data-step-type="When" type="text" class="step step-when input-xlarge input-step input-step-when"  placeholder="..." />
             <a href="#" class="btn-step-remove"><i class="icon icon-trash"></i></a>
@@ -18,7 +18,7 @@
     </div>
     <!-- Step Then -->
     <div id="step-then" class="box-step control-group">
-        <label class="control-label" for="step">Alors</label>
+        <label class="control-label" for="step">{{ "hbw.edit.steps.then.keyword"|trans }}</label>
         <div class="controls">
             <input data-step-type="Then" type="text" class="step step-then input-xlarge input-step input-step-then"  placeholder="..." />
             <a href="#" class="btn-step-remove"><i class="icon icon-trash"></i></a>
@@ -47,8 +47,8 @@
             </tbody>
         </table>
         <div class="table-condensed controls">
-            <button class="btn btn-small btn-outline-add-column">Add column</button>
-            <button class="btn btn-small  btn-outline-add-row">Add Row</button>
+            <button class="btn btn-small btn-outline-add-column">{{ "hbw.edit.steps.outline.btn.addColumn"|trans }}</button>
+            <button class="btn btn-small  btn-outline-add-row">{{ "hbw.edit.steps.outline.btn.addRow"|trans }}</button>
         </div>
     </div>
 
@@ -61,7 +61,7 @@
         </thead>
         <tbody>
             <tr>
-                <td id="outline-node-cell"><input  type="text" class="outline-content outline-cell input-small" placeholder="martin@dupont.fr" /></td>
+                <td id="outline-node-cell"><input  type="text" class="outline-content outline-cell input-small" placeholder="{{ "hbw.edit.steps.outline.placeholder"|trans }}" /></td>
                 <td id="outline-row-remove" class="decorator">
                     <a href="#" class="btn-outline-remove-row"><i class="icon icon-trash"></i></a>
                 </td>

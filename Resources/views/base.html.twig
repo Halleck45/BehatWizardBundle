@@ -14,12 +14,12 @@
         <div class="navbar">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="{{ path('hbw.home') }}">Behat Wizard</a>
+                    <a class="brand" href="{{ path('hbw.home') }}">{{ "hbw.app.title" | trans }}</a>
 
                     <div class="nav-collapse">
                         <ul class="nav">
-                            <li><a href="{{ path('hbw.home') }}"><i class="icon-white icon-home"></i> My features</a></li>
-                            <li><a href="{{ path('hbw.add') }}"><i class="icon-white icon-plus-sign"></i> New feature</a></li>
+                            <li><a href="{{ path('hbw.home') }}"><i class="icon-white icon-home"></i> {{ "hbw.menu.home" | trans }}</a></li>
+                            <li><a href="{{ path('hbw.add') }}"><i class="icon-white icon-plus-sign"></i> {{ "hbw.menu.new" | trans }}</a></li>
                         </ul>
                     </div>
                 </div>
