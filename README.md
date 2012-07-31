@@ -1,11 +1,11 @@
 BehatWizardBundle
 ================
 
-GUI Tool for Behat's users.
+GUI Tool for Behat users.
 
-This tool helps Product Owner to manager their features. They can:
-- list theirs features and know the state of each feature
-- filter features by state, tag...
+This tool helps Product Owners to manage their features. They can:
+- list their features and know the state of each feature
+- filter features by state, tag, etc...
 - edit features
 - add new features
 
@@ -75,7 +75,7 @@ Add the following lines to your config.yml file:
       behat.paths.features: /path/to/project/features
       behat.paths.reports: /path/to/project/reports
 
-Note that you need to run Behat with the junit formater parameter, in order to generator reports in JUnit format:
+Note that you need to run Behat with the junit formater parameter, in order to generate reports in JUnit format:
 
     $ behat -f junit --out /path/to/project/reports
 
