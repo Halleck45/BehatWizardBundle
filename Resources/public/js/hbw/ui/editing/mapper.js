@@ -84,7 +84,9 @@ hbw.ui.editing.mapper = {
             $('.outline-content', $tr).each(function() {
                 row.push($(this).val());
             });
-            outline.push(row);
+            if(row.length > 0) {
+                outline.push(row);
+            }
         });
         if(outline.rows.length > 0) {
             node.outline = outline;

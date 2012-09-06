@@ -52,7 +52,7 @@ hbw.domain.scenario = function(datas) {
         var html = '', i;
 
         if(typeof(keyword) == 'undefined') {
-            if(this.examples) {
+            if(this.examples && this.examples.rows.length > 0) {
                 keyword = 'Scenario Outline';
             } else {
                 keyword = 'Scenario';
@@ -71,7 +71,7 @@ hbw.domain.scenario = function(datas) {
 
         //
         // Example
-        if(this.examples) {
+        if(this.examples && this.examples.rows.length > 0 ) {
             html += '\n\n  Examples: ' + this.examples.asString();
         }
 

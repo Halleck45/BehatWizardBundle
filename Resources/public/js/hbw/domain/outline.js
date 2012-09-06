@@ -13,6 +13,8 @@
  */
 hbw.domain.outline = function(datas) {
 
+    datas = datas || [];
+
     /**
      * Outline content
      */
