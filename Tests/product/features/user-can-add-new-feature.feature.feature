@@ -9,8 +9,8 @@ Feature: User can add a new feature that he wishes to be present in its applicat
 
   Scenario: add new feature
     When I would like to add the feature "myFeature1"
+    And I save the current feature
     Then I can see that these features have been added
-
 
   Scenario: add new feature with scenarios
     When I would like to add the feature "myFeature1"
@@ -18,6 +18,7 @@ Feature: User can add a new feature that he wishes to be present in its applicat
       | title       | 
       | MyScenario1 |
       | MyScenario2 |
+    And I save the current feature
     Then I can see that this feature has been added
     And I can see that this feature contains "2" scenarios
 
@@ -30,6 +31,7 @@ Feature: User can add a new feature that he wishes to be present in its applicat
       | when    | another sentence |
       | when    | another sentence |
       | then    | another sentence |
+    And I save the current feature
     Then I can see that this feature contains "1" scenarios
     And I can see that this scenario contains "4" steps
     And I can see that this scenario contains all wanted steps
@@ -52,6 +54,7 @@ Feature: User can add a new feature that he wishes to be present in its applicat
         | B      | 2        |
         | C      | 3        |
       """
+    And I save the current feature
     Then I can see that this feature contains "1" scenarios
     And I can see that this scenario contains "2" steps
     And I can see that this scenario contains all wanted steps
@@ -75,6 +78,7 @@ Feature: User can add a new feature that he wishes to be present in its applicat
       | var1    | var2   |
       | A       | 1      |
       | B       | 2      |
+    And I save the current feature
     Then I can see that this feature contains "1" scenarios
     And I can see that this scenario contains "4" steps
     And I can see that this scenario contains an example

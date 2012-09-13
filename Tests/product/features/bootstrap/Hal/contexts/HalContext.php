@@ -64,4 +64,5 @@ class HalContext extends BehatContext
         $this->parameters[$name] = $value;
     }
 
+
 }

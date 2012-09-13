@@ -38,7 +38,7 @@ class FeatureContext extends BehatContext
         self::$FOLDER = $parameters["behat"]['features'];
     }
 
-    private function getMink()
+    protected function getMink()
     {
         return $this->getMainContext()->getSubcontext('mink')->getSession();
     }
@@ -53,6 +53,16 @@ class FeatureContext extends BehatContext
         }
     }
 
+    /**
+     * @AfterFeature
+     */
+    public static function tearDown(FeatureEvent $event)
+    {
+        $files = glob(self::$FOLDER . '/*.*');
+        foreach ($files as $filename) {
+            unlink($filename);
+        }
+    }
 
     /**
      * @Then /^I can see that these features have been added$/
@@ -76,31 +86,35 @@ class FeatureContext extends BehatContext
         return array(
             new Given('I go to "/behat/wizard/add"')
             , new When(sprintf('I fill in "title" with "%s"', $this->currentFeature['title']))
-            , new When('I save the current feature')
         );
     }
+
     /**
      * @When /^I save the current feature$/
      */
-    public function isSaveTheCurrentFeature()
+    public function iSaveTheCurrentFeature()
     {
         $this->getMink()->getDriver()->click("//*[.='Save']");
-        $this->getMink()->wait(3000);
+        $this->getMink()->wait(4000);
     }
 
     /**
      * @Given /^this feature has the followings scenarios:$/
-     */
+//     */
     public function thisFeatureHasTheFollowingsScenarios(TableNode $table)
     {
         $hash = $table->getHash();
-        $steps = array();
-        foreach($hash as $scenario) {
+        
+        $steps = array(
+            new When('I remove the scenario "My scenario"')
+        );
+
+        foreach ($hash as $scenario) {
             $steps = array_merge($steps, array(
-                new When('I follow "New scenario"')
-                , new When(sprintf('I fill in "" with "%s"', $scenario['title']))
-                , new When('I follow "btn-feature-edit')
-            ));
+                new When('I press "New Scenario"')
+                , new When(sprintf('I fill in "Title" with "%s"', $scenario['title']))
+                , new When('I press "I finished for this scenario"')
+                ));
         }
         return $steps;
     }
@@ -110,15 +124,31 @@ class FeatureContext extends BehatContext
      */
     public function iCanSeeThatThisFeatureHasBeenAdded()
     {
-        throw new PendingException();
+        return array(
+            new When('I want to get the list of all features')
+            , new Then(sprintf('I should see "%s"', $this->currentFeature['title']))
+        );
     }
 
     /**
-     * @Given /^I can see that this feature contains "([^"]*)" scenarios$/
+     * @Then /^I can see that this feature contains "([^"]*)" scenarios$/
      */
-    public function iCanSeeThatThisFeatureContainsScenarios($arg1)
+    public function iCanSeeThatThisFeatureContainsScenarios($nb)
     {
-        throw new PendingException();
+        return array(
+            new When(sprintf('I want to modify the feature "%s"', $this->currentFeature['title']))
+            , new Then(sprintf('I should see %d ".scenarios .scenario-title" elements', $nb))
+        );
+    }
+
+    /**
+     * @When /^I want to modify the feature "([^"]*)"$/
+     */
+    public function iWantToModifyTheFeature($title)
+    {
+        return array(
+            new When(sprintf('I follow "%s"', $title))
+        );
     }
 
     /**
@@ -206,7 +236,9 @@ class FeatureContext extends BehatContext
      */
     public function iWantToGetTheListOfAllFeatures()
     {
-        throw new PendingException();
+        return array(
+            new When('I go to "/behat/wizard/list"')
+        );
     }
 
     /**

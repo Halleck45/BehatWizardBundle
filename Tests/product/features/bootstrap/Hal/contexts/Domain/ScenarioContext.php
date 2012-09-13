@@ -75,9 +75,13 @@ class ScenarioContext extends FeatureContext
     /**
      * @When /^I remove the scenario "([^"]*)"$/
      */
-    public function iRemoveTheScenario($arg1)
+    public function iRemoveTheScenario($name)
     {
-        throw new PendingException();
+        $xpath = "//*[@class='scenario-title-text'][.='".$name."']" // text
+            . "/ancestor::*[@class='scenario']" // container
+            . "/descendant::*[@class='btn-scenario-remove']" // btn remove
+            ;
+        $this->getMink()->getDriver()->click($xpath);
     }
 
     /**
