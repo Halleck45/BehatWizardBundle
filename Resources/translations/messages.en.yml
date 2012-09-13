@@ -79,6 +79,7 @@ hbw:
       help: Use cases are scenarios that describe your feature
       btn:
         end: I finished for this scenario
+        remove: Remove scenario
       field:
         title:
           title: Title

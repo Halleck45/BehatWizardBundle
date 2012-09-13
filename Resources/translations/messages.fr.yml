@@ -79,6 +79,7 @@ hbw:
       help: Les cas d'utilisations sont autant de scénarios qui décrivent votre fonctionnalité
       btn:
         end: J'ai terminé pour ce scénario
+        remove: Supprimer
       field:
         title:
           title: Title
