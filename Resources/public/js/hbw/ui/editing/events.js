@@ -7,7 +7,8 @@ hbw.ui.editing.events = {
         .applySteps()
         .applybackground()
         .applyScenarios()
-        .applyShortcuts();
+        .applyShortcuts()
+        .applyFixes();
     },
     
     applyMain: function() {
@@ -240,5 +241,15 @@ hbw.ui.editing.events = {
                 }
             }
         });
-    }
+        return hbw.ui.editing.events;
+    },
+
+     applyFixes : function() {
+         //
+         // the "value" attribute of any dom element is never updated by the browser
+         $(':text').blur(function() {
+             $(this).attr('value', $(this).val());
+         });
+         return hbw.ui.editing.events;
+     }
 };
