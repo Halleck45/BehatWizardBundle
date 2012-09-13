@@ -85,6 +85,7 @@ class FeatureContext extends BehatContext
         $this->currentFeature = $hash[0];
         return array(
             new Given('I go to "/behat/wizard/add"')
+            , new When('I remove the scenario "My scenario"')
             , new When(sprintf('I fill in "title" with "%s"', $this->currentFeature['title']))
         );
     }
@@ -100,15 +101,11 @@ class FeatureContext extends BehatContext
 
     /**
      * @Given /^this feature has the followings scenarios:$/
-//     */
+     */
     public function thisFeatureHasTheFollowingsScenarios(TableNode $table)
     {
         $hash = $table->getHash();
-        
-        $steps = array(
-            new When('I remove the scenario "My scenario"')
-        );
-
+        $steps = array();
         foreach ($hash as $scenario) {
             $steps = array_merge($steps, array(
                 new When('I press "New Scenario"')
@@ -152,35 +149,73 @@ class FeatureContext extends BehatContext
     }
 
     /**
+     * @When /^I want to modify the scenario "([^"]*)"$/
+     */
+    public function iWantToModifyTheScenario($title)
+    {
+        return array(
+            new When(sprintf('I follow "%s"', $title))
+        );
+    }
+
+    /**
      * @Given /^this feature has the scenario "([^"]*)" with the following steps:$/
      */
-    public function thisFeatureHasTheScenarioWithTheFollowingSteps($arg1, TableNode $table)
+    public function thisFeatureHasTheScenarioWithTheFollowingSteps($title, TableNode $scenarioSteps)
     {
-        throw new PendingException();
+        $steps = array(
+            new When(sprintf('this feature has the scenario "%s"', $title))
+            , new When(sprintf('I want to modify the scenario "%s"', $title))
+        );
+
+        $mappingButtons = array(
+            'given' => 'simple pre-requisite'
+            , 'when' => 'simple event'
+            , 'then' => 'simple expected result'
+        );
+        $mappingInput = array(
+            'given' => 'Given'
+            , 'when' => 'When'
+            , 'then' => 'Then'
+        );
+
+        $hash = $scenarioSteps->getHash();
+        foreach ($hash as $step) {
+            $steps = array_merge($steps, array(
+                new When(sprintf('I follow "%s"', $mappingButtons[$step['type']]))
+                , new When(sprintf('I fill in the last "step-%s" with "%s"', $step['type'], $step['text']))
+                )
+            );
+        }
+
+        $steps = array_merge($steps, array(new When('I press "I finished for this scenario"')));
+        return $steps;
     }
 
     /**
-     * @Given /^I can see that this scenario contains "([^"]*)" steps$/
+     * @Given /^I can see that the scenario "([^"]*)" contains "([^"]*)" steps$/
      */
-    public function iCanSeeThatThisScenarioContainsSteps($arg1)
+    public function iCanSeeThatTheScenarioContainsSteps($title, $nbSteps)
     {
-        throw new PendingException();
-    }
+        return array(
+            new When(sprintf('I want to modify the scenario "%s"', $title))
+            , new Then(sprintf('I should see %d ".scenario-content .step" elements', $nbSteps))
+        );
 
-    /**
-     * @Given /^I can see that this scenario contains all wanted steps$/
-     */
-    public function iCanSeeThatThisScenarioContainsAllWantedSteps()
-    {
-        throw new PendingException();
     }
 
     /**
      * @Given /^this feature has the scenario "([^"]*)"$/
      */
-    public function thisFeatureHasTheScenario($arg1)
+    public function thisFeatureHasTheScenario($title)
     {
-        throw new PendingException();
+        $table = new TableNode(
+                '| title       | '
+                . PHP_EOL . sprintf('| %s |', $title)
+        );
+        return array(
+            new When('this feature has the followings scenarios:', $table)
+        );
     }
 
     /**

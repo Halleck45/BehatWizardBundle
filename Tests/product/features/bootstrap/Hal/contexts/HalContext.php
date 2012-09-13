@@ -65,4 +65,17 @@ class HalContext extends BehatContext
     }
 
 
+    /**
+     * @When /^I fill in the last "([^"]*)" with "([^"]*)"$/
+     */
+    public function iFillInTheLastWith($locator, $value)
+    {
+        $mink = $this->getSubcontext('mink')->getSession();
+        $fields =  $mink->getPage()->findAll('named', array(
+            'field', $mink->getSelectorsHandler()->xpathLiteral($locator)
+        ));
+        $field = array_pop($fields);
+        $field->setValue($value);
+    }
+
 }

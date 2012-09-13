@@ -22,7 +22,7 @@ Feature: User can add a new feature that he wishes to be present in its applicat
     Then I can see that this feature has been added
     And I can see that this feature contains "2" scenarios
 
-
+  @tmp
   Scenario: add steps in my scenarios
     When I would like to add the feature "myFeature1"
     And this feature has the scenario "myScenario1" with the following steps:
@@ -33,8 +33,7 @@ Feature: User can add a new feature that he wishes to be present in its applicat
       | then    | another sentence |
     And I save the current feature
     Then I can see that this feature contains "1" scenarios
-    And I can see that this scenario contains "4" steps
-    And I can see that this scenario contains all wanted steps
+    And I can see that the scenario "myScenario1" contains "4" steps
 
   Scenario Outline: add steps with multi-lined arguments in my scenarios
     When I would like to add the feature "myFeature1"
