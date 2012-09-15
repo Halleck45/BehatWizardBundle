@@ -78,7 +78,7 @@ hbw.ui.editing.events = {
             scenario.title = 'My New Scenario';
             $target.data('scenario', scenario);
             hbw.ui.editing.populateScenarioView(scenario, $(hbw.ui.editing.selector.box.scenarios) );
-//            hbw.ui.editing.addScenario(scenario, $target);
+        //            hbw.ui.editing.addScenario(scenario, $target);
         };
         hbw.ui.editing.callback.out.updateScenarioDatas = function($caller, $target) {
             var scenario =  $caller.data('scenario');
@@ -215,9 +215,17 @@ hbw.ui.editing.events = {
             if(code == 13) {
                 if($e.val() != '') {
                     //
-                    // Step is not empty : add new step
-                    var $btn = $e.parents('.box-step').next('.control-group').find('.btn-step-add:first');
-                    $btn.click();
+                    // Step is not empty
+                    if($e.parents('.box-step').next('.outline').length == 1) {
+                        //
+                        // Step contains outline elements
+                        $e.parents('.box-step').next('.outline').find(':text:first').focus();
+                    } else {
+                        //
+                        // Step is standard
+                        var $btn = $e.parents('.box-step').next('.control-group').find('.btn-step-add:first');
+                        $btn.click();
+                    }
                     e.stopPropagation();
                 } else {
                     //
@@ -244,12 +252,12 @@ hbw.ui.editing.events = {
         return hbw.ui.editing.events;
     },
 
-     applyFixes : function() {
-         //
-         // the "value" attribute of any dom element is never updated by the browser
-         $(':text').blur(function() {
-             $(this).attr('value', $(this).val());
-         });
-         return hbw.ui.editing.events;
-     }
+    applyFixes : function() {
+        //
+        // the "value" attribute of any dom element is never updated by the browser
+        $(':text').blur(function() {
+            $(this).attr('value', $(this).val());
+        });
+        return hbw.ui.editing.events;
+    }
 };
