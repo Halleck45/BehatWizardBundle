@@ -1,0 +1,19 @@
+default:
+  formatter:
+    name: progress
+  paths:
+    features: Features
+    bootstrap: %behat.paths.features%/Context
+  context:
+    class: Hal\Bundle\BehatWizard\Features\Context\FeatureContext
+  extensions:
+    Behat\Symfony2Extension\Extension:
+      mink_driver: true
+      kernel:
+        env: test
+        debug: true
+        path: Features/Fixtures/BehatWizard/app/AppKernel.php
+    Behat\MinkExtension\Extension:
+      base_url: 'http://www.behatwizard.dev/app_test.php/'
+      default_session: symfony2
+      
