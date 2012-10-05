@@ -37,6 +37,9 @@
             "Hal\\Bundle\\BehatWizard": ""
         }
     },
+    "config": {
+        "bin-dir": "bin/"
+    },
     "target-dir": "Hal/Bundle/BehatWizard",
     "repositories": [
     {
