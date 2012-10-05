@@ -1,6 +1,8 @@
 BehatWizardBundle
 ================
 
+[![Build Status](https://secure.travis-ci.org/Halleck45/BehatWizardBundle.png?branch=refractoring-specifications)](http://travis-ci.org/Halleck45/BehatWizardBundle)
+
 GUI Tool for Behat users.
 
 This tool helps Product Owners to manage their features. They can:
