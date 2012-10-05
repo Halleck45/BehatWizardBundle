@@ -31,7 +31,7 @@ class FeatureContext extends BehatContext
      */
     public function __construct(array $parameters)
     {
-        self::$FOLDER = sys_get_temp_dir() . 'bhw';
+        self::$FOLDER = sys_get_temp_dir() . '/hbw';
     }
 
     protected function getMink()
@@ -44,9 +44,15 @@ class FeatureContext extends BehatContext
      */
     public static function prepare(FeatureEvent $event)
     {
-        if (!file_exists(self::$FOLDER)) {
-            mkdir(self::$FOLDER, 0775);
+        if (file_exists(self::$FOLDER)) {
+            $files = glob(self::$FOLDER . '/*.*');
+            foreach ($files as $filename) {
+                unlink($filename);
+            }
+            rmdir(self::$FOLDER);
         }
+        mkdir(self::$FOLDER, 0775);
+        chgrp(self::$FOLDER, 'www-data');
     }
 
     /**
@@ -58,6 +64,7 @@ class FeatureContext extends BehatContext
         foreach ($files as $filename) {
             unlink($filename);
         }
+        rmdir(self::$FOLDER);
     }
 
     /**
@@ -200,14 +207,6 @@ class FeatureContext extends BehatContext
         return array(
             new When('this feature has the followings scenarios:', $table)
         );
-    }
-
-    /**
-     * @Given /^I do anything$/
-     */
-    public function iDoAnything()
-    {
-
     }
 
 }

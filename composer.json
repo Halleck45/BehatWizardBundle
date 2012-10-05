@@ -18,7 +18,10 @@
         "php":                           ">=5.3.3",
         "symfony/symfony":               "*@stable",
         "sensio/framework-extra-bundle": "*@dev",
-        "halleck45/behat-tools-bundle":  "dev-master"
+        "halleck45/behat-tools-bundle":  "dev-master",
+        "symfony/assetic-bundle": "2.1.*",
+        "kriswallsmith/assetic": "1.1.*@dev"
+
     },
     "require-dev": {
         "behat/behat":                  "*@stable",
@@ -26,10 +29,19 @@
         "behat/mink-extension":         "*",
         "behat/mink-browserkit-driver": "*",
         "behat/sahi-client": "v1.0.1",
-        "behat/mink-sahi-driver": "*"
+        "behat/mink-sahi-driver": "*",
+        "behat/gherkin":            "@dev"
     },
     "autoload": {
-        "psr-0": { "Hal\\Bundle\\BehatWizard": "" }
+        "psr-0": {
+            "Hal\\Bundle\\BehatWizard": ""
+        }
     },
-    "target-dir": "Hal/Bundle/BehatWizard"
+    "target-dir": "Hal/Bundle/BehatWizard",
+    "repositories": [
+    {
+        "type": "git",
+        "url": "git://github.com/Halleck45/Gherkin.git"
+    }
+    ]
 }

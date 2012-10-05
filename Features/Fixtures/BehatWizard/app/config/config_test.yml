@@ -9,7 +9,22 @@ framework:
     test:            ~
     session:
         storage_id:     session.storage.filesystem
+    translator: { fallback: fr }
 
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    cache: false
+
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    filters:
+        cssrewrite: ~
+
+
+parameters:
+  behat.paths.base: /tmp/hbw
+  behat.paths.features: /tmp/hbw
+  behat.paths.reports: /tmp/hbw

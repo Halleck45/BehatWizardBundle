@@ -14,7 +14,7 @@ default:
         debug: true
         path: Features/Fixtures/BehatWizard/app/AppKernel.php
     Behat\MinkExtension\Extension:
-      base_url: 'http://www.behatwizard.dev/app_test.php/'
+      base_url: 'http://behatwizard.dev/app.php/'
       default_session: sahi
       javascript_session: sahi
       browser_name: chrome

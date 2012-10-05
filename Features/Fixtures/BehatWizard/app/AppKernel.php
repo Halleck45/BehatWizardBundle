@@ -5,6 +5,7 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 
 class AppKernel extends Kernel
 {
+
     /**
      * @return array
      */
@@ -14,7 +15,9 @@ class AppKernel extends Kernel
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Hal\Bundle\BehatWizard\HalBehatWizardBundle(),
-            new Hal\Bundle\BehatTools\HalBehatToolsBundle()
+            new Hal\Bundle\BehatTools\HalBehatToolsBundle(),
+            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle()
         );
     }
 
@@ -23,7 +26,7 @@ class AppKernel extends Kernel
      */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
+        $loader->load(__DIR__ . '/config/config_' . $this->getEnvironment() . '.yml');
     }
 
     /**
@@ -31,7 +34,7 @@ class AppKernel extends Kernel
      */
     public function getCacheDir()
     {
-        return sys_get_temp_dir().'/BehatWizardBundle/cache';
+        return sys_get_temp_dir() . '/BehatWizardBundle/cache';
     }
 
     /**
@@ -39,6 +42,7 @@ class AppKernel extends Kernel
      */
     public function getLogDir()
     {
-        return sys_get_temp_dir().'/BehatWizardBundle/logs';
+        return sys_get_temp_dir() . '/BehatWizardBundle/logs';
     }
+
 }

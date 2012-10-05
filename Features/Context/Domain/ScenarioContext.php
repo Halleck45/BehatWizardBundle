@@ -38,4 +38,55 @@ class ScenarioContext extends BehatContext
         $this->getMink()->getDriver()->click($xpath);
     }
 
+
+
+
+    /**
+     * @Given /^I should see that the feature "([^"]*)" contains "([^"]*)" scenarios$/
+     */
+    public function iShouldSeeThatTheFeatureContainsScenarios($arg1, $arg2)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given /^I should see that the scenario "([^"]*)" of the feature "([^"]*)" contains "([^"]*)" steps$/
+     */
+    public function iShouldSeeThatTheScenarioOfTheFeatureContainsSteps($arg1, $arg2, $arg3)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given /^this scenario has the step:$/
+     */
+    public function thisScenarioHasTheStep(PyStringNode $string)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given /^I should see that the step "([^"]*)" has "<nbRows"> rows$/
+     */
+    public function iShouldSeeThatTheStepHasNbrowsRows($arg1)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given /^I provide the following examples:$/
+     */
+    public function iProvideTheFollowingExamples(TableNode $table)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given /^I should see that the scenario "([^"]*)" of the feature "([^"]*)" has "([^"]*)" examples$/
+     */
+    public function iShouldSeeThatTheScenarioOfTheFeatureHasExamples($arg1, $arg2, $arg3)
+    {
+        throw new PendingException();
+    }
+
 }

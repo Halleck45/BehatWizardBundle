@@ -3,7 +3,7 @@
 namespace Hal\Bundle\BehatWizard\Form\Type;
 
 use Symfony\Component\Form\AbstractType,
-    Symfony\Component\Form\FormBuilder,
+    Symfony\Component\Form\FormBuilderInterface,
     Symfony\Component\Form\FormView,
     Symfony\Component\Form\FormInterface;
 
@@ -18,7 +18,7 @@ use Symfony\Component\Form\AbstractType,
 class FeatureType extends AbstractType
 {
 
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('content', 'textarea', array('required' => true), array('id' => 'ipt-feature' ))
