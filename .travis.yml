@@ -1,0 +1,33 @@
+language: php
+php:
+  - 5.3
+  - 5.4
+before_install:
+  #server
+  - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-sqlite
+  - sudo a2enmod rewrite
+  - sudo sed -i -e "s,/var/www,$(pwd)/Features/Fixtures/BehatWizard/web,g" /etc/apache2/sites-available/default
+  - sudo service apache2 reload
+
+  # Sahi
+  - wget -O sahi_20110719.zip "http://downloads.sourceforge.net/project/sahi/sahi-v35/20110719/sahi-src_20110719.zip?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fsahi%2Ffiles%2Fsahi-v35%2F20110719%2F&ts=1341337630&use_mirror=freefr"
+  - unzip sahi_20110719.zip -d ~/
+  - sudo chmod +x ~/sahi/bin/sahi.sh
+  - sed 's?%basedir%?'`pwd`'?' browsers.xml-dist > ~/sahi/userdata/config/browser_types.xml
+before_script:
+  - curl -s http://getcomposer.org/installer | php
+  - php composer.phar install --dev
+  - sudo mkdir -R /tmp/BehatWizardBundle/cache
+  - sudo mkdir -R /tmp/BehatWizardBundle/logs
+  - sudo chmod -R 777 /tmp/BehatWizardBundle/cache tmp/BehatWizardBundle/logs
+
+  # Assetics
+  - ./Features/Fixtures/BehatWizard/app/console assets:install --symlink Features/Fixtures/BehatWizard/web
+  - ./Features/Fixtures/BehatWizard/app/console assetic:dump Features/Fixtures/BehatWizard/web
+
+  # Sahi
+  - cd ~/sahi/bin
+  - ./sahi.sh &
+  - sleep 3
+  - "cd -"
+script: ./vendor/bin/behat
