@@ -6,6 +6,8 @@ default:
     bootstrap: %behat.paths.features%/Context
   context:
     class: Hal\Bundle\BehatWizard\Features\Context\MainContext
+    parameters:
+      test_features: %behat.paths.base%/hbw-features
   extensions:
     Behat\Symfony2Extension\Extension:
       mink_driver: true

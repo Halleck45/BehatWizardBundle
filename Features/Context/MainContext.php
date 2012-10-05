@@ -2,8 +2,7 @@
 
 namespace Hal\Bundle\BehatWizard\Features\Context;
 
-use Behat\MinkExtension\Context\MinkContext,
-    Behat\Behat\Context\BehatContext;
+use Behat\MinkExtension\Context\MinkContext;
 
 /**
  * FeatureContext
@@ -11,7 +10,7 @@ use Behat\MinkExtension\Context\MinkContext,
  * @author Jean-François Lépine <jeanfrancois@lepine.pro>
  * @author Karol Sójko <zoja87@gmail.com>
  */
-class MainContext extends BehatContext
+class MainContext extends MinkContext
 {
 
     /**
@@ -27,7 +26,6 @@ class MainContext extends BehatContext
     public function __construct(array $parameters)
     {
         $this->parameters = $parameters;
-        $this->useContext('mink', new MinkContext($parameters));
         $this->useContext('hbw-feature-feature', new Domain\FeatureContext($parameters));
         $this->useContext('hbw-feature-scenario', new Domain\ScenarioContext($parameters));
     }
@@ -39,7 +37,5 @@ class MainContext extends BehatContext
     {
 
     }
-
-    
 
 }

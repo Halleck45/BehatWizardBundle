@@ -17,13 +17,16 @@ use Behat\Behat\Context\BehatContext,
 
 /**
  * Scenario context.
+ * 
+ * @author Jean-François Lépine <jeanfrancois@lepine.pro>
+ * @author Karol Sójko <zoja87@gmail.com>
  */
 class ScenarioContext extends BehatContext
 {
 
-    protected function getMink()
+    protected function getMinkSession()
     {
-        return $this->getMainContext()->getSubcontext('mink')->getSession();
+        return $this->getMainContext()->getSession();
     }
     
     /**
@@ -35,11 +38,8 @@ class ScenarioContext extends BehatContext
             . "/ancestor::*[@class='scenario']" // container
             . "/descendant::*[@class='btn-scenario-remove']" // btn remove
         ;
-        $this->getMink()->getDriver()->click($xpath);
+        $this->getMinkSession()->getDriver()->click($xpath);
     }
-
-
-
 
     /**
      * @Given /^I should see that the feature "([^"]*)" contains "([^"]*)" scenarios$/

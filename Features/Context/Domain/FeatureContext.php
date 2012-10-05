@@ -17,6 +17,9 @@ use Behat\Behat\Context\BehatContext,
 
 /**
  * Features context.
+ * 
+ * @author Jean-François Lépine <jeanfrancois@lepine.pro>
+ * @author Karol Sójko <zoja87@gmail.com>
  */
 class FeatureContext extends BehatContext
 {
@@ -31,12 +34,12 @@ class FeatureContext extends BehatContext
      */
     public function __construct(array $parameters)
     {
-        self::$FOLDER = sys_get_temp_dir() . '/hbw';
+        self::$FOLDER = $parameters['test_features'];
     }
 
-    protected function getMink()
+    protected function getMinkSession()
     {
-        return $this->getMainContext()->getSubcontext('mink')->getSession();
+        return $this->getMainContext()->getSession();
     }
 
     /**
@@ -49,10 +52,7 @@ class FeatureContext extends BehatContext
             foreach ($files as $filename) {
                 unlink($filename);
             }
-            rmdir(self::$FOLDER);
         }
-        mkdir(self::$FOLDER, 0775);
-        chgrp(self::$FOLDER, 'www-data');
     }
 
     /**
@@ -64,7 +64,6 @@ class FeatureContext extends BehatContext
         foreach ($files as $filename) {
             unlink($filename);
         }
-        rmdir(self::$FOLDER);
     }
 
     /**
@@ -98,8 +97,8 @@ class FeatureContext extends BehatContext
      */
     public function iSaveTheCurrentFeature()
     {
-        $this->getMink()->getDriver()->click("//*[.='Save']");
-        $this->getMink()->wait(4000);
+        $this->getMinkSession()->getDriver()->click("//*[.='Save']");
+        $this->getMinkSession()->wait(4000);
     }
 
     /**
