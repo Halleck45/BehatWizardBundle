@@ -1,0 +1,2 @@
+acme_demo:
+    resource: "@HalBehatWizardBundle/Resources/config/routing.yml"

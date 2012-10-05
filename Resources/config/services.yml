@@ -1,0 +1,4 @@
+parameters:
+    behat.paths.base: /path/to/project/
+    behat.paths.features: /path/your/features/
+    behat.paths.reports:  /path/your/behat/reports/
