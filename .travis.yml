@@ -30,4 +30,5 @@ before_script:
   - ./sahi.sh &
   - sleep 3
   - "cd -"
+# todo : use specific profile
 script: ./vendor/bin/behat
