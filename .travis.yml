@@ -14,11 +14,11 @@ before_install:
   - unzip sahi_20110719.zip -d ~/
   - sudo chmod +x ~/sahi/bin/sahi.sh
 before_script:
-  - curl -s http://getcomposer.org/installer | php
-  - php composer.phar install --dev
   - sudo mkdir -p /tmp/BehatWizardBundle/cache
   - sudo mkdir /tmp/BehatWizardBundle/logs
-  - sudo chmod -R 777 /tmp/BehatWizardBundle/cache tmp/BehatWizardBundle/logs
+  - sudo chmod -R 777 /tmp/BehatWizardBundle/cache /tmp/BehatWizardBundle/logs
+  - curl -s http://getcomposer.org/installer | php
+  - php composer.phar install --dev
 
   # Assetics
   - ./Features/Fixtures/BehatWizard/app/console assets:install --symlink Features/Fixtures/BehatWizard/web
