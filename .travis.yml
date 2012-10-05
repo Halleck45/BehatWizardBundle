@@ -16,8 +16,8 @@ before_install:
 before_script:
   - curl -s http://getcomposer.org/installer | php
   - php composer.phar install --dev
-  - sudo mkdir -R /tmp/BehatWizardBundle/cache
-  - sudo mkdir -R /tmp/BehatWizardBundle/logs
+  - sudo mkdir /tmp/BehatWizardBundle/cache
+  - sudo mkdir /tmp/BehatWizardBundle/logs
   - sudo chmod -R 777 /tmp/BehatWizardBundle/cache tmp/BehatWizardBundle/logs
 
   # Assetics
