@@ -7,3 +7,6 @@ vendor/*
 # Dependencies
 composer.phar
 composer.lock
+
+# Fixtures
+Features/Fixtures/BehatWizard/web/*
