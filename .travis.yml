@@ -19,6 +19,8 @@ before_script:
   - sudo chmod -R 777 /tmp/BehatWizardBundle/cache /tmp/BehatWizardBundle/logs
   - curl -s http://getcomposer.org/installer | php
   - php composer.phar install --dev
+  - chmod +x ./bin/prepare-test-env.sh
+  - ./bin/prepare-test-env.sh
 
   # Assetics
   - ./Features/Fixtures/BehatWizard/app/console assets:install --symlink Features/Fixtures/BehatWizard/web
@@ -30,4 +32,9 @@ before_script:
   - sleep 3
   - "cd -"
 # todo : use specific profile
-script: ./vendor/bin/behat
+script: ./bin/behat
+
+notifications:
+  email:
+    - jeanfrancois@lepine.pro
+    - zoja87@gmail.com
