@@ -1,6 +1,6 @@
 <?php
 
-namespace Hal\Bundle\BehatWizard\Features\Context;
+namespace Hal\Bundle\BehatWizard\Features\Context\Domain;
 
 use Behat\Mink\Behat\Context\MinkContext;
 use Behat\Behat\Context\BehatContext,

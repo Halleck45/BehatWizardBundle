@@ -28,8 +28,8 @@ class MainContext extends BehatContext
     {
         $this->parameters = $parameters;
         $this->useContext('mink', new MinkContext($parameters));
-        $this->useContext('hbw-feature-feature', new FeatureContext($parameters));
-        $this->useContext('hbw-feature-feature', new ScenarioContext($parameters));
+        $this->useContext('hbw-feature-feature', new Domain\FeatureContext($parameters));
+        $this->useContext('hbw-feature-scenario', new Domain\ScenarioContext($parameters));
     }
 
     /**

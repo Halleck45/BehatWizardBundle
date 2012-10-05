@@ -15,5 +15,10 @@ default:
         path: Features/Fixtures/BehatWizard/app/AppKernel.php
     Behat\MinkExtension\Extension:
       base_url: 'http://www.behatwizard.dev/app_test.php/'
-      default_session: symfony2
+      default_session: sahi
+      javascript_session: sahi
+      browser_name: chrome
+      sahi:
+        host: localhost
+        port: 9999
       
