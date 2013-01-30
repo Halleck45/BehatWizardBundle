@@ -1,6 +1,8 @@
 BehatWizardBundle
 ================
 
+[![Dependencies](http://dependency.me/repository/image/Halleck45/BehatWizardBundle/master)](http://dependency.me/repository/branche/Halleck45/BehatWizardBundle/master)
+
 GUI Tool for Behat users.
 
 This tool helps Product Owners to manage their features. They can:
