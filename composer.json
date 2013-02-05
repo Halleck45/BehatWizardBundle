@@ -26,5 +26,6 @@
         "psr-0": {
             "Hal\\Bundle\\BehatWizard": ""
         }
-    }
+    },
+    "target-dir": "Hal/Bundle/BehatWizard"
 }
