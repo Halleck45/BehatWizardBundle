@@ -41,7 +41,7 @@ hbw:
     main:
       btn:
         addScenario: New scenario
-        save: I've finished
+        save: Finish
 
       title: In two words
       short: Describe your feature here in a few words
@@ -78,7 +78,7 @@ hbw:
       title: Use case
       help: Use cases are scenarios that describe your feature
       btn:
-        end: I finished for this scenario
+        end: Finish Scenario
         remove: Remove scenario
       field:
         title:
@@ -123,7 +123,7 @@ hbw:
           simple: simple pre-requisite
           outline: pre-requisite with dataset
       when:
-        title: Evénements décelencheur
+        title: Events
         keyword: When
         add:
           text: Add an event
