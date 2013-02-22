@@ -461,14 +461,18 @@ hbw.ui.editing = {
 
         // looks for variables
         var names = [];
+        var i;
         $('.step:text', hbw.ui.editing.selector.box.scenarios).each(function() {
             var text = $(this).val();
-            var name = text.match(/<(.*)>/);
-            if(name != null) {
-                name = name[1];
-                if(-1 == $.inArray(name, names)) {
-                    names.push(name);
-                }
+            var nameVars = text.match(/<(.*?)>/g);
+            if(nameVars != null) {
+                  for(i in nameVars) {
+                      name = nameVars[i];
+                      var name = name.substr(0, name.length-1);
+                      var name = name.substr(1); 
+                      if(-1 == $.inArray(name, names)) {
+                            names.push(name);
+                      }
             }
         });
 
