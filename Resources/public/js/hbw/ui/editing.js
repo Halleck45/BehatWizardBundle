@@ -473,6 +473,7 @@ hbw.ui.editing = {
                       if(-1 == $.inArray(name, names)) {
                             names.push(name);
                       }
+                  }
             }
         });
 
