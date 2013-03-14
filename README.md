@@ -25,40 +25,20 @@ This tool helps Product Owners to manage their features. They can:
 
 Installation
 -----------
-2. Add the bundle and Behat to your project
-3. Enable the bundle
-4. Configure paths of behat features
-5. Enable translator
-6. Assetics
 
+### Update your composer file:
 
-### Add the bundle to your project
-
-    # deps
-    [BehatWizardBundle]
-        git=git://github.com/Halleck45/BehatWizardBundle.git
-        target=/bundles/Hal/Bundle/BehatWizard
-    [BehatToolsBundle]
-        git=git://github.com/Halleck45/BehatToolsBundle.git
-        target=/bundles/Hal/Bundle/BehatTools
-    [gherkin]
-        git=git@github.com:Halleck45/Gherkin.git
-        target=/behat/gherkin
-    [behat]
-        git=git://github.com/Behat/Behat.git
-        target=/behat/behat
+    "require-dev": {
+        "halleck45/behat-wizard-bundle": "dev-master"
+    }
 
 ### Enable the bundle
 
-    # app/autoload.php
-    'Hal\\Bundle'      => __DIR__.'/../vendor/bundles',
-    'Behat\\Gherkin'   => __DIR__.'/../vendor/behat/gherkin/src',
-    'Behat\\Behat'     => __DIR__.'/../vendor/behat/behat/src',
-    'Behat\\Mink'      => __DIR__.'/../vendor/behat/mink/src',
-
     # app/AppKernel.php
-    new Hal\Bundle\BehatTools\HalBehatToolsBundle(),
-    new Hal\Bundle\BehatWizard\HalBehatWizardBundle(),
+    if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+        // ...
+        $bundles[] = new Hal\Bundle\BehatWizard\HalBehatWizardBundle();
+    }
 
 ### Activate routes
 
@@ -67,6 +47,7 @@ Edit your routing configuration:
     # app/config/routing.yml
     HalBehatWizard:
       resource: "@HalBehatWizardBundle/Resources/config/routing.yml"
+      prefix: /
 
 ### Configure paths of behat features
 
@@ -81,11 +62,23 @@ Note that you need to run Behat with the junit formater parameter, in order to g
 
     $ behat -f junit --out /path/to/project/reports
 
+If you use a configuration file for Behat, you can use this configuration:
+
+    formatter:
+      name:                   pretty,junit
+      parameters:
+        output_path:          null,build/behat
 
 ### Assetics
 
     php app/console assets:install --symlink web
     php app/console assetic:dump web
+
+And edit your config file:
+
+    assetic:
+        (...)
+        bundles:        [ HalBehatWizardBundle ]
 
 ### Translation
 
@@ -95,6 +88,9 @@ Remember to active the translator:
     framework:
       translator: { fallback: en }
 
+### Use it !
+
+Just go to `/app_dev.php/behat/wizard/list`
 
 ## Common bugs
 
@@ -103,5 +99,4 @@ Remember to active the translator:
 
     twig:
       cache: false
-
 
