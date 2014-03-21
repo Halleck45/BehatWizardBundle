@@ -11,6 +11,11 @@ This tool helps Product Owners to manage their features. They can:
 - edit features
 - add new features
 
+
+# Deprecated
+
+This tool is deprecated. Please prefer the standalone [BddWizard](https://github.com/Halleck45/BDDWizard)
+
 ## Demo
 
 **You can see a [demo here](http://halleck45.github.com/BehatWizardBundle/demo/behat/wizard/list.html)**
